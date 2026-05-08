@@ -1,34 +1,50 @@
 const CONFIG = {
   email: "hello@lernagroup.com",
-  calendlyUrl: "https://calendly.com/lernagroup/discovery-30min",
-  githubUrl: "https://github.com/lerna-group",
+  calendlyUrl: "https://calendly.com/henry-lernagroup/30min",
+  githubUrl: "https://github.com/Lerna-Group",
   timezoneLabel: "America/Bogota"
 };
 
 const CASES = [
   {
     id: "case-01",
-    title: "Catalog App (Static)",
+    title: "Wekall",
     area: "web",
-    summary: "SPA estática orientada a catálogo con UX cuidada, filtros y performance consistente. Deploy vía Pages.",
-    tags: ["HTML", "CSS", "JS", "GitHub Pages"],
-    links: { live: "#", repo: "#" }
+    summary: "Plataforma web (sitio público).",
+    tags: ["Web", "Producto"],
+    links: { live: "https://wekall.co", repo: "" }
   },
   {
     id: "case-02",
-    title: "Dashboard de Operaciones",
+    title: "Wekall Admin",
     area: "data",
-    summary: "Panel con métricas, tablas grandes y estados; enfoque en legibilidad, respuesta y mantenimiento.",
-    tags: ["React", "API", "Charts", "Auth"],
-    links: { live: "#", repo: "#" }
+    summary: "Panel administrativo para operación interna.",
+    tags: ["Dashboard", "Admin", "Data"],
+    links: { live: "https://admin.wekall.co", repo: "" }
   },
   {
     id: "case-03",
-    title: "Automatización de Reportes",
+    title: "Campus CCC",
+    area: "web",
+    summary: "Sitio/plataforma educativa (publicado).",
+    tags: ["Web", "Educación"],
+    links: { live: "https://campus.ccc.org.co/", repo: "" }
+  },
+  {
+    id: "case-04",
+    title: "MicroImpulso",
+    area: "web",
+    summary: "Sitio público de la marca (publicado).",
+    tags: ["Web", "Marketing"],
+    links: { live: "https://microimpulso.co", repo: "" }
+  },
+  {
+    id: "case-05",
+    title: "MicroImpulso App",
     area: "automation",
-    summary: "Workflow para generar reportes y alertas, integrando fuentes y notificando por canales acordados.",
-    tags: ["Node.js", "ETL", "Cron", "Integrations"],
-    links: { live: "#", repo: "#" }
+    summary: "Aplicación web para operación/usuarios (publicada).",
+    tags: ["App", "Operación"],
+    links: { live: "https://app.microimpulso.co", repo: "" }
   }
 ];
 
@@ -54,7 +70,7 @@ function renderCards(items) {
   root.innerHTML = items.map((c, idx) => {
     const badge = String(idx + 1).padStart(2, "0");
     const tags = c.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-    const live = c.links?.live ? `<a href="${escapeHtml(c.links.live)}" class="muted" rel="noreferrer">Demo</a>` : "";
+    const live = c.links?.live ? `<a href="${escapeHtml(c.links.live)}" class="muted" rel="noreferrer">Ver</a>` : "";
     const repo = c.links?.repo ? `<a href="${escapeHtml(c.links.repo)}" rel="noreferrer">Repo</a>` : "";
     return `
       <article class="card" data-area="${escapeHtml(c.area)}">
@@ -102,4 +118,3 @@ function bindFilters() {
 
 setLinks();
 bindFilters();
-
