@@ -7,27 +7,33 @@ const PROJECTS = [
   {
     tags: ["AI", "Generative", "Mobile SaaS", "SMB Tools"],
     title: "Launching Wizad.AI 0 to 1 : An AI-Powered design tool for SME's.",
-    support: "5M+ Creatives, 300K+ Downloads, Top-3 in Design category"
+    support: "5M+ Creatives, 300K+ Downloads, Top-3 in Design category",
+    image: "assets/project-wizad.svg"
   },
   {
     tags: ["E-Commerce", "B2B", "Enterprise", "Rebranding & Redesign"],
-    title: "Designing a Scalable B2B-ready E-commerce Platform for Premium Furniture Brand in UAE - NavoErgnomics"
+    title: "Designing a Scalable B2B-ready E-commerce Platform for Premium Furniture Brand in UAE - NavoErgnomics",
+    image: "assets/project-navo.svg"
   },
   {
     tags: ["Enterprise", "ERP", "B2B", "Multi-role", "Operations"],
-    title: "End-to-End Sales, Finance & Logistics ERP Workspace for AGS, UAE"
+    title: "End-to-End Sales, Finance & Logistics ERP Workspace for AGS, UAE",
+    image: "assets/project-ags-erp.svg"
   },
   {
     tags: ["Fintech", "Multi-chain", "P2P", "Currency Exchange"],
-    title: "Building Scalable Design System, Multi-Currency Wallet and Payments App for Global Daily Fintech"
+    title: "Building Scalable Design System, Multi-Currency Wallet and Payments App for Global Daily Fintech",
+    image: "assets/project-fintech.svg"
   },
   {
     tags: ["B2B/B2C E-Commerce", "Solar Energy", "Conversion", "Rebranding"],
-    title: "Reducing Buying Friction and Improving Conversion paths for AGS’s solar energy E-Commerce Website"
+    title: "Reducing Buying Friction and Improving Conversion paths for AGS’s solar energy E-Commerce Website",
+    image: "assets/project-solar.svg"
   },
   {
     tags: ["Credential Manager", "Security", "B2B SaaS", "Open-Source"],
-    title: "Launching Osvauld 0 to 1 : Trustworthy Shared Credentials for Security-Conscious Teams"
+    title: "Launching Osvauld 0 to 1 : Trustworthy Shared Credentials for Security-Conscious Teams",
+    image: "assets/project-osvauld.svg"
   }
 ];
 
@@ -68,7 +74,7 @@ function renderProjects() {
     const support = p.support ? `<div class="psub">${escapeHtml(p.support)}</div>` : "";
     return `
       <article class="pcard">
-        <div class="pmedia"><img src="assets/project-ph.svg" alt="" /></div>
+        <div class="pmedia"><img src="${escapeHtml(p.image)}" alt="" /></div>
         <div class="pbody">
           <div class="ptags">${tags}</div>
           <div class="ptitle">${escapeHtml(p.title)}</div>
@@ -81,9 +87,9 @@ function renderProjects() {
 }
 
 function renderTestimonials() {
-  const track = $("#testimonialTrack");
-  if (!track) return;
-  const cards = PEOPLE.map((p) => {
+  const root = $("#testimonialGrid");
+  if (!root) return;
+  root.innerHTML = PEOPLE.map((p) => {
     const quote = escapeHtml(p.quote || "");
     return `
       <article class="tcard">
@@ -98,8 +104,6 @@ function renderTestimonials() {
       </article>
     `;
   }).join("");
-  // Duplicate group for seamless marquee loop
-  track.innerHTML = `<div class="tgroup">${cards}</div><div class="tgroup" aria-hidden="true">${cards}</div>`;
 }
 
 function bindButtons() {
@@ -112,6 +116,23 @@ function bindButtons() {
   if (bookB) bookB.href = CONFIG.bookUrl;
 }
 
+function bindNavState() {
+  const links = [...document.querySelectorAll(".s-nav a")];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href") || ""))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const id = `#${visible.target.id}`;
+    links.forEach((link) => link.classList.toggle("is-active", link.getAttribute("href") === id));
+  }, { rootMargin: "-30% 0px -55% 0px", threshold: [0.15, 0.3, 0.5, 0.75] });
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 renderProjects();
 renderTestimonials();
 bindButtons();
+bindNavState();
