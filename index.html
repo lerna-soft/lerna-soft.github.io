@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Lerna Group · Portfolio</title>
+    <meta name="description" content="Lerna Group: estudio de software enfocado en producto, velocidad y calidad. Construimos y mejoramos apps web." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow-a"></div>
+      <div class="bg-glow bg-glow-b"></div>
+      <div class="bg-noise"></div>
+    </div>
+
+    <header class="top">
+      <a class="brand" href="#top" aria-label="Lerna Group Home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Lerna Group</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#work">Work</a>
+        <a href="#services">Servicios</a>
+        <a href="#process">Proceso</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+
+      <div class="top-cta">
+        <a class="btn btn-ghost" id="btnEmail" href="#" rel="noreferrer">Email</a>
+        <a class="btn btn-primary" id="btnBook" href="#" rel="noreferrer">Agendar</a>
+      </div>
+    </header>
+
+    <main id="top" class="wrap">
+      <section class="hero">
+        <div class="hero-card">
+          <div class="hero-id">
+            <div class="avatar" aria-hidden="true">
+              <div class="avatar-inner"></div>
+            </div>
+            <div class="hero-meta">
+              <div class="kicker">
+                <span class="pill pill-live">Disponible</span>
+                <span class="pill">Estudio</span>
+                <span class="pill">LatAm</span>
+              </div>
+              <h1>Lerna Group</h1>
+              <p class="sub">
+                Construimos apps web orientadas a negocio: UX cuidada, performance real, y despliegue sin drama.
+              </p>
+              <div class="hero-stats" role="list">
+                <div class="stat" role="listitem">
+                  <span class="stat-num" data-kpi="years">8+</span>
+                  <span class="stat-label">años en producto</span>
+                </div>
+                <div class="stat" role="listitem">
+                  <span class="stat-num" data-kpi="ships">30+</span>
+                  <span class="stat-label">entregas</span>
+                </div>
+                <div class="stat" role="listitem">
+                  <span class="stat-num" data-kpi="response">24h</span>
+                  <span class="stat-label">tiempo de respuesta</span>
+                </div>
+              </div>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Hablemos</a>
+                <a class="btn btn-ghost" href="#work">Ver casos</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-about">
+            <h2>About</h2>
+            <p>
+              Somos un equipo pequeño y práctico: convertimos requerimientos ambiguos en entregables claros,
+              iteramos rápido y dejamos el proyecto mantenible. Usamos IA donde aporta velocidad, pero priorizamos
+              criterio, calidad y resultados.
+            </p>
+
+            <div class="chips" aria-label="Experience includes">
+              <span class="chip">Frontends rápidos</span>
+              <span class="chip">Dashboards</span>
+              <span class="chip">Integraciones</span>
+              <span class="chip">Automatización</span>
+              <span class="chip">Performance</span>
+              <span class="chip">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="section">
+        <div class="section-head">
+          <h2>Portfolio</h2>
+          <p>Casos seleccionados (placeholder). Luego los reemplazamos por tus proyectos reales.</p>
+        </div>
+
+        <div class="toolbar">
+          <div class="seg" role="tablist" aria-label="Filter">
+            <button class="seg-btn is-active" type="button" data-filter="all">Todo</button>
+            <button class="seg-btn" type="button" data-filter="web">Web</button>
+            <button class="seg-btn" type="button" data-filter="data">Data</button>
+            <button class="seg-btn" type="button" data-filter="automation">Automation</button>
+          </div>
+          <div class="search">
+            <input id="q" type="search" placeholder="Buscar casos..." autocomplete="off" />
+          </div>
+        </div>
+
+        <div id="cards" class="grid" aria-live="polite"></div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="section-head">
+          <h2>Servicios</h2>
+          <p>Lo que vendemos (con entregables claros). Ajustamos el wording a Workana.</p>
+        </div>
+
+        <div class="cols">
+          <article class="panel">
+            <h3>MVP y producto</h3>
+            <ul class="list">
+              <li>Definición de alcance y roadmap corto</li>
+              <li>UI + frontend con calidad de producción</li>
+              <li>Integración con APIs y autenticación</li>
+              <li>Deploy y handoff con documentación mínima</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Mejoras y mantenimiento</h3>
+            <ul class="list">
+              <li>Bugs difíciles, refactors quirúrgicos</li>
+              <li>Performance, Core Web Vitals</li>
+              <li>Accesibilidad y SEO básico</li>
+              <li>Instrumentación, logs y analítica</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Automatización</h3>
+            <ul class="list">
+              <li>Scrapers permitidos y ETL liviano</li>
+              <li>Dashboards, reportes, alertas</li>
+              <li>Integraciones (correo, WhatsApp, CRMs)</li>
+              <li>Workflows repetibles con CI</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="section">
+        <div class="section-head">
+          <h2>Proceso</h2>
+          <p>Cómo evitamos sorpresas y mantenemos velocidad con control.</p>
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h3>Levantamiento</h3>
+              <p>Reunión corta, objetivos, riesgos, y definición de “hecho”.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h3>Propuesta</h3>
+              <p>Alcance, hitos, fechas y entregables. Sin ambigüedad.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h3>Entrega</h3>
+              <p>Deploy, QA, checklist y handoff. Iteración si aplica.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="cta">
+          <div class="cta-copy">
+            <h2>¿Listo para empezar?</h2>
+            <p>
+              Agenda una reunión de 30 minutos para levantar requerimientos y darte un plan de trabajo.
+            </p>
+            <div class="cta-actions">
+              <a class="btn btn-primary" id="ctaBook" href="#" rel="noreferrer">Agendar en Calendly</a>
+              <a class="btn btn-ghost" id="ctaEmail" href="#" rel="noreferrer">Escribir por email</a>
+            </div>
+            <p class="fine">
+              Respuesta típica: <strong>menos de 24h</strong>. Trabajamos por hitos.
+            </p>
+          </div>
+          <div class="cta-card">
+            <div class="mini">
+              <div class="mini-row">
+                <span class="mini-k">Zona horaria</span>
+                <span class="mini-v" id="tz">America/Bogota</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-k">Email</span>
+                <span class="mini-v" id="emailLabel">hello@lernagroup.com</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-k">GitHub</span>
+                <span class="mini-v"><a id="ghLink" href="#" rel="noreferrer">github.com/lerna-group</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>© <span id="year"></span> Lerna Group</span>
+        <span class="dot">·</span>
+        <a href="#top">Volver arriba</a>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
