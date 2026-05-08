@@ -24,101 +24,121 @@
       </a>
 
       <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#services">Servicios</a>
-        <a href="#process">Proceso</a>
-        <a href="#contact">Contacto</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
       </nav>
 
       <div class="top-cta">
-        <a class="btn btn-ghost" id="btnEmail" href="#" rel="noreferrer">Email</a>
-        <a class="btn btn-primary" id="btnBook" href="#" rel="noreferrer">Agendar</a>
+        <button class="btn btn-ghost" id="btnCopyEmail" type="button">Copy e-mail</button>
+        <a class="btn btn-primary" id="btnBook" href="#" rel="noreferrer">Book a Free 30min call</a>
       </div>
     </header>
 
     <main id="top" class="wrap">
       <section class="hero">
-        <div class="hero-card">
-          <div class="hero-id">
-            <div class="avatar" aria-hidden="true">
-              <div class="avatar-inner"></div>
-            </div>
-            <div class="hero-meta">
-              <div class="kicker">
-                <span class="pill pill-live">Disponible</span>
-                <span class="pill">Estudio</span>
-                <span class="pill">LatAm</span>
+        <div class="hero-shell">
+          <div class="hero-left">
+            <div class="hero-idline">
+              <div class="avatar" aria-hidden="true">
+                <div class="avatar-inner"></div>
               </div>
-              <h1>Lerna Group</h1>
-              <p class="sub">
-                Construimos apps web orientadas a negocio: UX cuidada, performance real, y despliegue sin drama.
-              </p>
-              <div class="hero-stats" role="list">
-                <div class="stat" role="listitem">
-                  <span class="stat-num" data-kpi="years">8+</span>
-                  <span class="stat-label">años en producto</span>
-                </div>
-                <div class="stat" role="listitem">
-                  <span class="stat-num" data-kpi="ships">30+</span>
-                  <span class="stat-label">entregas</span>
-                </div>
-                <div class="stat" role="listitem">
-                  <span class="stat-num" data-kpi="response">24h</span>
-                  <span class="stat-label">tiempo de respuesta</span>
-                </div>
-              </div>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#contact">Hablemos</a>
-                <a class="btn btn-ghost" href="#work">Ver casos</a>
+              <div class="hero-idtext">
+                <div class="hero-name">Lerna Group</div>
+                <div class="hero-role">Software Studio</div>
               </div>
             </div>
-          </div>
+            <div class="openline">
+              <span class="open-dot" aria-hidden="true"></span>
+              <span>open for projects ( remote )</span>
+            </div>
 
-          <div class="hero-about">
-            <h2>About</h2>
-            <p>
-              Somos un equipo pequeño y práctico: convertimos requerimientos ambiguos en entregables claros,
-              iteramos rápido y dejamos el proyecto mantenible. Usamos IA donde aporta velocidad, pero priorizamos
-              criterio, calidad y resultados.
+            <div class="marquee" aria-label="Headline">
+              <div class="marquee-track">
+                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
+                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
+                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
+              </div>
+            </div>
+
+            <p class="lede">
+              ¿Deadlines apretados, flujos confusos o entregas sin mantenimiento? Ayudamos a equipos a convertir
+              ideas en producto usable, con criterio técnico y foco en negocio.
             </p>
 
-            <div class="chips" aria-label="Experience includes">
-              <span class="chip">Frontends rápidos</span>
-              <span class="chip">Dashboards</span>
-              <span class="chip">Integraciones</span>
-              <span class="chip">Automatización</span>
-              <span class="chip">Performance</span>
-              <span class="chip">CI/CD</span>
+            <div class="hero-actions">
+              <button class="btn btn-ghost" id="btnCopyEmail2" type="button">Copy e-mail</button>
+              <a class="btn btn-primary" id="btnBook2" href="#" rel="noreferrer">Book a Free 30min call</a>
+              <a class="btn btn-ghost" href="#projects">View Casestudies</a>
             </div>
           </div>
+
+          <aside class="hero-right" aria-label="Highlights">
+            <div class="mini-stack">
+              <div class="mini-card">
+                <div class="mini-k">Primary</div>
+                <div class="mini-v">Web apps, dashboards</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-k">Speed</div>
+                <div class="mini-v">Iteraciones semanales</div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-k">Quality</div>
+                <div class="mini-v">Performance y handoff</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section id="work" class="section">
+      <section id="projects" class="section">
         <div class="section-head">
-          <h2>Portfolio</h2>
-          <p>Casos seleccionados (placeholder). Luego los reemplazamos por tus proyectos reales.</p>
+          <h2>FEATURED PROJECTS, REAL IMPACT.</h2>
+          <p>Casos publicados (links). Luego añadimos métricas, roles y contexto.</p>
         </div>
+        <div id="featured" class="featured" aria-live="polite"></div>
+      </section>
 
-        <div class="toolbar">
-          <div class="seg" role="tablist" aria-label="Filter">
-            <button class="seg-btn is-active" type="button" data-filter="all">Todo</button>
-            <button class="seg-btn" type="button" data-filter="web">Web</button>
-            <button class="seg-btn" type="button" data-filter="data">Data</button>
-            <button class="seg-btn" type="button" data-filter="automation">Automation</button>
-          </div>
-          <div class="search">
-            <input id="q" type="search" placeholder="Buscar casos..." autocomplete="off" />
-          </div>
+      <section id="kindwords" class="section">
+        <div class="section-head">
+          <h2>KIND WORDS, EVEN KINDER PEOPLE</h2>
+          <p>Testimonios placeholder (los reemplazamos por clientes reales).</p>
         </div>
+        <div id="quotes" class="quotes" aria-label="Testimonials"></div>
+      </section>
 
-        <div id="cards" class="grid" aria-live="polite"></div>
+      <section id="about" class="section">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>Cómo trabajamos: rápido, claro, y con criterio.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Cómo ayudamos</h3>
+            <p class="muted-par">
+              Traducimos necesidades de negocio en entregables: diseño de interacción, implementación, y despliegue.
+              IA es una herramienta; el diferencial es criterio + ejecución.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Stack</h3>
+            <div class="chips" aria-label="Stack">
+              <span class="chip">HTML/CSS/JS</span>
+              <span class="chip">React</span>
+              <span class="chip">Node</span>
+              <span class="chip">APIs</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">CI/CD</span>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section id="services" class="section">
         <div class="section-head">
-          <h2>Servicios</h2>
-          <p>Lo que vendemos (con entregables claros). Ajustamos el wording a Workana.</p>
+          <h2>Services</h2>
+          <p>Paquetes de trabajo (placeholder) para vender mejor en plataformas.</p>
         </div>
 
         <div class="cols">
@@ -152,55 +172,20 @@
         </div>
       </section>
 
-      <section id="process" class="section">
-        <div class="section-head">
-          <h2>Proceso</h2>
-          <p>Cómo evitamos sorpresas y mantenemos velocidad con control.</p>
-        </div>
-        <div class="timeline">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-body">
-              <h3>Levantamiento</h3>
-              <p>Reunión corta, objetivos, riesgos, y definición de “hecho”.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-body">
-              <h3>Propuesta</h3>
-              <p>Alcance, hitos, fechas y entregables. Sin ambigüedad.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-body">
-              <h3>Entrega</h3>
-              <p>Deploy, QA, checklist y handoff. Iteración si aplica.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="contact" class="section">
-        <div class="cta">
+        <div class="cta simple">
           <div class="cta-copy">
-            <h2>¿Listo para empezar?</h2>
-            <p>
-              Agenda una reunión de 30 minutos para levantar requerimientos y darte un plan de trabajo.
-            </p>
+            <h2>Ready to ship?</h2>
+            <p>Agenda 30 minutos. Te devuelvo un plan y alcance con hitos.</p>
             <div class="cta-actions">
-              <a class="btn btn-primary" id="ctaBook" href="#" rel="noreferrer">Agendar en Calendly</a>
-              <a class="btn btn-ghost" id="ctaEmail" href="#" rel="noreferrer">Escribir por email</a>
+              <a class="btn btn-primary" id="ctaBook" href="#" rel="noreferrer">Book a Free 30min call</a>
+              <a class="btn btn-ghost" id="ctaEmail" href="#" rel="noreferrer">Email</a>
             </div>
-            <p class="fine">
-              Respuesta típica: <strong>menos de 24h</strong>. Trabajamos por hitos.
-            </p>
           </div>
           <div class="cta-card">
             <div class="mini">
               <div class="mini-row">
-                <span class="mini-k">Zona horaria</span>
+                <span class="mini-k">Timezone</span>
                 <span class="mini-v" id="tz">America/Bogota</span>
               </div>
               <div class="mini-row">
@@ -226,4 +211,3 @@
     <script src="app.js"></script>
   </body>
 </html>
-
