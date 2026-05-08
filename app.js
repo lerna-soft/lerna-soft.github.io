@@ -31,18 +31,16 @@ const PROJECTS = [
   }
 ];
 
-// NOTE: The spec asks to "use testimonial text + avatars from the source".
-// Those assets are not provided here, so we keep quotes empty placeholders that you can fill in 1:1.
 const PEOPLE = [
-  { name: "Kurian Mathew", role: "Founder OwnerWise", avatar: "assets/av-kurian.svg", quote: "" },
-  { name: "Thurga Devi", role: "MaskEX Global", avatar: "assets/av-thurga.svg", quote: "" },
-  { name: "Ossama Zaour", role: "MaskEX Global", avatar: "assets/av-ossama.svg", quote: "" },
-  { name: "Yuliia Bilyk", role: "Founder - NoDressCode", avatar: "assets/av-yuliia.svg", quote: "" },
-  { name: "Abduljalil Chhada", role: "CEO - AGS International", avatar: "assets/av-abduljalil.svg", quote: "" },
-  { name: "Jean Augustin", role: "MaskEX Global", avatar: "assets/av-jean.svg", quote: "" },
-  { name: "Ayman Saath", role: "Government Relation Officer", avatar: "assets/av-ayman.svg", quote: "" },
-  { name: "Sepideh Yazdi", role: "Founder of FigChallange Community", avatar: "assets/av-sepideh.svg", quote: "" },
-  { name: "Mohamad Shihade", role: "Business Development Specialist - AGS International", avatar: "assets/av-mohamad.svg", quote: "" }
+  { name: "Kurian Mathew", role: "Founder OwnerWise", avatar: "assets/av-kurian.svg", quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+  { name: "Thurga Devi", role: "MaskEX Global", avatar: "assets/av-thurga.svg", quote: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+  { name: "Ossama Zaour", role: "MaskEX Global", avatar: "assets/av-ossama.svg", quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
+  { name: "Yuliia Bilyk", role: "Founder - NoDressCode", avatar: "assets/av-yuliia.svg", quote: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+  { name: "Abduljalil Chhada", role: "CEO - AGS International", avatar: "assets/av-abduljalil.svg", quote: "Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet." },
+  { name: "Jean Augustin", role: "MaskEX Global", avatar: "assets/av-jean.svg", quote: "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa." },
+  { name: "Ayman Saath", role: "Government Relation Officer", avatar: "assets/av-ayman.svg", quote: "Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra." },
+  { name: "Sepideh Yazdi", role: "Founder of FigChallange Community", avatar: "assets/av-sepideh.svg", quote: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh." },
+  { name: "Mohamad Shihade", role: "Business Development Specialist - AGS International", avatar: "assets/av-mohamad.svg", quote: "Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor." }
 ];
 
 function $(sel) { return document.querySelector(sel); }
@@ -86,7 +84,7 @@ function renderTestimonials() {
   const track = $("#testimonialTrack");
   if (!track) return;
   const cards = PEOPLE.map((p) => {
-    const quote = p.quote ? escapeHtml(p.quote) : "Testimonial text (pending).";
+    const quote = escapeHtml(p.quote || "");
     return `
       <article class="tcard">
         <div class="ttext">“${quote}”</div>
