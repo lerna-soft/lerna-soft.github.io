@@ -1,210 +1,145 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
-    <title>Lerna Group · Portfolio</title>
-    <meta name="description" content="Lerna Group: estudio de software enfocado en producto, velocidad y calidad. Construimos y mejoramos apps web." />
+    <title>ShravanKumar P S · Portfolio</title>
+    <meta name="description" content="Product Designer portfolio: featured projects, testimonials, and contact." />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg" aria-hidden="true">
-      <div class="bg-grid"></div>
-      <div class="bg-glow bg-glow-a"></div>
-      <div class="bg-glow bg-glow-b"></div>
-      <div class="bg-noise"></div>
-    </div>
+    <div class="bg" aria-hidden="true"></div>
 
-    <header class="top">
-      <a class="brand" href="#top" aria-label="Lerna Group Home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">Lerna Group</span>
-      </a>
-
-      <nav class="nav">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-      </nav>
-
-      <div class="top-cta">
-        <button class="btn btn-ghost" id="btnCopyEmail" type="button">Copy e-mail</button>
-        <a class="btn btn-primary" id="btnBook" href="#" rel="noreferrer">Book a Free 30min call</a>
+    <header class="header">
+      <div class="container header-inner">
+        <div class="brand">ShravanKumar P S</div>
+        <nav class="nav" aria-label="Top navigation">
+          <a href="#top">Homepage</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+        </nav>
       </div>
     </header>
 
-    <main id="top" class="wrap">
+    <main id="top">
       <section class="hero">
-        <div class="hero-shell">
-          <div class="hero-left">
-            <div class="hero-idline">
-              <div class="avatar" aria-hidden="true">
-                <div class="avatar-inner"></div>
-              </div>
-              <div class="hero-idtext">
-                <div class="hero-name">Lerna Group</div>
-                <div class="hero-role">Software Studio</div>
-              </div>
-            </div>
-            <div class="openline">
-              <span class="open-dot" aria-hidden="true"></span>
-              <span>open for projects ( remote )</span>
-            </div>
-
-            <div class="marquee" aria-label="Headline">
-              <div class="marquee-track">
-                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
-                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
-                <span># SOFTWARE STUDIO FOR TEAMS SHIPPING FROM ZERO TO WORKING PRODUCT</span>
+        <div class="container hero-inner">
+          <div class="hero-top">
+            <div class="idblock">
+              <img class="avatar" src="assets/avatar-01.svg" alt="" />
+              <div class="idcopy">
+                <div class="idname">ShravanKumar P S</div>
+                <div class="idrole">Product Designer</div>
               </div>
             </div>
 
-            <p class="lede">
-              ¿Deadlines apretados, flujos confusos o entregas sin mantenimiento? Ayudamos a equipos a convertir
-              ideas en producto usable, con criterio técnico y foco en negocio.
-            </p>
-
-            <div class="hero-actions">
-              <button class="btn btn-ghost" id="btnCopyEmail2" type="button">Copy e-mail</button>
-              <a class="btn btn-primary" id="btnBook2" href="#" rel="noreferrer">Book a Free 30min call</a>
-              <a class="btn btn-ghost" href="#projects">View Casestudies</a>
+            <div class="hero-media" aria-label="Hero media">
+              <img class="hmedia hmedia-a" src="assets/hero-01.svg" alt="" />
+              <img class="hmedia hmedia-b" src="assets/hero-02.svg" alt="" />
+              <img class="hmedia hmedia-c" src="assets/hero-03.svg" alt="" />
             </div>
           </div>
 
-          <aside class="hero-right" aria-label="Highlights">
-            <div class="mini-stack">
-              <div class="mini-card">
-                <div class="mini-k">Primary</div>
-                <div class="mini-v">Web apps, dashboards</div>
-              </div>
-              <div class="mini-card">
-                <div class="mini-k">Speed</div>
-                <div class="mini-v">Iteraciones semanales</div>
-              </div>
-              <div class="mini-card">
-                <div class="mini-k">Quality</div>
-                <div class="mini-v">Performance y handoff</div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <div class="section-head">
-          <h2>FEATURED PROJECTS, REAL IMPACT.</h2>
-          <p>Casos publicados (links). Luego añadimos métricas, roles y contexto.</p>
-        </div>
-        <div id="featured" class="featured" aria-live="polite"></div>
-      </section>
-
-      <section id="kindwords" class="section">
-        <div class="section-head">
-          <h2>KIND WORDS, EVEN KINDER PEOPLE</h2>
-          <p>Testimonios placeholder (los reemplazamos por clientes reales).</p>
-        </div>
-        <div id="quotes" class="quotes" aria-label="Testimonials"></div>
-      </section>
-
-      <section id="about" class="section">
-        <div class="section-head">
-          <h2>About</h2>
-          <p>Cómo trabajamos: rápido, claro, y con criterio.</p>
-        </div>
-        <div class="about-grid">
-          <article class="panel">
-            <h3>Cómo ayudamos</h3>
-            <p class="muted-par">
-              Traducimos necesidades de negocio en entregables: diseño de interacción, implementación, y despliegue.
-              IA es una herramienta; el diferencial es criterio + ejecución.
-            </p>
-          </article>
-          <article class="panel">
-            <h3>Stack</h3>
-            <div class="chips" aria-label="Stack">
-              <span class="chip">HTML/CSS/JS</span>
-              <span class="chip">React</span>
-              <span class="chip">Node</span>
-              <span class="chip">APIs</span>
-              <span class="chip">GitHub</span>
-              <span class="chip">CI/CD</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="services" class="section">
-        <div class="section-head">
-          <h2>Services</h2>
-          <p>Paquetes de trabajo (placeholder) para vender mejor en plataformas.</p>
-        </div>
-
-        <div class="cols">
-          <article class="panel">
-            <h3>MVP y producto</h3>
-            <ul class="list">
-              <li>Definición de alcance y roadmap corto</li>
-              <li>UI + frontend con calidad de producción</li>
-              <li>Integración con APIs y autenticación</li>
-              <li>Deploy y handoff con documentación mínima</li>
-            </ul>
-          </article>
-          <article class="panel">
-            <h3>Mejoras y mantenimiento</h3>
-            <ul class="list">
-              <li>Bugs difíciles, refactors quirúrgicos</li>
-              <li>Performance, Core Web Vitals</li>
-              <li>Accesibilidad y SEO básico</li>
-              <li>Instrumentación, logs y analítica</li>
-            </ul>
-          </article>
-          <article class="panel">
-            <h3>Automatización</h3>
-            <ul class="list">
-              <li>Scrapers permitidos y ETL liviano</li>
-              <li>Dashboards, reportes, alertas</li>
-              <li>Integraciones (correo, WhatsApp, CRMs)</li>
-              <li>Workflows repetibles con CI</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="contact" class="section">
-        <div class="cta simple">
-          <div class="cta-copy">
-            <h2>Ready to ship?</h2>
-            <p>Agenda 30 minutos. Te devuelvo un plan y alcance con hitos.</p>
-            <div class="cta-actions">
-              <a class="btn btn-primary" id="ctaBook" href="#" rel="noreferrer">Book a Free 30min call</a>
-              <a class="btn btn-ghost" id="ctaEmail" href="#" rel="noreferrer">Email</a>
-            </div>
+          <div class="availability" aria-label="Availability">
+            <span class="avail-dot" aria-hidden="true"></span>
+            <span>Available for Projects ( Dubai / Remote )</span>
           </div>
-          <div class="cta-card">
-            <div class="mini">
-              <div class="mini-row">
-                <span class="mini-k">Timezone</span>
-                <span class="mini-v" id="tz">America/Bogota</span>
-              </div>
-              <div class="mini-row">
-                <span class="mini-k">Email</span>
-                <span class="mini-v" id="emailLabel">hello@lernagroup.com</span>
-              </div>
-              <div class="mini-row">
-                <span class="mini-k">GitHub</span>
-                <span class="mini-v"><a id="ghLink" href="#" rel="noreferrer">github.com/lerna-group</a></span>
-              </div>
+
+          <h1 class="hero-title">
+            <span>PRODUCT DESIGNER</span>
+            <span>FOR TEAMS SHIPPING</span>
+            <span>FROM ZERO TO</span>
+            <span>WORKING PRODUCT</span>
+          </h1>
+
+          <p class="hero-body">
+            Stuck with deadlines, confusing flows, or generic AI designs that don’t convert? I help startups and scaleups to turn messy product problems into clear, business aware scalable UX that drives growth.
+          </p>
+
+          <div class="cta-rows" aria-label="Hero CTAs">
+            <div class="cta-row">
+              <button class="btn btn-outline" id="copyEmailA" type="button">Copy e-mail</button>
+              <a class="btn btn-fill" id="bookCallA" href="#" rel="noreferrer">Book a Free 30min Intro Call</a>
+            </div>
+            <div class="cta-row">
+              <button class="btn btn-outline" id="copyEmailB" type="button">Copy e-mail</button>
+              <a class="btn btn-outline" href="#projects">View Casestudies</a>
             </div>
           </div>
         </div>
       </section>
 
-      <footer class="foot">
-        <span>© <span id="year"></span> Lerna Group</span>
-        <span class="dot">·</span>
-        <a href="#top">Volver arriba</a>
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2 class="section-title">
+            <span>FEATURED PROJECTS,</span>
+            <span>REAL IMPACT.</span>
+          </h2>
+          <div id="projectGrid" class="project-grid" aria-label="Featured projects"></div>
+        </div>
+      </section>
+
+      <section class="transition">
+        <div class="container">
+          <img class="transition-media" src="assets/transition-01.svg" alt="" />
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <div class="container">
+          <h2 class="section-title">
+            <span>KIND WORDS,</span>
+            <span>EVEN KINDER PEOPLE</span>
+          </h2>
+        </div>
+        <div class="marquee" aria-label="Testimonials marquee">
+          <div class="marquee-mask"></div>
+          <div id="testimonialTrack" class="ttrack"></div>
+        </div>
+      </section>
+
+      <section class="finalcta">
+        <div class="container">
+          <h2 class="final-title">READY TO BUILD?</h2>
+          <div class="slashline">// product design // systems thinking // ai-assisted workflows //</div>
+          <div class="questions" aria-label="Questions">
+            <div>✦ Are you facing a design challenge right now?</div>
+            <div>✦ Does your product need a quick rethink?</div>
+            <div>✦ Seeking a collaborator to shape your ideas?</div>
+            <div>✦ Or have something worth building?</div>
+          </div>
+          <div class="final-actions">
+            <button class="btn btn-outline" id="copyEmailC" type="button">Copy e-mail</button>
+            <a class="btn btn-fill" id="bookCallB" href="#" rel="noreferrer">Book a Free 30min Intro Call</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <div class="foot-col">
+            <div class="foot-head">Connect</div>
+            <a class="foot-link" href="#" rel="noreferrer">Talk to me on Linkedin</a>
+          </div>
+          <div class="foot-col">
+            <div class="foot-label">E-Mail</div>
+            <div class="foot-value" id="footerEmail">shravankumarps1995@gmail.com</div>
+          </div>
+          <div class="foot-col">
+            <div class="foot-label">Call / WhatsApp</div>
+            <div class="foot-value">+971 523708369</div>
+          </div>
+        </div>
+        <div class="container foot-legal">
+          <div class="copy">©2026 Design Portfolio ShravanKumar P S</div>
+          <div class="legal">
+            ALL CONTENTS OF THIS WEBSITE ARE THE PROPERTY OWNED BY SHRAVANKUMAR P S. NO PART OF THIS SITE, INCLUDING ALL TEXT AND IMAGES, MAY BE REPRODUCED IN ANY FORM WITHOUT PRIOR CONSENT. I’ll SUE YOU. NO CAP : )
+          </div>
+          <a class="framer" href="#" rel="noreferrer">Create a free website with Framer, the website builder loved by startups, designers and agencies.</a>
+        </div>
       </footer>
     </main>
 

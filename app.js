@@ -1,174 +1,119 @@
 const CONFIG = {
-  email: "hello@lernagroup.com",
-  calendlyUrl: "https://calendly.com/henry-lernagroup/30min",
-  githubUrl: "https://github.com/Lerna-Group",
-  timezoneLabel: "America/Bogota"
+  email: "shravankumarps1995@gmail.com",
+  bookUrl: "#"
 };
 
-const CASES = [
+const PROJECTS = [
   {
-    id: "case-01",
-    title: "Wekall",
-    area: "web",
-    summary: "Plataforma web (sitio público).",
-    tags: ["Web", "Producto"],
-    links: { live: "https://wekall.co", repo: "" }
+    tags: ["AI", "Generative", "Mobile SaaS", "SMB Tools"],
+    title: "Launching Wizad.AI 0 to 1 : An AI-Powered design tool for SME's.",
+    support: "5M+ Creatives, 300K+ Downloads, Top-3 in Design category"
   },
   {
-    id: "case-02",
-    title: "Wekall Admin",
-    area: "data",
-    summary: "Panel administrativo para operación interna.",
-    tags: ["Dashboard", "Admin", "Data"],
-    links: { live: "https://admin.wekall.co", repo: "" }
+    tags: ["E-Commerce", "B2B", "Enterprise", "Rebranding & Redesign"],
+    title: "Designing a Scalable B2B-ready E-commerce Platform for Premium Furniture Brand in UAE - NavoErgnomics"
   },
   {
-    id: "case-03",
-    title: "Campus CCC",
-    area: "web",
-    summary: "Sitio/plataforma educativa (publicado).",
-    tags: ["Web", "Educación"],
-    links: { live: "https://campus.ccc.org.co/", repo: "" }
+    tags: ["Enterprise", "ERP", "B2B", "Multi-role", "Operations"],
+    title: "End-to-End Sales, Finance & Logistics ERP Workspace for AGS, UAE"
   },
   {
-    id: "case-04",
-    title: "MicroImpulso",
-    area: "web",
-    summary: "Sitio público de la marca (publicado).",
-    tags: ["Web", "Marketing"],
-    links: { live: "https://microimpulso.co", repo: "" }
+    tags: ["Fintech", "Multi-chain", "P2P", "Currency Exchange"],
+    title: "Building Scalable Design System, Multi-Currency Wallet and Payments App for Global Daily Fintech"
   },
   {
-    id: "case-05",
-    title: "MicroImpulso App",
-    area: "automation",
-    summary: "Aplicación web para operación/usuarios (publicada).",
-    tags: ["App", "Operación"],
-    links: { live: "https://app.microimpulso.co", repo: "" }
+    tags: ["B2B/B2C E-Commerce", "Solar Energy", "Conversion", "Rebranding"],
+    title: "Reducing Buying Friction and Improving Conversion paths for AGS’s solar energy E-Commerce Website"
+  },
+  {
+    tags: ["Credential Manager", "Security", "B2B SaaS", "Open-Source"],
+    title: "Launching Osvauld 0 to 1 : Trustworthy Shared Credentials for Security-Conscious Teams"
   }
 ];
 
-const TESTIMONIALS = [
-  {
-    quote: "Lerna Group entregó rápido y con claridad. El handoff fue limpio y el resultado se sintió 'listo para producción'.",
-    name: "Cliente (placeholder)",
-    role: "Founder"
-  },
-  {
-    quote: "Excelente comunicación, priorización y criterio técnico. Se notó el foco en negocio y mantenibilidad.",
-    name: "Cliente (placeholder)",
-    role: "Operations"
-  },
-  {
-    quote: "Pasamos de ideas sueltas a una entrega usable con milestones claros. Muy buena velocidad sin perder calidad.",
-    name: "Cliente (placeholder)",
-    role: "Product"
-  },
-  {
-    quote: "Se integraron a nuestro flujo sin fricción. Resolución de bugs y mejoras con impacto visible.",
-    name: "Cliente (placeholder)",
-    role: "Engineering"
-  }
+// NOTE: The spec asks to "use testimonial text + avatars from the source".
+// Those assets are not provided here, so we keep quotes empty placeholders that you can fill in 1:1.
+const PEOPLE = [
+  { name: "Kurian Mathew", role: "Founder OwnerWise", avatar: "assets/av-kurian.svg", quote: "" },
+  { name: "Thurga Devi", role: "MaskEX Global", avatar: "assets/av-thurga.svg", quote: "" },
+  { name: "Ossama Zaour", role: "MaskEX Global", avatar: "assets/av-ossama.svg", quote: "" },
+  { name: "Yuliia Bilyk", role: "Founder - NoDressCode", avatar: "assets/av-yuliia.svg", quote: "" },
+  { name: "Abduljalil Chhada", role: "CEO - AGS International", avatar: "assets/av-abduljalil.svg", quote: "" },
+  { name: "Jean Augustin", role: "MaskEX Global", avatar: "assets/av-jean.svg", quote: "" },
+  { name: "Ayman Saath", role: "Government Relation Officer", avatar: "assets/av-ayman.svg", quote: "" },
+  { name: "Sepideh Yazdi", role: "Founder of FigChallange Community", avatar: "assets/av-sepideh.svg", quote: "" },
+  { name: "Mohamad Shihade", role: "Business Development Specialist - AGS International", avatar: "assets/av-mohamad.svg", quote: "" }
 ];
 
 function $(sel) { return document.querySelector(sel); }
+
 function escapeHtml(text) {
   return String(text ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
 }
 
-function setLinks() {
-  const emailHref = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Hola Lerna Group")}`;
-  $("#ctaEmail").href = emailHref;
-  $("#btnBook").href = CONFIG.calendlyUrl;
-  $("#btnBook2").href = CONFIG.calendlyUrl;
-  $("#ctaBook").href = CONFIG.calendlyUrl;
-  $("#ghLink").href = CONFIG.githubUrl;
-  $("#ghLink").textContent = CONFIG.githubUrl.replace(/^https?:\/\//, "");
-  $("#emailLabel").textContent = CONFIG.email;
-  $("#tz").textContent = CONFIG.timezoneLabel;
-  $("#year").textContent = new Date().getFullYear();
-}
-
-function renderFeatured(items) {
-  const root = $("#featured");
-  if (!root) return;
-  root.innerHTML = items.map((c, idx) => {
-    const badge = String(idx + 1).padStart(2, "0");
-    const tags = (c.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-    const live = c.links?.live ? `<a href="${escapeHtml(c.links.live)}" class="muted" rel="noreferrer">View</a>` : "";
-    const repo = c.links?.repo ? `<a href="${escapeHtml(c.links.repo)}" rel="noreferrer">Repo</a>` : "";
-    return `
-      <article class="fcard" data-area="${escapeHtml(c.area)}">
-        <div class="fhead">
-          <span class="badge">PROJECT ${badge}</span>
-          <span class="badge">${escapeHtml(String(c.area || "").toUpperCase())}</span>
-        </div>
-        <div class="fbody">
-          <h3>${escapeHtml(c.title)}</h3>
-          <p>${escapeHtml(c.summary)}</p>
-          <div class="tags">${tags}</div>
-        </div>
-        <div class="factions">${live}${repo}</div>
-      </article>
-    `;
-  }).join("");
-}
-
-function renderTestimonials(items) {
-  const root = $("#quotes");
-  if (!root) return;
-  root.innerHTML = items.map((t) => {
-    return `
-      <article class="quote">
-        <p>“${escapeHtml(t.quote)}”</p>
-        <div class="who"><span class="who-dot" aria-hidden="true"></span><span>${escapeHtml(t.name)} · ${escapeHtml(t.role)}</span></div>
-      </article>
-    `;
-  }).join("");
-}
-
-async function copyEmail() {
+async function copyEmail(btn) {
   const value = CONFIG.email;
   try {
     await navigator.clipboard.writeText(value);
-    return true;
+    if (btn) btn.textContent = "Copied";
+    window.setTimeout(() => { if (btn) btn.textContent = "Copy e-mail"; }, 1200);
   } catch {
-    const el = document.createElement("textarea");
-    el.value = value;
-    el.setAttribute("readonly", "true");
-    el.style.position = "fixed";
-    el.style.left = "-9999px";
-    document.body.appendChild(el);
-    el.select();
-    try {
-      document.execCommand("copy");
-      return true;
-    } catch {
-      return false;
-    } finally {
-      el.remove();
-    }
+    // Ignore silently; spec does not mention error UI.
   }
 }
 
-function bindCopyButtons() {
-  const btnA = $("#btnCopyEmail");
-  const btnB = $("#btnCopyEmail2");
-  const onClick = async () => {
-    const ok = await copyEmail();
-    const label = ok ? "Copied" : "Copy failed";
-    if (btnA) btnA.textContent = label;
-    if (btnB) btnB.textContent = label;
-    window.setTimeout(() => {
-      if (btnA) btnA.textContent = "Copy e-mail";
-      if (btnB) btnB.textContent = "Copy e-mail";
-    }, 1200);
-  };
-  btnA?.addEventListener("click", onClick);
-  btnB?.addEventListener("click", onClick);
+function renderProjects() {
+  const root = $("#projectGrid");
+  if (!root) return;
+  root.innerHTML = PROJECTS.map((p) => {
+    const tags = p.tags.map((t) => `<span class="ptag">${escapeHtml(t)}</span>`).join("");
+    const support = p.support ? `<div class="psub">${escapeHtml(p.support)}</div>` : "";
+    return `
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/project-ph.svg" alt="" /></div>
+        <div class="pbody">
+          <div class="ptags">${tags}</div>
+          <div class="ptitle">${escapeHtml(p.title)}</div>
+          ${support}
+          <a class="pcta" href="#" rel="noreferrer">Read Case Study</a>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
-setLinks();
-bindCopyButtons();
-renderFeatured(CASES);
-renderTestimonials(TESTIMONIALS);
+function renderTestimonials() {
+  const track = $("#testimonialTrack");
+  if (!track) return;
+  const cards = PEOPLE.map((p) => {
+    const quote = p.quote ? escapeHtml(p.quote) : "Testimonial text (pending).";
+    return `
+      <article class="tcard">
+        <div class="ttext">“${quote}”</div>
+        <div class="tperson">
+          <img class="tavatar" src="${escapeHtml(p.avatar)}" alt="" />
+          <div>
+            <div class="tname">${escapeHtml(p.name)}</div>
+            <div class="trole">${escapeHtml(p.role)}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+  // Duplicate group for seamless marquee loop
+  track.innerHTML = `<div class="tgroup">${cards}</div><div class="tgroup" aria-hidden="true">${cards}</div>`;
+}
+
+function bindButtons() {
+  const btns = [$("#copyEmailA"), $("#copyEmailB"), $("#copyEmailC")].filter(Boolean);
+  for (const btn of btns) btn.addEventListener("click", () => copyEmail(btn));
+
+  const bookA = $("#bookCallA");
+  const bookB = $("#bookCallB");
+  if (bookA) bookA.href = CONFIG.bookUrl;
+  if (bookB) bookB.href = CONFIG.bookUrl;
+}
+
+renderProjects();
+renderTestimonials();
+bindButtons();
