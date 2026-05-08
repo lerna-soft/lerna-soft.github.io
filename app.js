@@ -48,15 +48,39 @@ const CASES = [
   }
 ];
 
+const TESTIMONIALS = [
+  {
+    quote: "Lerna Group entregó rápido y con claridad. El handoff fue limpio y el resultado se sintió 'listo para producción'.",
+    name: "Cliente (placeholder)",
+    role: "Founder"
+  },
+  {
+    quote: "Excelente comunicación, priorización y criterio técnico. Se notó el foco en negocio y mantenibilidad.",
+    name: "Cliente (placeholder)",
+    role: "Operations"
+  },
+  {
+    quote: "Pasamos de ideas sueltas a una entrega usable con milestones claros. Muy buena velocidad sin perder calidad.",
+    name: "Cliente (placeholder)",
+    role: "Product"
+  },
+  {
+    quote: "Se integraron a nuestro flujo sin fricción. Resolución de bugs y mejoras con impacto visible.",
+    name: "Cliente (placeholder)",
+    role: "Engineering"
+  }
+];
+
 function $(sel) { return document.querySelector(sel); }
 function escapeHtml(text) {
   return String(text ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
 }
 
 function setLinks() {
-  $("#btnEmail").href = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Hola Lerna Group")}`;
-  $("#ctaEmail").href = $("#btnEmail").href;
+  const emailHref = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Hola Lerna Group")}`;
+  $("#ctaEmail").href = emailHref;
   $("#btnBook").href = CONFIG.calendlyUrl;
+  $("#btnBook2").href = CONFIG.calendlyUrl;
   $("#ctaBook").href = CONFIG.calendlyUrl;
   $("#ghLink").href = CONFIG.githubUrl;
   $("#ghLink").textContent = CONFIG.githubUrl.replace(/^https?:\/\//, "");
@@ -65,56 +89,86 @@ function setLinks() {
   $("#year").textContent = new Date().getFullYear();
 }
 
-function renderCards(items) {
-  const root = $("#cards");
+function renderFeatured(items) {
+  const root = $("#featured");
+  if (!root) return;
   root.innerHTML = items.map((c, idx) => {
     const badge = String(idx + 1).padStart(2, "0");
-    const tags = c.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-    const live = c.links?.live ? `<a href="${escapeHtml(c.links.live)}" class="muted" rel="noreferrer">Ver</a>` : "";
+    const tags = (c.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+    const live = c.links?.live ? `<a href="${escapeHtml(c.links.live)}" class="muted" rel="noreferrer">View</a>` : "";
     const repo = c.links?.repo ? `<a href="${escapeHtml(c.links.repo)}" rel="noreferrer">Repo</a>` : "";
     return `
-      <article class="card" data-area="${escapeHtml(c.area)}">
-        <div class="card-top">
-          <span class="badge">CASE ${badge}</span>
+      <article class="fcard" data-area="${escapeHtml(c.area)}">
+        <div class="fhead">
+          <span class="badge">PROJECT ${badge}</span>
+          <span class="badge">${escapeHtml(String(c.area || "").toUpperCase())}</span>
         </div>
-        <h3>${escapeHtml(c.title)}</h3>
-        <p>${escapeHtml(c.summary)}</p>
-        <div class="tags">${tags}</div>
-        <div class="card-actions">${live}${repo}</div>
+        <div class="fbody">
+          <h3>${escapeHtml(c.title)}</h3>
+          <p>${escapeHtml(c.summary)}</p>
+          <div class="tags">${tags}</div>
+        </div>
+        <div class="factions">${live}${repo}</div>
       </article>
     `;
   }).join("");
 }
 
-function bindFilters() {
-  const segButtons = [...document.querySelectorAll("[data-filter]")];
-  const search = $("#q");
-  let active = "all";
+function renderTestimonials(items) {
+  const root = $("#quotes");
+  if (!root) return;
+  root.innerHTML = items.map((t) => {
+    return `
+      <article class="quote">
+        <p>“${escapeHtml(t.quote)}”</p>
+        <div class="who"><span class="who-dot" aria-hidden="true"></span><span>${escapeHtml(t.name)} · ${escapeHtml(t.role)}</span></div>
+      </article>
+    `;
+  }).join("");
+}
 
-  const apply = () => {
-    const q = String(search.value || "").trim().toLowerCase();
-    const next = CASES.filter((c) => {
-      const areaOk = active === "all" || c.area === active;
-      if (!areaOk) return false;
-      if (!q) return true;
-      const hay = [c.title, c.summary, ...(c.tags || [])].join(" ").toLowerCase();
-      return hay.includes(q);
-    });
-    renderCards(next);
+async function copyEmail() {
+  const value = CONFIG.email;
+  try {
+    await navigator.clipboard.writeText(value);
+    return true;
+  } catch {
+    const el = document.createElement("textarea");
+    el.value = value;
+    el.setAttribute("readonly", "true");
+    el.style.position = "fixed";
+    el.style.left = "-9999px";
+    document.body.appendChild(el);
+    el.select();
+    try {
+      document.execCommand("copy");
+      return true;
+    } catch {
+      return false;
+    } finally {
+      el.remove();
+    }
+  }
+}
+
+function bindCopyButtons() {
+  const btnA = $("#btnCopyEmail");
+  const btnB = $("#btnCopyEmail2");
+  const onClick = async () => {
+    const ok = await copyEmail();
+    const label = ok ? "Copied" : "Copy failed";
+    if (btnA) btnA.textContent = label;
+    if (btnB) btnB.textContent = label;
+    window.setTimeout(() => {
+      if (btnA) btnA.textContent = "Copy e-mail";
+      if (btnB) btnB.textContent = "Copy e-mail";
+    }, 1200);
   };
-
-  segButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      segButtons.forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      active = btn.dataset.filter || "all";
-      apply();
-    });
-  });
-
-  search.addEventListener("input", apply);
-  apply();
+  btnA?.addEventListener("click", onClick);
+  btnB?.addEventListener("click", onClick);
 }
 
 setLinks();
-bindFilters();
+bindCopyButtons();
+renderFeatured(CASES);
+renderTestimonials(TESTIMONIALS);
