@@ -1,85 +1,81 @@
 const CONFIG = {
-  email: "shravankumarps1995@gmail.com",
-  bookUrl: "#"
+  email: "admin@lernagroup.dev",
+  bookUrl: "https://github.com/lerna-admin",
+  orgUrl: "https://github.com/lerna-admin"
 };
 
 const PROJECTS = [
   {
-    tags: ["AI", "Generative", "Mobile SaaS", "SMB Tools"],
-    title: "Launching Wizad.AI 0 to 1 : An AI-Powered design tool for SME's.",
-    support: "5M+ Creatives, 300K+ Downloads, Top-3 in Design category",
-    image: "assets/project-wizad.svg"
-  },
-  {
-    tags: ["E-Commerce", "B2B", "Enterprise", "Rebranding & Redesign"],
-    title: "Designing a Scalable B2B-ready E-commerce Platform for Premium Furniture Brand in UAE - NavoErgnomics",
-    image: "assets/project-navo.svg"
-  },
-  {
-    tags: ["Enterprise", "ERP", "B2B", "Multi-role", "Operations"],
-    title: "End-to-End Sales, Finance & Logistics ERP Workspace for AGS, UAE",
-    image: "assets/project-ags-erp.svg"
-  },
-  {
-    tags: ["Fintech", "Multi-chain", "P2P", "Currency Exchange"],
-    title: "Building Scalable Design System, Multi-Currency Wallet and Payments App for Global Daily Fintech",
+    tags: ["Media", "Catalog", "Playback", "Evaluation"],
+    title: "Media Evaluation Platform",
+    support: "Static and full product variants for content discovery, playback control, evaluation workflows and metadata operations.",
     image: "assets/project-fintech.svg"
   },
   {
-    tags: ["B2B/B2C E-Commerce", "Solar Energy", "Conversion", "Rebranding"],
-    title: "Reducing Buying Friction and Improving Conversion paths for AGS’s solar energy E-Commerce Website",
+    tags: ["Finance", "Budgeting", "Mobile", "Platform Split"],
+    title: "BudgetApp ecosystem",
+    support: "Product coordination across backend, frontend, mobile and operating repositories for a finance application.",
     image: "assets/project-solar.svg"
   },
   {
-    tags: ["Credential Manager", "Security", "B2B SaaS", "Open-Source"],
-    title: "Launching Osvauld 0 to 1 : Trustworthy Shared Credentials for Security-Conscious Teams",
-    image: "assets/project-osvauld.svg"
+    tags: ["ERP", "Operations", "Inventory", "Commerce"],
+    title: "Jewelry business systems",
+    support: "Separate product lines for ERP, online store and company-level digital transformation under Lerna Group.",
+    image: "assets/project-ags-erp.svg"
   }
 ];
 
 const PEOPLE = [
-  { name: "Kurian Mathew", role: "Founder OwnerWise", avatar: "assets/av-kurian.svg", quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
-  { name: "Thurga Devi", role: "MaskEX Global", avatar: "assets/av-thurga.svg", quote: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-  { name: "Ossama Zaour", role: "MaskEX Global", avatar: "assets/av-ossama.svg", quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-  { name: "Yuliia Bilyk", role: "Founder - NoDressCode", avatar: "assets/av-yuliia.svg", quote: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
-  { name: "Abduljalil Chhada", role: "CEO - AGS International", avatar: "assets/av-abduljalil.svg", quote: "Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet." },
-  { name: "Jean Augustin", role: "MaskEX Global", avatar: "assets/av-jean.svg", quote: "Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa." },
-  { name: "Ayman Saath", role: "Government Relation Officer", avatar: "assets/av-ayman.svg", quote: "Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra." },
-  { name: "Sepideh Yazdi", role: "Founder of FigChallange Community", avatar: "assets/av-sepideh.svg", quote: "Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh." },
-  { name: "Mohamad Shihade", role: "Business Development Specialist - AGS International", avatar: "assets/av-mohamad.svg", quote: "Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor." }
+  {
+    name: "Product engineering",
+    role: "Frontend, backend and UX delivery",
+    avatar: "assets/av-kurian.svg",
+    quote: "We move from requirement to working product with code, interface and operating criteria aligned from the start."
+  },
+  {
+    name: "Systems thinking",
+    role: "Products connected to real operations",
+    avatar: "assets/av-thurga.svg",
+    quote: "We design platforms that support business workflows instead of creating isolated screens with no operational depth."
+  },
+  {
+    name: "Technical operations",
+    role: "Infrastructure, release flow and continuity",
+    avatar: "assets/av-ossama.svg",
+    quote: "We do not stop at shipping UI. We also care about deployment, versioning, maintenance and system stability."
+  }
 ];
 
-function $(sel) { return document.querySelector(sel); }
+function $(selector) { return document.querySelector(selector); }
 
 function escapeHtml(text) {
-  return String(text ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
+  return String(text ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[char]));
 }
 
-async function copyEmail(btn) {
-  const value = CONFIG.email;
+async function copyEmail(button) {
   try {
-    await navigator.clipboard.writeText(value);
-    if (btn) btn.textContent = "Copied";
-    window.setTimeout(() => { if (btn) btn.textContent = "Copy e-mail"; }, 1200);
+    await navigator.clipboard.writeText(CONFIG.email);
+    if (button) button.textContent = "Copied";
+    window.setTimeout(() => { if (button) button.textContent = "Copy contact"; }, 1200);
   } catch {
-    // Ignore silently; spec does not mention error UI.
+    window.location.href = `mailto:${CONFIG.email}`;
   }
 }
 
 function renderProjects() {
   const root = $("#projectGrid");
   if (!root) return;
-  root.innerHTML = PROJECTS.map((p) => {
-    const tags = p.tags.map((t) => `<span class="ptag">${escapeHtml(t)}</span>`).join("");
-    const support = p.support ? `<div class="psub">${escapeHtml(p.support)}</div>` : "";
+  root.innerHTML = PROJECTS.map((project) => {
+    const tags = project.tags.map((tag) => `<span class="ptag">${escapeHtml(tag)}</span>`).join("");
+    const support = project.support ? `<div class="psub">${escapeHtml(project.support)}</div>` : "";
     return `
       <article class="pcard">
-        <div class="pmedia"><img src="${escapeHtml(p.image)}" alt="" /></div>
+        <div class="pmedia"><img src="${escapeHtml(project.image)}" alt="" /></div>
         <div class="pbody">
           <div class="ptags">${tags}</div>
-          <div class="ptitle">${escapeHtml(p.title)}</div>
+          <div class="ptitle">${escapeHtml(project.title)}</div>
           ${support}
-          <a class="pcta" href="#" rel="noreferrer">Read Case Study</a>
+          <a class="pcta" href="${escapeHtml(CONFIG.orgUrl)}" target="_blank" rel="noreferrer">Open organization</a>
         </div>
       </article>
     `;
@@ -89,31 +85,47 @@ function renderProjects() {
 function renderTestimonials() {
   const root = $("#testimonialGrid");
   if (!root) return;
-  root.innerHTML = PEOPLE.map((p) => {
-    const quote = escapeHtml(p.quote || "");
-    return `
-      <article class="tcard">
-        <div class="ttext">“${quote}”</div>
-        <div class="tperson">
-          <img class="tavatar" src="${escapeHtml(p.avatar)}" alt="" />
-          <div>
-            <div class="tname">${escapeHtml(p.name)}</div>
-            <div class="trole">${escapeHtml(p.role)}</div>
-          </div>
+  root.innerHTML = PEOPLE.map((item) => `
+    <article class="tcard">
+      <div class="ttext">“${escapeHtml(item.quote)}”</div>
+      <div class="tperson">
+        <img class="tavatar" src="${escapeHtml(item.avatar)}" alt="" />
+        <div>
+          <div class="tname">${escapeHtml(item.name)}</div>
+          <div class="trole">${escapeHtml(item.role)}</div>
         </div>
-      </article>
-    `;
-  }).join("");
+      </div>
+    </article>
+  `).join("");
 }
 
 function bindButtons() {
-  const btns = [$("#copyEmailA"), $("#copyEmailB"), $("#copyEmailC")].filter(Boolean);
-  for (const btn of btns) btn.addEventListener("click", () => copyEmail(btn));
+  const buttons = [$("#copyEmailA"), $("#copyEmailB"), $("#copyEmailC")].filter(Boolean);
+  for (const button of buttons) button.addEventListener("click", () => copyEmail(button));
 
   const bookA = $("#bookCallA");
   const bookB = $("#bookCallB");
-  if (bookA) bookA.href = CONFIG.bookUrl;
-  if (bookB) bookB.href = CONFIG.bookUrl;
+  if (bookA) bookA.href = "#projects";
+  if (bookB) {
+    bookB.href = CONFIG.orgUrl;
+    bookB.target = "_blank";
+    bookB.rel = "noreferrer";
+  }
+
+  const footLink = document.querySelector(".foot-link");
+  const framer = document.querySelector(".framer");
+  if (footLink) {
+    footLink.href = CONFIG.orgUrl;
+    footLink.target = "_blank";
+    footLink.rel = "noreferrer";
+  }
+  if (framer) {
+    framer.href = CONFIG.orgUrl;
+    framer.target = "_blank";
+    framer.rel = "noreferrer";
+  }
+  const footerEmail = $("#footerEmail");
+  if (footerEmail) footerEmail.textContent = CONFIG.email;
 }
 
 function bindNavState() {
