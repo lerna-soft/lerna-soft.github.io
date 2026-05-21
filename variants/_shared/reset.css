@@ -9,6 +9,11 @@ body {
   line-height: 1.5;
 }
 img,picture,svg,video,canvas { display: block; max-width: 100%; height: auto; }
+img { object-fit: cover; }
+img.hero-photo, img.about-photo, img.about-photo-1, img.about-photo-2,
+img.work-media, img.insight-media, img.product-mock, img.feature-media,
+img.member-photo { width: 100%; }
+img.quote-avatar { width: 100%; height: 100%; }
 input,button,textarea,select { font: inherit; color: inherit; }
 button { background: none; border: 0; padding: 0; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
