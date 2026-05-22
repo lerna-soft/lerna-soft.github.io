@@ -42,19 +42,19 @@
       "desc": "Apps nativas e híbridas conectadas a back-ends propios o de terceros, con foco en performance."
     },
     "cloud": {
-      "title": "Cloud & DevOps",
+      "title": "Nube y DevOps",
       "desc": "Infraestructura, despliegue continuo, observabilidad y manejo operativo en AWS, GCP o serverless."
     },
     "data": {
-      "title": "Data & Analytics",
-      "desc": "Pipelines, modelado, dashboards de negocio y feedback loops embebidos en producto."
+      "title": "Datos y analítica",
+      "desc": "Pipelines, modelado, paneles de negocio y ciclos de retroalimentación embebidos en el producto."
     },
     "design": {
-      "title": "Product design",
-      "desc": "Discovery, sistemas de diseño, prototipos y validación con usuarios reales antes de construir."
+      "title": "Diseño de producto",
+      "desc": "Descubrimiento, sistemas de diseño, prototipos y validación con usuarios reales antes de construir."
     },
     "staff": {
-      "title": "Staff augmentation",
+      "title": "Refuerzo de equipo",
       "desc": "Ingenieros senior que se integran a tu equipo: diseño, frontend, backend, mobile, data o DevOps."
     }
   },
@@ -207,7 +207,7 @@
     "members": {
       "m1": {
         "name": "Nombre Apellido",
-        "role": "CEO · Group"
+        "role": "CEO · Grupo"
       },
       "m2": {
         "name": "Nombre Apellido",
@@ -215,11 +215,11 @@
       },
       "m3": {
         "name": "Nombre Apellido",
-        "role": "Head of Delivery · Lerna Admin"
+        "role": "Líder de Delivery"
       },
       "m4": {
         "name": "Nombre Apellido",
-        "role": "Head of Operations"
+        "role": "Líder de Operaciones"
       }
     }
   },
