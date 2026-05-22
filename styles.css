@@ -261,7 +261,7 @@ html { scroll-padding-top: 80px; }
 }
 .brand-icon {
   display: block;
-  height: 28px;
+  height: 44px;
   width: auto;
   color: currentColor;
 }
@@ -1245,7 +1245,7 @@ html { scroll-padding-top: 80px; }
   border-bottom: 1px solid var(--line-d);
 }
 .footer-brand .brand { margin-bottom: 18px; align-items: flex-start; gap: 8px; }
-.footer-brand .brand-icon { height: 56px; }
+.footer-brand .brand-icon { height: 80px; }
 .footer-brand .brand-mark { font-size: 36px; }
 .footer-brand .muted { max-width: 38ch; font-size: 14px; line-height: 1.55; color: var(--muted-d); }
 .footer-col h4 {
