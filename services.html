@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lerna Group · Servicios</title>
+    <meta name="description" content="Capacidades de extremo a extremo: web, mobile, cloud, data, product design y staff augmentation." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="services" class="subpage">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html" aria-label="Lerna Group">
+          <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html"      data-page-link="home"       data-i18n="nav.home">Inicio</a>
+          <a href="services.html"   data-page-link="services"   data-i18n="nav.services">Servicios</a>
+          <a href="industries.html" data-page-link="industries" data-i18n="nav.industries">Industrias</a>
+          <a href="work.html"       data-page-link="work"       data-i18n="nav.portfolio">Trabajo</a>
+          <a href="about.html"      data-page-link="about"      data-i18n="nav.about">Nosotros</a>
+          <a href="contact.html"    data-page-link="contact"    data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="contact.html" data-i18n="nav.startProject">Iniciar proyecto</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ PAGE HERO ============ -->
+      <section class="page-hero is-dark">
+        <span class="section-num">S<span>.01</span> — Services</span>
+        <div class="waves waves-bl" aria-hidden="true"></div>
+        <div class="container reveal">
+          <p class="page-hero-eyebrow" data-i18n="services.eyebrow">Servicios</p>
+          <h1 class="page-hero-title" data-i18n="services.title">Capacidades de extremo a extremo</h1>
+          <p class="page-hero-lead" data-i18n="services.subtitle">
+            Diseñamos, construimos y operamos plataformas digitales. Trabajamos como un equipo único: descubrimiento, arquitectura, código, despliegue y operación continua.
+          </p>
+          <div class="page-hero-actions">
+            <a href="contact.html" class="btn btn-primary" data-i18n="hero.cta">Iniciar proyecto</a>
+            <a href="#services-list" class="btn btn-ghost" data-i18n-html="hero.ctaSecondary">Ver capacidades <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <a class="page-hero-scroll" href="#services-list" aria-label="Scroll">
+          <span data-i18n="scroll">EXPLORAR</span>
+          <span class="arrow-circle">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </span>
+        </a>
+      </section>
+
+      <!-- ============ SERVICES LIST ============ -->
+      <section class="services" id="services-list">
+        <span class="section-num">S<span>.02</span> — Capabilities</span>
+        <div class="container">
+          <ul class="services-list reveal">
+            <li id="web">
+              <span class="svc-num">01</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.web.title">Plataformas web</h3>
+              <p class="svc-desc" data-i18n="services.web.desc">Aplicaciones SaaS, paneles internos y sitios de alto tráfico construidos con stacks modernos.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+            <li id="mobile">
+              <span class="svc-num">02</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.mobile.title">Apps móviles</h3>
+              <p class="svc-desc" data-i18n="services.mobile.desc">Apps nativas e híbridas conectadas a back-ends propios o de terceros, con foco en performance.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+            <li id="cloud">
+              <span class="svc-num">03</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 19 18H7z"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.cloud.title">Cloud & DevOps</h3>
+              <p class="svc-desc" data-i18n="services.cloud.desc">Infraestructura, despliegue continuo, observabilidad y manejo operativo en AWS, GCP o serverless.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+            <li id="data">
+              <span class="svc-num">04</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8m6 12V4m6 16v-8m6 8V12"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.data.title">Data & Analytics</h3>
+              <p class="svc-desc" data-i18n="services.data.desc">Pipelines, modelado, dashboards de negocio y feedback loops embebidos en producto.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+            <li id="design">
+              <span class="svc-num">05</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.design.title">Product design</h3>
+              <p class="svc-desc" data-i18n="services.design.desc">Discovery, sistemas de diseño, prototipos y validación con usuarios reales antes de construir.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+            <li id="staff">
+              <span class="svc-num">06</span>
+              <span class="svc-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/></svg>
+              </span>
+              <h3 class="svc-title" data-i18n="services.staff.title">Staff augmentation</h3>
+              <p class="svc-desc" data-i18n="services.staff.desc">Ingenieros senior que se integran a tu equipo: diseño, frontend, backend, mobile, data o DevOps.</p>
+              <span class="svc-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ PROCESS ============ -->
+      <section class="process">
+        <span class="section-num">S<span>.03</span> — Process</span>
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow" data-i18n="process.eyebrow">Cómo trabajamos</p>
+            <h2 class="h-display" data-i18n="process.title">Un proceso, cinco pasos</h2>
+            <p class="muted section-lead" data-i18n="process.subtitle">
+              Ligero al inicio para reducir riesgo, denso en la entrega para asegurar calidad, persistente después del launch para que opere.
+            </p>
+          </div>
+          <ol class="process-steps reveal" aria-label="Process steps">
+            <li>
+              <span class="ps-num">01</span>
+              <h3 data-i18n="process.steps.s1.title">Descubrimiento</h3>
+              <p data-i18n="process.steps.s1.desc">Entendemos el negocio, los usuarios y las restricciones. Salimos con un brief compartido.</p>
+            </li>
+            <li>
+              <span class="ps-num">02</span>
+              <h3 data-i18n="process.steps.s2.title">Arquitectura</h3>
+              <p data-i18n="process.steps.s2.desc">Definimos stack, módulos, integraciones y plan de despliegue. Sin sorpresas en sprint 3.</p>
+            </li>
+            <li>
+              <span class="ps-num">03</span>
+              <h3 data-i18n="process.steps.s3.title">Construcción</h3>
+              <p data-i18n="process.steps.s3.desc">Sprints cortos, demos semanales, branch trunk-based. Lo que ves es lo que ya está deployado.</p>
+            </li>
+            <li>
+              <span class="ps-num">04</span>
+              <h3 data-i18n="process.steps.s4.title">Lanzamiento</h3>
+              <p data-i18n="process.steps.s4.desc">Rollout controlado, observabilidad activa desde día uno, runbooks listos para el equipo cliente.</p>
+            </li>
+            <li>
+              <span class="ps-num">05</span>
+              <h3 data-i18n="process.steps.s5.title">Operación</h3>
+              <p data-i18n="process.steps.s5.desc">Soporte, evolución y mejoras continuas con SLAs claros. Acá es donde la mayoría falla.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer is-dark">
+      <div class="container">
+        <h2 class="footer-hero reveal" data-i18n-html="footer.hero">
+          Construyamos<br/><span class="accent">algo grande,</span> juntos.
+        </h2>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+            </a>
+            <p class="muted" data-i18n="footer.tagline">
+              Productos digitales para empresas que necesitan construir y operar. Parte de Lerna Group.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col1.title">Servicios</h4>
+            <a href="services.html#web"    data-i18n="services.web.title">Plataformas web</a>
+            <a href="services.html#mobile" data-i18n="services.mobile.title">Apps móviles</a>
+            <a href="services.html#cloud"  data-i18n="services.cloud.title">Cloud & DevOps</a>
+            <a href="services.html#staff"  data-i18n="services.staff.title">Staff augmentation</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col2.title">Empresa</h4>
+            <a href="about.html"      data-i18n="nav.about">Nosotros</a>
+            <a href="industries.html" data-i18n="nav.industries">Industrias</a>
+            <a href="work.html"       data-i18n="nav.portfolio">Trabajo</a>
+            <a href="contact.html"    data-i18n="nav.contact">Contacto</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col3.title">Group</h4>
+            <a href="https://github.com/lerna-admin" rel="noopener" target="_blank">github.com/lerna-admin</a>
+            <a href="mailto:hello@lerna-admin.github.io">hello@lerna-admin.github.io</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year"></span> LERNA GROUP</span>
+          <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
