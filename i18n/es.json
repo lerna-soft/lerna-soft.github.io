@@ -288,9 +288,9 @@
     }
   },
   "about": {
-    "eyebrow": "Nosotros",
-    "title": "Tres unidades,<br/><span class=\"accent\">un mismo equipo.</span>",
-    "lead": "Lerna Soft reúne una software house, una agencia digital y una vertical especializada bajo la misma governance, valores y forma de trabajar."
+    "eyebrow": "Sobre Lerna Soft",
+    "title": "Construimos software<br/>que <span class=\"accent\">opera</span>, no que se entrega.",
+    "lead": "Lerna Soft es un equipo enfocado en plataformas digitales que llegan a producción, escalan y se mantienen vivas. Diseño, ingeniería, infra y operación bajo el mismo techo."
   },
   "scroll": "EXPLORAR",
   "scrollTo": {
@@ -302,5 +302,36 @@
     "team": "Equipo",
     "testimonials": "Testimonios",
     "footer": "Más información"
+  },
+  "values": {
+    "eyebrow": "Cómo trabajamos",
+    "title": "Seis principios que guían cada producto",
+    "subtitle": "La forma de trabajar define el resultado. Aplicamos estos principios desde el sprint cero hasta el día 1000 — y son lo que nos hace distintos.",
+    "items": {
+      "end2end": {
+        "title": "Equipos end-to-end",
+        "desc": "Diseño, código, infraestructura y operación bajo el mismo equipo. Sin handoffs entre áreas, sin 'eso no es mi tema'."
+      },
+      "senior": {
+        "title": "Senior por diseño",
+        "desc": "Equipos pequeños de gente con cancha, sin escalafones de junior tercerizados ni rotación trimestral."
+      },
+      "operate": {
+        "title": "Construido para operar",
+        "desc": "Diseñamos para el día 100, no solo para el lanzamiento. Observabilidad, runbooks y SLAs desde sprint cero."
+      },
+      "public": {
+        "title": "Aprendemos en público",
+        "desc": "Repos abiertos cuando se puede. ADRs versionados, postmortems compartidos. La trazabilidad como cultura."
+      },
+      "oncall": {
+        "title": "On-call con los clientes",
+        "desc": "Rotación on-call junto al equipo cliente. Conocemos los incidentes de primera mano, no por reporte mensual."
+      },
+      "docs": {
+        "title": "Documentación que sobrevive",
+        "desc": "Runbooks, dashboards, ADRs y decisiones registradas. Lo escrito sobrevive a la rotación de gente."
+      }
+    }
   }
 }

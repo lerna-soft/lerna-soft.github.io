@@ -288,9 +288,9 @@
     }
   },
   "about": {
-    "eyebrow": "About us",
-    "title": "Three units,<br/><span class=\"accent\">one team.</span>",
-    "lead": "Lerna Soft brings together a software house, a digital agency, and a specialized vertical under the same governance, values, and way of working."
+    "eyebrow": "About Lerna Soft",
+    "title": "We build software<br/>that <span class=\"accent\">operates</span>, not just delivers.",
+    "lead": "Lerna Soft is a team focused on digital platforms that reach production, scale, and stay alive. Design, engineering, infrastructure and operations under one roof."
   },
   "scroll": "EXPLORE",
   "scrollTo": {
@@ -302,5 +302,36 @@
     "team": "Team",
     "testimonials": "Testimonials",
     "footer": "More info"
+  },
+  "values": {
+    "eyebrow": "How we work",
+    "title": "Six principles that shape every product",
+    "subtitle": "How you work defines the outcome. We apply these principles from sprint zero through day 1000 — they're what sets us apart.",
+    "items": {
+      "end2end": {
+        "title": "End-to-end teams",
+        "desc": "Design, code, infrastructure and operations under one team. No handoffs across areas, no 'not my problem'."
+      },
+      "senior": {
+        "title": "Senior by design",
+        "desc": "Small teams of seasoned people. No outsourced junior layers, no quarterly rotation."
+      },
+      "operate": {
+        "title": "Built to operate",
+        "desc": "We design for day 100, not just launch day. Observability, runbooks and SLAs from sprint zero."
+      },
+      "public": {
+        "title": "We learn in public",
+        "desc": "Open repos where we can. Versioned ADRs, shared postmortems. Traceability as culture."
+      },
+      "oncall": {
+        "title": "On-call with our clients",
+        "desc": "On-call rotation alongside the client team. We learn incidents first-hand, not through monthly reports."
+      },
+      "docs": {
+        "title": "Docs that outlive people",
+        "desc": "Runbooks, dashboards, ADRs and recorded decisions. What's written outlasts team rotation."
+      }
+    }
   }
 }
