@@ -249,17 +249,22 @@ html { scroll-padding-top: 80px; }
   height: 80px;
 }
 .brand {
-  font-weight: 800;
-  font-size: 24px;
-  letter-spacing: -0.03em;
+  font-family: 'Anton', 'Inter', system-ui, sans-serif;
+  font-weight: 400;            /* Anton has a single weight */
+  font-size: 26px;
+  letter-spacing: 0.01em;
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   color: var(--text);
+  line-height: 1;
 }
-.brand-mark { color: var(--text); }
-.brand-dot { color: var(--accent-3); margin-left: 2px; }
-.is-dark .brand-mark { color: var(--accent); }
-.is-dark .brand-dot { color: var(--text-d); }
+.brand-mark {
+  display: inline-block;
+  transform: skewX(-8deg);     /* italic via skew (Anton has no italic) */
+  transform-origin: center;
+  color: currentColor;
+}
+.is-dark .brand { color: var(--text-d); }
 
 .nav {
   display: flex;
@@ -1232,9 +1237,7 @@ html { scroll-padding-top: 80px; }
   border-top: 1px solid var(--line-d);
   border-bottom: 1px solid var(--line-d);
 }
-.footer-brand .brand { margin-bottom: 18px; font-size: 26px; }
-.footer-brand .brand-mark { color: var(--accent); }
-.footer-brand .brand-dot { color: var(--text-d); }
+.footer-brand .brand { margin-bottom: 18px; font-size: 36px; }
 .footer-brand .muted { max-width: 38ch; font-size: 14px; line-height: 1.55; color: var(--muted-d); }
 .footer-col h4 {
   margin: 0 0 18px;
