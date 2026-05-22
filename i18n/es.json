@@ -334,5 +334,10 @@
         "desc": "Runbooks, dashboards, ADRs y decisiones registradas. Lo escrito sobrevive a la rotación de gente."
       }
     }
+  },
+  "servicesHead": {
+    "eyebrow": "Capacidades",
+    "title": "Lo que hacemos",
+    "subtitle": "Seis prácticas que cubren ciclo de vida completo de un producto digital — desde el primer sprint hasta la operación continua."
   }
 }

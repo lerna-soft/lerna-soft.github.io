@@ -572,6 +572,9 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
 
 /* ---------- services (light, big list) ---------- */
 .services { padding-block: clamp(110px, 13vw, 180px); }
+.services .section-head { margin-bottom: 18px; max-width: 720px; }
+.services .section-head .h-display { font-size: clamp(26px, 3vw, 40px); margin-bottom: 8px; }
+.services .section-head .section-lead { font-size: 14px; }
 .services-list {
   display: flex;
   flex-direction: column;
@@ -579,14 +582,16 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
 }
 .services-list li {
   display: grid;
-  grid-template-columns: 80px 56px minmax(0, 1.2fr) minmax(0, 2fr) 44px;
-  gap: 24px;
+  grid-template-columns: 56px 44px minmax(0, 1.1fr) minmax(0, 2fr) 36px;
+  gap: 18px;
   align-items: center;
-  padding: 20px 8px;
+  padding: 12px 8px;
   border-bottom: 1px solid var(--line);
   cursor: default;
   transition: padding-left .3s ease, background .3s ease, color .2s;
 }
+.services-list .svc-title { font-size: 16px; }
+.services-list .svc-desc { font-size: 13px; line-height: 1.4; }
 .services-list li:hover {
   padding-left: 32px;
   background: linear-gradient(90deg, var(--accent-soft), transparent 60%);
@@ -1635,7 +1640,7 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* ---------- home CTA strip ---------- */
 .home-cta {
-  padding-block: clamp(40px, 4vw, 64px);
+  padding-block: clamp(28px, 3vw, 48px);
   min-height: calc(100dvh - 80px);
   display: flex;
   flex-direction: column;
@@ -1687,7 +1692,7 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* tighter section padding on subpages so first section after page-hero breathes */
 .subpage main > section:not(.page-hero) {
-  padding-block: clamp(40px, 4vw, 64px);
+  padding-block: clamp(28px, 3vw, 48px);
   min-height: calc(100dvh - 80px);
   display: flex;
   flex-direction: column;
