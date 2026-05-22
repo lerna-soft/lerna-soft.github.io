@@ -233,5 +233,25 @@
     "col2": { "title": "Empresa" },
     "col3": { "title": "Group" },
     "rights": "Todos los derechos reservados."
-  }
+  },
+  "homeCta": {
+    "title": "Veamos cómo podemos construir juntos.",
+    "lead": "Conocé nuestras capacidades, nuestros casos y al equipo. Cuando estés listo, hablemos.",
+    "btnPrimary": "Ver servicios",
+    "btnGhost": "Contactanos",
+    "points": {
+      "p1Title": "Equipo end-to-end",
+      "p1Desc": "Diseño, código, infra y operación bajo un mismo equipo.",
+      "p2Title": "Senior por diseño",
+      "p2Desc": "Sin escalafones de junior tercerizados ni rotación constante.",
+      "p3Title": "Construido para operar",
+      "p3Desc": "Diseñamos para el día 100, no solo para el lanzamiento."
+    }
+  },
+  "about": {
+    "eyebrow": "Nosotros",
+    "title": "Tres unidades,<br/><span class=\"accent\">un mismo equipo.</span>",
+    "lead": "Lerna Group reúne una software house, una agencia digital y una vertical especializada bajo la misma governance, valores y forma de trabajar."
+  },
+  "scroll": "EXPLORAR"
 }

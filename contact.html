@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lerna Group · Contacto</title>
+    <meta name="description" content="¿Listo para tu próximo proyecto? Cuéntanos qué necesitas — respondemos en menos de 24 horas." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="contact" class="subpage">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html" aria-label="Lerna Group">
+          <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html"      data-page-link="home"       data-i18n="nav.home">Inicio</a>
+          <a href="services.html"   data-page-link="services"   data-i18n="nav.services">Servicios</a>
+          <a href="industries.html" data-page-link="industries" data-i18n="nav.industries">Industrias</a>
+          <a href="work.html"       data-page-link="work"       data-i18n="nav.portfolio">Trabajo</a>
+          <a href="about.html"      data-page-link="about"      data-i18n="nav.about">Nosotros</a>
+          <a href="contact.html"    data-page-link="contact"    data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="contact.html" data-i18n="nav.startProject">Iniciar proyecto</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero is-dark">
+        <span class="section-num">S<span>.01</span> — Contact</span>
+        <div class="waves waves-bl" aria-hidden="true"></div>
+        <div class="container reveal">
+          <p class="page-hero-eyebrow" data-i18n="contact.eyebrow">Contacto</p>
+          <h1 class="page-hero-title" data-i18n-html="contact.title">¿Listo para tu<br/><span class="accent">próximo proyecto?</span></h1>
+          <p class="page-hero-lead" data-i18n="contact.subtitle">
+            Cuéntanos qué necesitas. Te respondemos en menos de 24 horas con una propuesta inicial y próximos pasos.
+          </p>
+          <div class="page-hero-actions">
+            <a href="#contact-form" class="btn btn-primary" data-i18n="contact.form.submit">Enviar mensaje</a>
+            <a href="mailto:hello@lerna-admin.github.io" class="btn btn-ghost">hello@lerna-admin.github.io</a>
+          </div>
+        </div>
+        <a class="page-hero-scroll" href="#contact-form" aria-label="Scroll">
+          <span data-i18n="scroll">EXPLORAR</span>
+          <span class="arrow-circle">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </span>
+        </a>
+      </section>
+
+      <section class="contact" id="contact-form">
+        <span class="section-num">S<span>.02</span> — Form</span>
+        <div class="container contact-grid">
+          <div class="contact-copy reveal">
+            <p class="eyebrow" data-i18n="contact.eyebrow">Contacto</p>
+            <h2 class="h-display" data-i18n="contact.subtitle">Cuéntanos qué necesitas. Te respondemos en menos de 24 horas con una propuesta inicial y próximos pasos.</h2>
+            <ul class="contact-points">
+              <li data-i18n="contact.points.p1">Equipos pequeños, perfil senior</li>
+              <li data-i18n="contact.points.p2">Propuesta inicial sin costo</li>
+              <li data-i18n="contact.points.p3">Comunicación en español e inglés</li>
+            </ul>
+          </div>
+          <form class="contact-form reveal" autocomplete="off" novalidate>
+            <label>
+              <span data-i18n="contact.form.email">Email de trabajo</span>
+              <input type="email" name="email" placeholder="ej: johndoe@email.com" data-i18n-attr="placeholder:contact.form.emailPh" required />
+            </label>
+            <label>
+              <span data-i18n="contact.form.service">¿Qué servicio buscas?</span>
+              <select name="service" required>
+                <option value="" disabled selected data-i18n="contact.form.servicePh">Selecciona un servicio</option>
+                <option value="web" data-i18n="services.web.title">Plataformas web</option>
+                <option value="mobile" data-i18n="services.mobile.title">Apps móviles</option>
+                <option value="cloud" data-i18n="services.cloud.title">Cloud & DevOps</option>
+                <option value="data" data-i18n="services.data.title">Data & Analytics</option>
+                <option value="design" data-i18n="services.design.title">Product design</option>
+                <option value="staff" data-i18n="services.staff.title">Staff augmentation</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="contact.form.message">Cuéntanos del proyecto</span>
+              <textarea name="message" rows="4" placeholder="Escribe aquí..." data-i18n-attr="placeholder:contact.form.messagePh"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Enviar mensaje</button>
+            <p class="form-note" hidden data-i18n="contact.form.note">Gracias. Te contactamos pronto.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer is-dark">
+      <div class="container">
+        <h2 class="footer-hero reveal" data-i18n-html="footer.hero">
+          Construyamos<br/><span class="accent">algo grande,</span> juntos.
+        </h2>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+            </a>
+            <p class="muted" data-i18n="footer.tagline">
+              Productos digitales para empresas que necesitan construir y operar. Parte de Lerna Group.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col1.title">Servicios</h4>
+            <a href="services.html#web"    data-i18n="services.web.title">Plataformas web</a>
+            <a href="services.html#mobile" data-i18n="services.mobile.title">Apps móviles</a>
+            <a href="services.html#cloud"  data-i18n="services.cloud.title">Cloud & DevOps</a>
+            <a href="services.html#staff"  data-i18n="services.staff.title">Staff augmentation</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col2.title">Empresa</h4>
+            <a href="about.html"      data-i18n="nav.about">Nosotros</a>
+            <a href="industries.html" data-i18n="nav.industries">Industrias</a>
+            <a href="work.html"       data-i18n="nav.portfolio">Trabajo</a>
+            <a href="contact.html"    data-i18n="nav.contact">Contacto</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col3.title">Group</h4>
+            <a href="https://github.com/lerna-admin" rel="noopener" target="_blank">github.com/lerna-admin</a>
+            <a href="mailto:hello@lerna-admin.github.io">hello@lerna-admin.github.io</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year"></span> LERNA GROUP</span>
+          <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

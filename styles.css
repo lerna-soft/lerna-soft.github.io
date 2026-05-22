@@ -1,9 +1,10 @@
 /* =========================================================
-   Lerna Group · agency site v4 — light-first hybrid
+   Lerna Group · agency site v6 — multipage, deep blue palette
    - Body is light/warm-white.
    - Hero and Footer wear .is-dark (navy) as statement frames.
-   - Lime stays as the punctual accent on light, more refreshing.
+   - Deep azure as the punctual accent, premium feel.
    - Editorial typography, generous whitespace, calm rhythm.
+   - Each page has its own 100dvh hero; sections flow fluidly.
    ========================================================= */
 
 :root {
@@ -34,12 +35,12 @@
   --line-d:       rgba(255, 255, 255, 0.10);
   --line-d-strong:rgba(255, 255, 255, 0.22);
 
-  /* ========== ACCENT ========== */
-  --accent:       #B8E840;
-  --accent-2:     #D4FF66;
-  --accent-3:     #92BD24;
-  --accent-soft:  #E8F8C4;   /* tinted lime for highlight bg on light */
-  --ink-on-accent:#0A0E27;
+  /* ========== ACCENT — deep azure ========== */
+  --accent:       #2563EB;   /* vivid blue, primary accent */
+  --accent-2:     #3B82F6;   /* lighter blue for hovers */
+  --accent-3:     #1E3A8A;   /* deep navy-blue, reads well on light bg */
+  --accent-soft:  #DBEAFE;   /* tinted blue for highlight bg on light */
+  --ink-on-accent:#FFFFFF;   /* white text on blue */
 
   /* ========== layout ========== */
   --maxw: 1320px;
@@ -180,16 +181,16 @@ section { position: relative; }
   background: var(--accent);
   color: var(--ink-on-accent);
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px -10px rgba(184, 232, 64, 0.55);
+  box-shadow: 0 14px 32px -10px rgba(37, 99, 235, 0.55);
 }
-.is-dark .btn-primary {                /* on dark: lime button */
+.is-dark .btn-primary {                /* on dark: azure button */
   background: var(--accent);
   color: var(--ink-on-accent);
-  box-shadow: 0 8px 24px -10px rgba(184, 232, 64, 0.5);
+  box-shadow: 0 8px 24px -10px rgba(37, 99, 235, 0.5);
 }
 .is-dark .btn-primary:hover {
   background: var(--accent-2);
-  box-shadow: 0 14px 32px -10px rgba(184, 232, 64, 0.7);
+  box-shadow: 0 14px 32px -10px rgba(37, 99, 235, 0.7);
 }
 .btn-ghost {
   color: var(--text);
@@ -311,16 +312,20 @@ section { position: relative; }
 /* ---------- hero (DARK statement) ---------- */
 .hero {
   position: relative;
-  padding-block: clamp(72px, 10vw, 140px) clamp(96px, 12vw, 170px);
+  min-height: 100dvh;                    /* v6: hero always fills viewport */
+  display: flex;
+  align-items: center;
+  padding-block: clamp(96px, 11vw, 150px) clamp(96px, 12vw, 170px);
   overflow: hidden;
   isolation: isolate;
 }
+.hero > .container { width: 100%; }
 .hero.is-dark::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 900px 460px at 8% 110%, rgba(184, 232, 64, 0.16), transparent 70%),
+    radial-gradient(ellipse 900px 460px at 8% 110%, rgba(37, 99, 235, 0.16), transparent 70%),
     radial-gradient(ellipse 700px 420px at 100% -10%, rgba(124, 90, 255, 0.10), transparent 70%);
   z-index: -1;
 }
@@ -451,13 +456,13 @@ section { position: relative; }
   display: grid;
   place-items: center;
   color: var(--accent);
-  background: rgba(184, 232, 64, 0.06);
+  background: rgba(37, 99, 235, 0.06);
   animation: scrollBounce 2.2s ease-in-out infinite;
   transition: border-color .2s ease, background .2s ease, transform .2s ease;
 }
 .hero-scroll:hover .hero-scroll-arrow {
   border-color: var(--accent);
-  background: rgba(184, 232, 64, 0.16);
+  background: rgba(37, 99, 235, 0.16);
   animation-play-state: paused;
   transform: translateY(2px);
 }
@@ -904,7 +909,7 @@ section { position: relative; }
 .org-node--accent {
   background: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 20px 40px -25px rgba(184, 232, 64, 0.5);
+  box-shadow: 0 20px 40px -25px rgba(37, 99, 235, 0.5);
 }
 .org-node--accent .org-node-label { color: var(--ink-on-accent); }
 .org-node--accent .org-node-sub { color: rgba(10,14,39,0.7); }
@@ -1304,6 +1309,181 @@ section { position: relative; }
   .svc-title { grid-column: 2 / 3; font-size: 19px; }
   .svc-desc { grid-column: 1 / 4; padding-top: 0; font-size: 14px; }
   .svc-arrow { grid-column: 3 / 4; grid-row: 1; width: 40px; height: 40px; }
+}
+
+/* =========================================================
+   V6 MULTIPAGE additions — subpage hero, nav active states,
+   home CTA block, page-specific tweaks.
+   ========================================================= */
+
+/* Nav active state per page (body[data-page] + a[data-page-link]) */
+.nav a[data-page-link] {
+  position: relative;
+  padding-block: 6px;
+}
+body[data-page="home"]       .nav a[data-page-link="home"],
+body[data-page="services"]   .nav a[data-page-link="services"],
+body[data-page="industries"] .nav a[data-page-link="industries"],
+body[data-page="work"]       .nav a[data-page-link="work"],
+body[data-page="about"]      .nav a[data-page-link="about"],
+body[data-page="contact"]    .nav a[data-page-link="contact"] {
+  color: var(--accent);
+  opacity: 1;
+  font-weight: 700;
+}
+body[data-page="home"]       .nav a[data-page-link="home"]::after,
+body[data-page="services"]   .nav a[data-page-link="services"]::after,
+body[data-page="industries"] .nav a[data-page-link="industries"]::after,
+body[data-page="work"]       .nav a[data-page-link="work"]::after,
+body[data-page="about"]      .nav a[data-page-link="about"]::after,
+body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* ---------- page-hero (subpages, DARK statement) ---------- */
+.page-hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(96px, 11vw, 150px) clamp(72px, 9vw, 130px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-hero > .container { width: 100%; max-width: 1100px; }
+.page-hero.is-dark::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 900px 460px at 8% 110%, rgba(37, 99, 235, 0.18), transparent 70%),
+    radial-gradient(ellipse 700px 420px at 100% -10%, rgba(124, 90, 255, 0.10), transparent 70%);
+  z-index: -1;
+}
+.page-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 22px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.page-hero-eyebrow::before {
+  content: ""; width: 28px; height: 1px;
+  background: currentColor; opacity: 0.8;
+}
+.page-hero-title {
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 28px;
+  color: var(--text-d);
+  max-width: 18ch;
+}
+.page-hero-title .accent { color: var(--accent); }
+.page-hero-lead {
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.55;
+  color: var(--muted-d);
+  max-width: 60ch;
+  margin: 0 0 42px;
+}
+.page-hero-actions { display: inline-flex; flex-wrap: wrap; gap: 16px; }
+.page-hero-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted-d);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+.page-hero-scroll .arrow-circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-d-strong);
+  display: grid; place-items: center;
+  color: var(--accent);
+  animation: scrollBounce 2.2s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+.page-hero-scroll:hover .arrow-circle {
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.10);
+  animation-play-state: paused;
+}
+
+/* ---------- home CTA strip ---------- */
+.home-cta {
+  padding-block: clamp(80px, 9vw, 140px);
+  background: var(--surface-2);
+  border-block: 1px solid var(--line);
+}
+.home-cta .container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.home-cta h2 {
+  font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 18px;
+  color: var(--text);
+}
+.home-cta p { color: var(--muted); margin: 0 0 28px; max-width: 50ch; }
+.home-cta-actions { display: inline-flex; flex-wrap: wrap; gap: 14px; }
+.home-cta-aside {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: grid;
+  gap: 22px;
+}
+.home-cta-aside li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.home-cta-aside .cta-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+}
+.home-cta-aside strong { display: block; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+.home-cta-aside span.muted { font-size: 14px; line-height: 1.5; display: block; }
+
+/* tighter section padding on subpages so first section after page-hero breathes */
+.subpage main > section:not(.page-hero) {
+  padding-block: clamp(80px, 9vw, 140px);
+}
+
+/* about page wider org-chart */
+body[data-page="about"] .org-chart { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .home-cta .container { grid-template-columns: 1fr; gap: 32px; }
+  .page-hero-scroll { display: none; }
 }
 
 /* ---------- reduced motion ---------- */

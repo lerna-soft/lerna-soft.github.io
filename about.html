@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lerna Group · Nosotros</title>
+    <meta name="description" content="Cómo está organizado Lerna Group, el equipo de liderazgo y voces de quienes trabajaron con nosotros." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="about" class="subpage">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="index.html" aria-label="Lerna Group">
+          <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html"      data-page-link="home"       data-i18n="nav.home">Inicio</a>
+          <a href="services.html"   data-page-link="services"   data-i18n="nav.services">Servicios</a>
+          <a href="industries.html" data-page-link="industries" data-i18n="nav.industries">Industrias</a>
+          <a href="work.html"       data-page-link="work"       data-i18n="nav.portfolio">Trabajo</a>
+          <a href="about.html"      data-page-link="about"      data-i18n="nav.about">Nosotros</a>
+          <a href="contact.html"    data-page-link="contact"    data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="contact.html" data-i18n="nav.startProject">Iniciar proyecto</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero is-dark">
+        <span class="section-num">S<span>.01</span> — About</span>
+        <div class="waves waves-bl" aria-hidden="true"></div>
+        <div class="container reveal">
+          <p class="page-hero-eyebrow" data-i18n="about.eyebrow">Nosotros</p>
+          <h1 class="page-hero-title" data-i18n-html="about.title">Tres unidades,<br/><span class="accent">un mismo equipo.</span></h1>
+          <p class="page-hero-lead" data-i18n="about.lead">
+            Lerna Group reúne una software house, una agencia digital y una vertical especializada bajo la misma governance, valores y forma de trabajar.
+          </p>
+          <div class="page-hero-actions">
+            <a href="work.html" class="btn btn-primary" data-i18n="nav.portfolio">Trabajo</a>
+            <a href="#about-org" class="btn btn-ghost" data-i18n-html="hero.ctaSecondary">Ver capacidades <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <a class="page-hero-scroll" href="#about-org" aria-label="Scroll">
+          <span data-i18n="scroll">EXPLORAR</span>
+          <span class="arrow-circle">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </span>
+        </a>
+      </section>
+
+      <section class="org" id="about-org">
+        <span class="section-num">S<span>.02</span> — Group</span>
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow" data-i18n="org.eyebrow">Organigrama</p>
+            <h2 class="h-display" data-i18n="org.title">Cómo está organizado Lerna Group</h2>
+            <p class="muted section-lead" data-i18n="org.subtitle">
+              Tres unidades de negocio bajo una misma governance. Software house, agencia y vertical de joyería (esta última actualmente en pausa).
+            </p>
+          </div>
+          <div class="org-chart reveal" role="figure" aria-label="Lerna Group org chart">
+            <div class="org-root">
+              <div class="org-node org-node--group">
+                <span class="org-node-label" data-i18n="org.nodes.group">Lerna Group</span>
+                <span class="org-node-sub" data-i18n="org.nodes.groupSub">Governance · Holding</span>
+              </div>
+            </div>
+            <div class="org-units">
+              <div class="org-unit">
+                <div class="org-node">
+                  <span class="org-node-label" data-i18n="org.nodes.soft">Lerna Soft</span>
+                  <span class="org-node-sub" data-i18n="org.nodes.softSub">Software house</span>
+                </div>
+                <ul class="org-leaves">
+                  <li><span data-i18n="org.products.budget">BudgetApp</span></li>
+                  <li><span data-i18n="org.products.devil">Devil TV</span></li>
+                  <li><span data-i18n="org.products.studio">Lerna Studio</span></li>
+                  <li><span data-i18n="org.products.micro">MicroImpulso</span></li>
+                  <li><span data-i18n="org.products.workshop">Workshop Suite</span></li>
+                </ul>
+              </div>
+              <div class="org-unit">
+                <div class="org-node org-node--accent">
+                  <span class="org-badge" data-i18n="org.youAreHere">Estás aquí</span>
+                  <span class="org-node-label" data-i18n="org.nodes.admin">Lerna Admin</span>
+                  <span class="org-node-sub" data-i18n="org.nodes.adminSub">Agencia digital</span>
+                </div>
+                <ul class="org-leaves">
+                  <li><span data-i18n="org.services.consulting">Consultoría</span></li>
+                  <li><span data-i18n="org.services.delivery">Delivery</span></li>
+                  <li><span data-i18n="org.services.ops">Operación continua</span></li>
+                </ul>
+              </div>
+              <div class="org-unit">
+                <div class="org-node org-node--archived">
+                  <span class="org-node-label" data-i18n="org.nodes.jewelry">Lerna Jewelry</span>
+                  <span class="org-node-sub" data-i18n="org.nodes.jewelrySub">Vertical en pausa</span>
+                </div>
+                <ul class="org-leaves">
+                  <li class="muted-li"><span data-i18n="org.products.jeweryErp">jewelry-erp</span></li>
+                  <li class="muted-li"><span data-i18n="org.products.jeweryShop">jewelry-online-store</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="team">
+        <span class="section-num">S<span>.03</span> — Team</span>
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow" data-i18n="team.eyebrow">Liderazgo</p>
+            <h2 class="h-display" data-i18n="team.title">Las personas detrás del Group</h2>
+            <p class="muted section-lead" data-i18n="team.subtitle">
+              Equipo distribuido con base operativa nearshore. Reemplaza estos perfiles con los nombres reales cuando estés listo.
+            </p>
+          </div>
+          <div class="team-grid reveal">
+            <article class="team-card">
+              <img src="assets/av-team-1.svg" alt="" />
+              <h3 data-i18n="team.members.m1.name">Nombre Apellido</h3>
+              <p class="muted" data-i18n="team.members.m1.role">CEO · Group</p>
+            </article>
+            <article class="team-card">
+              <img src="assets/av-team-2.svg" alt="" />
+              <h3 data-i18n="team.members.m2.name">Nombre Apellido</h3>
+              <p class="muted" data-i18n="team.members.m2.role">CTO · Lerna Soft</p>
+            </article>
+            <article class="team-card">
+              <img src="assets/av-team-3.svg" alt="" />
+              <h3 data-i18n="team.members.m3.name">Nombre Apellido</h3>
+              <p class="muted" data-i18n="team.members.m3.role">Head of Delivery · Lerna Admin</p>
+            </article>
+            <article class="team-card">
+              <img src="assets/av-team-4.svg" alt="" />
+              <h3 data-i18n="team.members.m4.name">Nombre Apellido</h3>
+              <p class="muted" data-i18n="team.members.m4.role">Head of Operations</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <span class="section-num">S<span>.04</span> — Voices</span>
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow" data-i18n="testimonials.eyebrow">Lo que dicen</p>
+            <h2 class="h-display" data-i18n="testimonials.title">Voces de quienes trabajaron con nosotros</h2>
+          </div>
+          <div class="testi-grid reveal">
+            <figure class="testi-card">
+              <blockquote data-i18n="testimonials.items.t1.quote">
+                "Pasamos de un MVP frágil a una plataforma que opera 24/7 sin que tengamos que pensar en ella. El equipo se mete en el problema, no solo escribe código."
+              </blockquote>
+              <figcaption>
+                <strong data-i18n="testimonials.items.t1.author">Nombre Apellido</strong>
+                <span class="muted" data-i18n="testimonials.items.t1.role">Founder · Brand A</span>
+              </figcaption>
+            </figure>
+            <figure class="testi-card">
+              <blockquote data-i18n="testimonials.items.t2.quote">
+                "Llegaron en una semana, entendieron el dominio en dos sprints y a los dos meses estábamos shippeando features nuevas con confianza. Recomendados."
+              </blockquote>
+              <figcaption>
+                <strong data-i18n="testimonials.items.t2.author">Nombre Apellido</strong>
+                <span class="muted" data-i18n="testimonials.items.t2.role">CTO · Brand B</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer is-dark">
+      <div class="container">
+        <h2 class="footer-hero reveal" data-i18n-html="footer.hero">
+          Construyamos<br/><span class="accent">algo grande,</span> juntos.
+        </h2>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+            </a>
+            <p class="muted" data-i18n="footer.tagline">
+              Productos digitales para empresas que necesitan construir y operar. Parte de Lerna Group.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col1.title">Servicios</h4>
+            <a href="services.html#web"    data-i18n="services.web.title">Plataformas web</a>
+            <a href="services.html#mobile" data-i18n="services.mobile.title">Apps móviles</a>
+            <a href="services.html#cloud"  data-i18n="services.cloud.title">Cloud & DevOps</a>
+            <a href="services.html#staff"  data-i18n="services.staff.title">Staff augmentation</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col2.title">Empresa</h4>
+            <a href="about.html"      data-i18n="nav.about">Nosotros</a>
+            <a href="industries.html" data-i18n="nav.industries">Industrias</a>
+            <a href="work.html"       data-i18n="nav.portfolio">Trabajo</a>
+            <a href="contact.html"    data-i18n="nav.contact">Contacto</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col3.title">Group</h4>
+            <a href="https://github.com/lerna-admin" rel="noopener" target="_blank">github.com/lerna-admin</a>
+            <a href="mailto:hello@lerna-admin.github.io">hello@lerna-admin.github.io</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year"></span> LERNA GROUP</span>
+          <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
