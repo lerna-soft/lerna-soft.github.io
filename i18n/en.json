@@ -153,6 +153,7 @@
     "eyebrow": "Org chart",
     "title": "How Lerna Group is organized",
     "subtitle": "Three business units under a single governance. Software house, agency and a jewelry vertical (currently paused).",
+    "youAreHere": "You are here",
     "nodes": {
       "group": "Lerna Group",
       "groupSub": "Governance · Holding",
@@ -226,6 +227,7 @@
     }
   },
   "footer": {
+    "hero": "Let's build<br/><span class=\"accent\">something great,</span> together.",
     "tagline": "Digital products for companies that need to build and operate. Part of Lerna Group.",
     "col1": { "title": "Services" },
     "col2": { "title": "Company" },
