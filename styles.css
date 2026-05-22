@@ -1276,6 +1276,8 @@ html { scroll-padding-top: 80px; }
   color: var(--muted-d);
   letter-spacing: 0.06em;
 }
+.footer-credit a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
+.footer-credit a:hover { border-color: var(--accent); }
 
 /* ============================================================
    RESPONSIVE
