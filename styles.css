@@ -158,6 +158,12 @@ ul, ol { list-style: none; padding: 0; margin: 0; }
 
 section { position: relative; }
 
+/* When scrolling to a section via anchor, reserve space for the sticky
+   topbar (80px) + a little visual breathing room so the section title
+   isn't tucked under the bar. */
+section[id], main[id] { scroll-margin-top: 96px; }
+html { scroll-padding-top: 96px; }
+
 /* buttons */
 .btn {
   display: inline-flex;
