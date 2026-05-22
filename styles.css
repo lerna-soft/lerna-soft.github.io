@@ -310,9 +310,11 @@ section { position: relative; }
 }
 
 /* ---------- hero (DARK statement) — single column, fully centered ----
-   - text-align: center so title, lead, CTAs, stats all share the same axis.
+   Goal: use more of the viewport horizontally and vertically.
+   - text-align center; everything shares the same axis.
    - safe-center on flex so content never clips on short viewports.
-   - tight padding-block so the hero leaves room for the scroll arrow.
+   - Padding-top is just enough to clear the sticky topbar (~80px).
+   - Gap between blocks scales with viewport height for breathing room.
    ------------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -321,23 +323,21 @@ section { position: relative; }
   flex-direction: column;
   align-items: center;
   justify-content: safe center;
-  padding-block: clamp(80px, 6vw, 96px) clamp(64px, 5vw, 80px);
+  padding-block: clamp(96px, 6vw, 110px) clamp(72px, 5vw, 88px);
   overflow: hidden;
   isolation: isolate;
   text-align: center;
 }
 .hero > .container { width: 100%; }
 .hero .hero-copy {
-  max-width: 880px;
+  max-width: 1080px;                           /* wider — uses more of the viewport */
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(16px, 2.2vh, 28px);               /* explicit breathing room between blocks */
 }
-.hero .hero-copy .eyebrow,
-.hero .hero-copy .lead,
-.hero .hero-copy .hero-cta,
-.hero .hero-copy .hero-stats { margin-inline: auto; }
+.hero .hero-copy > * { margin: 0; }            /* reset; flex gap handles spacing now */
 
 /* hero eyebrow: symmetric decorative dashes on both sides for centered layout */
 .hero .hero-copy .eyebrow::after {
@@ -391,11 +391,10 @@ section { position: relative; }
   align-items: center;
 }
 .hero-copy .lead {
-  margin: 18px auto 26px;
   font-size: clamp(15px, 1.05vw, 17px);
   color: var(--muted-d);
-  max-width: 56ch;
-  line-height: 1.5;
+  max-width: 62ch;                 /* wider line for breathing */
+  line-height: 1.55;
 }
 .hero-cta { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
@@ -403,10 +402,9 @@ section { position: relative; }
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
-  margin: 32px auto 0;             /* explicit auto inline = centered block */
-  padding-top: 20px;
+  padding-top: 24px;
   border-top: 1px solid var(--line-d);
-  max-width: 540px;
+  max-width: 720px;                /* wider so the four stats breathe horizontally */
   width: 100%;
 }
 .hero-stats li {
@@ -1388,13 +1386,12 @@ section { position: relative; }
    1366×768 ⇒ viewport visible ~668. 1920×1080 with bookmarks ⇒ ~880.
    This breakpoint catches both. */
 @media (max-height: 900px) {
-  .hero       { padding-block: 56px 40px; }
-  .page-hero  { padding-block: 48px 36px; }
+  .hero       { padding-block: 88px 48px; }   /* keep topbar offset, trim bottom */
+  .page-hero  { padding-block: 80px 44px; }
+  .hero .hero-copy { gap: clamp(14px, 1.8vh, 22px); }
   .display    { font-size: clamp(26px, 3.8vw, 52px); line-height: 1.06; }
   .page-hero-title { font-size: clamp(26px, 4vw, 52px); }
-  .hero-copy .lead { margin: 12px auto 18px; }
-  .page-hero-lead  { margin-bottom: 18px; }
-  .hero-stats { margin-top: 20px; padding-top: 14px; }
+  .hero-stats { padding-top: 18px; }
   .hero-scroll, .page-hero-scroll { bottom: 16px; }
 }
 
