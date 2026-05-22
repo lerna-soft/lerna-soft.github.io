@@ -1245,7 +1245,8 @@ html { scroll-padding-top: 80px; }
   border-top: 1px solid var(--line-d);
   border-bottom: 1px solid var(--line-d);
 }
-.footer-brand .brand { margin-bottom: 18px; align-items: flex-start; gap: 8px; }
+.footer-brand .brand { margin-bottom: 18px; align-items: center; gap: 8px; }
+.footer-brand { text-align: center; }
 .footer-brand .brand-icon { height: 96px; }
 .footer-brand .brand-mark { font-size: 36px; }
 .footer-brand .muted { max-width: 38ch; font-size: 14px; line-height: 1.55; color: var(--muted-d); }
