@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Lerna Group · Software agency",
-    "description": "Lerna Group builds platforms, digital products and technical operations end-to-end for companies that need to build and operate."
+    "title": "Lerna Soft · Software agency",
+    "description": "Lerna Soft builds platforms, digital products and technical operations end-to-end for companies that need to build and operate."
   },
   "nav": {
     "home": "Home",
@@ -14,9 +14,9 @@
     "startProject": "Start a project"
   },
   "hero": {
-    "eyebrow": "Software agency · Lerna Group",
+    "eyebrow": "Software agency · Lerna Soft",
     "title": "We build software<br/><span class=\"accent\">that operates</span>,<br/>not just software that ships.",
-    "subtitle": "Lerna Group partners with companies that need to design, build and operate critical digital products. Small senior teams, end-to-end ownership.",
+    "subtitle": "Lerna Soft partners with companies that need to design, build and operate critical digital products. Small senior teams, end-to-end ownership.",
     "cta": "Start a project",
     "ctaSecondary": "See capabilities <span aria-hidden=\"true\">→</span>",
     "stats": {
@@ -80,7 +80,7 @@
     }
   },
   "why": {
-    "eyebrow": "Why Lerna Group",
+    "eyebrow": "Why Lerna Soft",
     "title": "What makes us different",
     "items": {
       "endToEnd": {
@@ -114,11 +114,26 @@
     "title": "One process, five steps",
     "subtitle": "Light at the start to reduce risk, dense in delivery to ensure quality, persistent after launch so it operates.",
     "steps": {
-      "s1": { "title": "Discovery", "desc": "We understand the business, the users and the constraints. We exit with a shared brief." },
-      "s2": { "title": "Architecture", "desc": "We define stack, modules, integrations and deployment plan. No surprises on sprint 3." },
-      "s3": { "title": "Build", "desc": "Short sprints, weekly demos, trunk-based branches. What you see is already deployed." },
-      "s4": { "title": "Launch", "desc": "Controlled rollout, observability active from day one, runbooks ready for the client team." },
-      "s5": { "title": "Operate", "desc": "Support, evolution and continuous improvements with clear SLAs. This is where most fail." }
+      "s1": {
+        "title": "Discovery",
+        "desc": "We understand the business, the users and the constraints. We exit with a shared brief."
+      },
+      "s2": {
+        "title": "Architecture",
+        "desc": "We define stack, modules, integrations and deployment plan. No surprises on sprint 3."
+      },
+      "s3": {
+        "title": "Build",
+        "desc": "Short sprints, weekly demos, trunk-based branches. What you see is already deployed."
+      },
+      "s4": {
+        "title": "Launch",
+        "desc": "Controlled rollout, observability active from day one, runbooks ready for the client team."
+      },
+      "s5": {
+        "title": "Operate",
+        "desc": "Support, evolution and continuous improvements with clear SLAs. This is where most fail."
+      }
     }
   },
   "works": {
@@ -130,32 +145,38 @@
         "tag": "Personal fintech",
         "title": "BudgetApp",
         "desc": "Personal finance platform: Next.js frontend, serverless backend on AWS Lambda and React mobile app.",
-        "m1n": "3", "m1l": "apps in production",
-        "m2n": "100%", "m2l": "automated deployment"
+        "m1n": "3",
+        "m1l": "apps in production",
+        "m2n": "100%",
+        "m2l": "automated deployment"
       },
       "studio": {
         "tag": "SaaS no-code",
         "title": "Lerna Studio",
         "desc": "Wix-style multi-tenant visual builder. React SPA + persistence via Git + Pages, no traditional backend.",
-        "m1n": "7", "m1l": "integrated templates",
-        "m2n": "0", "m2l": "server infrastructure"
+        "m1n": "7",
+        "m1l": "integrated templates",
+        "m2n": "0",
+        "m2l": "server infrastructure"
       },
       "devil": {
         "tag": "Media & streaming",
         "title": "Devil TV",
         "desc": "Streaming catalog with no backend: progressive sync via GitHub Issues + Actions, legal VidAPI embed.",
-        "m1n": "1k+", "m1l": "titles catalogued",
-        "m2n": "$0", "m2l": "hosting cost"
+        "m1n": "1k+",
+        "m1l": "titles catalogued",
+        "m2n": "$0",
+        "m2l": "hosting cost"
       }
     }
   },
   "org": {
     "eyebrow": "Org chart",
-    "title": "How Lerna Group is organized",
+    "title": "How Lerna Soft is organized",
     "subtitle": "Three business units under a single governance. Software house, agency and a jewelry vertical (currently paused).",
     "youAreHere": "You are here",
     "nodes": {
-      "group": "Lerna Group",
+      "group": "Lerna Soft",
       "groupSub": "Governance · Holding",
       "soft": "Lerna Soft",
       "softSub": "Software house",
@@ -184,10 +205,22 @@
     "title": "The people behind the Group",
     "subtitle": "Distributed team with a nearshore operational base. Replace these profiles with real names when you're ready.",
     "members": {
-      "m1": { "name": "Name Surname", "role": "CEO · Group" },
-      "m2": { "name": "Name Surname", "role": "CTO · Lerna Soft" },
-      "m3": { "name": "Name Surname", "role": "Head of Delivery · Lerna Admin" },
-      "m4": { "name": "Name Surname", "role": "Head of Operations" }
+      "m1": {
+        "name": "Name Surname",
+        "role": "CEO · Group"
+      },
+      "m2": {
+        "name": "Name Surname",
+        "role": "CTO · Lerna Soft"
+      },
+      "m3": {
+        "name": "Name Surname",
+        "role": "Head of Delivery · Lerna Admin"
+      },
+      "m4": {
+        "name": "Name Surname",
+        "role": "Head of Operations"
+      }
     }
   },
   "testimonials": {
@@ -228,10 +261,16 @@
   },
   "footer": {
     "hero": "Let's build<br/><span class=\"accent\">something great,</span> together.",
-    "tagline": "Digital products for companies that need to build and operate. Part of Lerna Group.",
-    "col1": { "title": "Services" },
-    "col2": { "title": "Company" },
-    "col3": { "title": "Group" },
+    "tagline": "Digital products for companies that need to build and operate. Part of Lerna Soft.",
+    "col1": {
+      "title": "Services"
+    },
+    "col2": {
+      "title": "Company"
+    },
+    "col3": {
+      "title": "Group"
+    },
     "rights": "All rights reserved."
   },
   "homeCta": {
@@ -251,7 +290,17 @@
   "about": {
     "eyebrow": "About us",
     "title": "Three units,<br/><span class=\"accent\">one team.</span>",
-    "lead": "Lerna Group brings together a software house, a digital agency, and a specialized vertical under the same governance, values, and way of working."
+    "lead": "Lerna Soft brings together a software house, a digital agency, and a specialized vertical under the same governance, values, and way of working."
   },
-  "scroll": "EXPLORE"
+  "scroll": "EXPLORE",
+  "scrollTo": {
+    "distinct": "What sets us apart",
+    "cta": "How to start",
+    "process": "Our process",
+    "industries": "Industries",
+    "work": "Case studies",
+    "team": "Team",
+    "testimonials": "Testimonials",
+    "footer": "More info"
+  }
 }

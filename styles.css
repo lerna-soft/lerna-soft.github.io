@@ -1,5 +1,5 @@
 /* =========================================================
-   Lerna Group · agency site v6 — multipage, deep blue palette
+   Lerna Soft · agency site v6 — multipage, deep blue palette
    - Body is light/warm-white.
    - Hero and Footer wear .is-dark (navy) as statement frames.
    - Deep azure as the punctual accent, premium feel.
@@ -161,8 +161,7 @@ section { position: relative; }
 /* When scrolling to a section via anchor, reserve space for the sticky
    topbar (80px) + a little visual breathing room so the section title
    isn't tucked under the bar. */
-section[id], main[id] { scroll-margin-top: 96px; }
-html { scroll-padding-top: 96px; }
+html { scroll-padding-top: 80px; }
 
 /* buttons */
 .btn {
@@ -325,7 +324,7 @@ html { scroll-padding-top: 96px; }
    ------------------------------------------------------------------- */
 .hero {
   position: relative;
-  min-height: 100dvh;
+  min-height: calc(100dvh - 80px);   /* 80 = topbar height; fills exactly the visible viewport */
   padding-block: 96px 88px;       /* 96 = topbar height + small gap; 88 = bottom for scroll arrow */
   overflow: hidden;
   isolation: isolate;
@@ -464,11 +463,14 @@ html { scroll-padding-top: 96px; }
    Static in the flow (not absolute) so it is always visible regardless
    of viewport height. Sits below stats with breathing margin. */
 .hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-top: 44px;
   color: var(--muted-d);
   text-decoration: none;
   transition: color .2s ease;
@@ -1406,7 +1408,7 @@ html { scroll-padding-top: 96px; }
   .hero .hero-copy .lead       { margin-bottom: 26px; }
   .hero .hero-copy .hero-cta   { margin-bottom: 32px; }
   .hero-stats { padding-top: 16px; }
-  .hero-scroll, .page-hero-scroll { margin-top: 28px; }
+  .page-hero-scroll { margin-top: 28px; }
 }
 
 /* ----- ≤680px tall (very short — landscape phones, ultra-thin) */
@@ -1470,7 +1472,7 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
    Same block layout as .hero, no flex tricks. */
 .page-hero {
   position: relative;
-  min-height: 100dvh;
+  min-height: calc(100dvh - 80px);   /* 80 = topbar height */
   padding-block: 96px 80px;
   overflow: hidden;
   isolation: isolate;
@@ -1545,6 +1547,48 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   animation-play-state: paused;
 }
 
+/* ---------- section-scroll (reusable inter-section chevron) ---------- */
+.section-scroll-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(48px, 6vh, 80px);
+  grid-column: 1 / -1;   /* span all columns when parent is a grid */
+}
+.section-scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.section-scroll:hover { color: var(--accent); }
+.section-scroll .arrow-circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+  color: var(--accent);
+  animation: scrollBounce 2.2s ease-in-out infinite;
+  transition: border-color .2s ease, background .2s ease;
+}
+.section-scroll:hover .arrow-circle {
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.08);
+  animation-play-state: paused;
+}
+.is-dark .section-scroll { color: var(--muted-d); }
+.is-dark .section-scroll .arrow-circle { border-color: var(--line-d-strong); }
+@media (max-height: 680px) {
+  .section-scroll-wrap { margin-top: 28px; }
+  .section-scroll { display: none; }
+}
+
 /* ---------- home CTA strip ---------- */
 .home-cta {
   padding-block: clamp(80px, 9vw, 140px);
@@ -1609,17 +1653,17 @@ body[data-page="about"] .org-chart { margin-top: 0; }
 .trust-distinct {
   position: relative;
   min-height: 100dvh;
-  padding-block: 72px 64px;
+  padding-block: 0 56px;
   background: var(--bg);
   border-block: 1px solid var(--line);
 }
 .trust-distinct > .container {
   display: flex;
   flex-direction: column;
-  gap: clamp(40px, 5vh, 64px);
-  height: 100%;
-  min-height: calc(100dvh - 136px);   /* padding-block accounted */
+  gap: clamp(32px, 4vh, 48px);
 }
+/* small breathing room only between border and title */
+.trust-distinct .td-trust { padding-top: 24px; }
 
 /* --- Trust block (logos) --- */
 .td-trust { text-align: center; }
@@ -1712,19 +1756,22 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .td-card { padding: 20px 18px 18px; }
 }
 @media (max-width: 900px) {
-  .trust-distinct { min-height: auto; padding-block: 64px 56px; }
-  .trust-distinct > .container { min-height: 0; gap: 40px; }
+  .trust-distinct { min-height: auto; padding-block: 0 56px; }
+  .trust-distinct > .container { gap: 36px; }
+  .trust-distinct .td-trust { padding-top: 24px; }
   .td-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .td-distinct-title { font-size: clamp(26px, 4vw, 36px); }
 }
 @media (max-width: 640px) {
-  .trust-distinct { padding-block: 48px 40px; }
+  .trust-distinct { padding-block: 0 40px; }
+  .trust-distinct .td-trust { padding-top: 20px; }
   .td-grid { grid-template-columns: 1fr; gap: 12px; }
   .td-card { padding: 18px; }
 }
 @media (max-height: 900px) {
-  .trust-distinct { padding-block: 56px 48px; }
-  .trust-distinct > .container { gap: 36px; }
+  .trust-distinct { padding-block: 0 48px; }
+  .trust-distinct .td-trust { padding-top: 16px; }
+  .trust-distinct > .container { gap: 28px; }
   .td-card { padding: 18px 18px 16px; }
   .td-card h3 { font-size: 16px; }
   .td-card p { font-size: 13px; }
