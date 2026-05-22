@@ -261,7 +261,7 @@ html { scroll-padding-top: 80px; }
 }
 .brand-icon {
   display: block;
-  height: 44px;
+  height: 36px;
   width: auto;
   color: currentColor;
 }
@@ -498,7 +498,7 @@ html { scroll-padding-top: 80px; }
 }
 .hero-scroll-arrow {
   width: 44px;
-  height: 44px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid var(--line-d-strong);
   display: grid;
@@ -623,7 +623,7 @@ html { scroll-padding-top: 80px; }
   margin: 0;
 }
 .svc-arrow {
-  width: 44px; height: 44px;
+  width: 44px; height: 36px;
   border-radius: 50%;
   border: 1px solid var(--line-strong);
   display: grid; place-items: center;
@@ -1245,7 +1245,7 @@ html { scroll-padding-top: 80px; }
   border-bottom: 1px solid var(--line-d);
 }
 .footer-brand .brand { margin-bottom: 18px; align-items: flex-start; gap: 8px; }
-.footer-brand .brand-icon { height: 80px; }
+.footer-brand .brand-icon { height: 64px; }
 .footer-brand .brand-mark { font-size: 36px; }
 .footer-brand .muted { max-width: 38ch; font-size: 14px; line-height: 1.55; color: var(--muted-d); }
 .footer-col h4 {
@@ -1546,7 +1546,7 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   letter-spacing: 0.18em;
 }
 .page-hero-scroll .arrow-circle {
-  width: 44px; height: 44px;
+  width: 44px; height: 36px;
   border-radius: 50%;
   border: 1px solid var(--line-d-strong);
   display: grid; place-items: center;
@@ -1585,7 +1585,7 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 }
 .section-scroll:hover { color: var(--accent); }
 .section-scroll .arrow-circle {
-  width: 44px; height: 44px;
+  width: 44px; height: 36px;
   border-radius: 50%;
   border: 1px solid var(--line);
   display: grid; place-items: center;
