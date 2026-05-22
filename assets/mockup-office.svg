@@ -22,11 +22,11 @@
   <!-- desk row 1 -->
   <rect x="40" y="180" width="220" height="80" rx="6" fill="#262b3e"/>
   <rect x="60" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
-  <rect x="70" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="70" y="205" width="40" height="3" fill="#B8E840" opacity="0.7"/>
   <rect x="70" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
   <rect x="70" y="219" width="36" height="3" fill="#fff" opacity="0.4"/>
   <rect x="140" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
-  <rect x="150" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="150" y="205" width="40" height="3" fill="#B8E840" opacity="0.7"/>
   <rect x="150" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
   <!-- people silhouettes row 1 -->
   <circle cx="90" cy="178" r="10" fill="#1a1d2e"/>
@@ -34,13 +34,13 @@
   <!-- desk row 2 -->
   <rect x="300" y="180" width="220" height="80" rx="6" fill="#262b3e"/>
   <rect x="320" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
-  <rect x="330" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="330" y="205" width="40" height="3" fill="#B8E840" opacity="0.7"/>
   <rect x="330" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
   <rect x="400" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
-  <rect x="410" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="410" y="205" width="40" height="3" fill="#B8E840" opacity="0.7"/>
   <rect x="410" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
   <circle cx="350" cy="178" r="10" fill="#1a1d2e"/>
   <circle cx="430" cy="178" r="10" fill="#1a1d2e"/>
   <!-- floor -->
-  <rect x="0" y="300" width="560" height="60" fill="#0c0e2c"/>
+  <rect x="0" y="300" width="560" height="60" fill="#0a0e27"/>
 </svg>

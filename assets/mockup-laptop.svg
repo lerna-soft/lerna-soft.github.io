@@ -2,7 +2,7 @@
   <defs>
     <linearGradient id="lscr" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#1b1f4a"/>
-      <stop offset="1" stop-color="#0c0e2c"/>
+      <stop offset="1" stop-color="#0a0e27"/>
     </linearGradient>
   </defs>
   <!-- laptop body -->
@@ -15,17 +15,17 @@
   <circle cx="68" cy="51" r="3.5" fill="#28c940"/>
   <rect x="84" y="46" width="160" height="10" rx="3" fill="#222659"/>
   <!-- content blocks -->
-  <rect x="50" y="80" width="120" height="14" rx="3" fill="#C2F73C" opacity="0.85"/>
+  <rect x="50" y="80" width="120" height="14" rx="3" fill="#B8E840" opacity="0.85"/>
   <rect x="50" y="100" width="200" height="10" rx="3" fill="#fff" opacity="0.55"/>
   <rect x="50" y="115" width="170" height="10" rx="3" fill="#fff" opacity="0.35"/>
-  <rect x="50" y="145" width="90" height="32" rx="6" fill="#C2F73C"/>
+  <rect x="50" y="145" width="90" height="32" rx="6" fill="#B8E840"/>
   <rect x="270" y="80" width="160" height="120" rx="6" fill="#222659"/>
-  <rect x="282" y="92" width="48" height="36" rx="4" fill="#C2F73C" opacity="0.6"/>
+  <rect x="282" y="92" width="48" height="36" rx="4" fill="#B8E840" opacity="0.6"/>
   <rect x="336" y="92" width="48" height="36" rx="4" fill="#fff" opacity="0.2"/>
   <rect x="282" y="134" width="102" height="8" rx="2" fill="#fff" opacity="0.35"/>
   <rect x="282" y="146" width="80" height="8" rx="2" fill="#fff" opacity="0.25"/>
   <rect x="50" y="200" width="380" height="50" rx="6" fill="#13163a"/>
   <!-- base / hinge -->
   <rect x="0" y="270" width="480" height="14" rx="6" fill="#22264d"/>
-  <rect x="195" y="270" width="90" height="6" rx="3" fill="#0c0e2c"/>
+  <rect x="195" y="270" width="90" height="6" rx="3" fill="#0a0e27"/>
 </svg>
