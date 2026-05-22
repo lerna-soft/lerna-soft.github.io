@@ -27,7 +27,7 @@
     }
   },
   "logos": {
-    "title": "Confían en nuestros equipos"
+    "title": "Confían en nosotros"
   },
   "services": {
     "eyebrow": "Servicios",
@@ -85,27 +85,27 @@
     "items": {
       "endToEnd": {
         "title": "Equipos end-to-end",
-        "desc": "Diseño, código, infraestructura y operación bajo un mismo equipo. Cero handoffs, cero \"no es mi área\"."
+        "desc": "Diseño, código, infraestructura y operación bajo un mismo equipo."
       },
       "senior": {
         "title": "Senior por diseño",
-        "desc": "Equipos pequeños de gente con cancha. Sin escalafones de junior tercerizados ni rotación constante."
+        "desc": "Equipos pequeños de gente con cancha, sin junior tercerizados."
       },
       "openSource": {
         "title": "Open source DNA",
-        "desc": "Trabajamos en repositorios abiertos cuando se puede. La trazabilidad y la cultura de PRs es nuestro default."
+        "desc": "Trabajamos en repos abiertos; trazabilidad y cultura de PRs."
       },
       "multi": {
         "title": "Cancha multi-vertical",
-        "desc": "Fintech, media, SaaS y marketplaces. Cada producto del Group es nuestro propio caso real, no un slide."
+        "desc": "Fintech, media, SaaS y marketplaces. Casos propios, no slides."
       },
       "nearshore": {
         "title": "Nearshore bilingüe",
-        "desc": "Equipo en zona horaria americana, comunicación fluida en español e inglés con clientes en EE.UU., LatAm y EU."
+        "desc": "Zona horaria americana, español e inglés con clientes globales."
       },
       "operate": {
         "title": "Construido para operar",
-        "desc": "No entregamos y desaparecemos. Diseñamos para el día 100 después del lanzamiento, no solo para el día 1."
+        "desc": "Diseñamos para el día 100 después del lanzamiento, no solo para el día 1."
       }
     }
   },

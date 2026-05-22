@@ -1594,6 +1594,136 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 /* about page wider org-chart */
 body[data-page="about"] .org-chart { margin-top: 0; }
 
+/* ============================================================
+   TRUST + DISTINCT (home, second viewport)
+   Combines logos marquee + "Lo que nos hace distintos" in one
+   100dvh block. Trust title centered above marquee. Distinct
+   shows the 6 differentiators in a compact 3×2 grid that fits.
+   ============================================================ */
+.trust-distinct {
+  position: relative;
+  min-height: 100dvh;
+  padding-block: 72px 64px;
+  background: var(--bg);
+  border-block: 1px solid var(--line);
+}
+.trust-distinct > .container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vh, 64px);
+  height: 100%;
+  min-height: calc(100dvh - 136px);   /* padding-block accounted */
+}
+
+/* --- Trust block (logos) --- */
+.td-trust { text-align: center; }
+.td-trust-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+.td-trust .logos-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.td-trust .logos-track {
+  display: flex;
+  gap: 56px;
+  align-items: center;
+  animation: marqueeScroll 40s linear infinite;
+  width: max-content;
+}
+.td-trust .logos-track img { height: 24px; opacity: 0.75; }
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --- Distinct block --- */
+.td-distinct { display: flex; flex-direction: column; gap: 32px; }
+.td-distinct-head { text-align: center; }
+.td-distinct-head .eyebrow {
+  margin: 0 auto 14px;
+  display: inline-flex;
+}
+.td-distinct-head .eyebrow::before { display: none; }     /* no left-dash in centered head */
+.td-distinct-title {
+  font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: var(--text);
+}
+
+.td-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.td-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.td-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.td-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.td-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--text);
+}
+.td-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ----- trust-distinct responsive ----- */
+@media (max-width: 1100px) {
+  .td-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .td-card { padding: 20px 18px 18px; }
+}
+@media (max-width: 900px) {
+  .trust-distinct { min-height: auto; padding-block: 64px 56px; }
+  .trust-distinct > .container { min-height: 0; gap: 40px; }
+  .td-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .td-distinct-title { font-size: clamp(26px, 4vw, 36px); }
+}
+@media (max-width: 640px) {
+  .trust-distinct { padding-block: 48px 40px; }
+  .td-grid { grid-template-columns: 1fr; gap: 12px; }
+  .td-card { padding: 18px; }
+}
+@media (max-height: 900px) {
+  .trust-distinct { padding-block: 56px 48px; }
+  .trust-distinct > .container { gap: 36px; }
+  .td-card { padding: 18px 18px 16px; }
+  .td-card h3 { font-size: 16px; }
+  .td-card p { font-size: 13px; }
+}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

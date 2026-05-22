@@ -27,7 +27,7 @@
     }
   },
   "logos": {
-    "title": "Trusted by teams that ship"
+    "title": "Trusted by"
   },
   "services": {
     "eyebrow": "Services",
@@ -85,27 +85,27 @@
     "items": {
       "endToEnd": {
         "title": "End-to-end teams",
-        "desc": "Design, code, infrastructure and ops under the same team. Zero handoffs, zero \"not my area\"."
+        "desc": "Design, code, infrastructure and ops under one team."
       },
       "senior": {
         "title": "Senior by design",
-        "desc": "Small teams of experienced people. No outsourced junior ladders, no constant rotation."
+        "desc": "Small teams of experienced people, no outsourced juniors."
       },
       "openSource": {
         "title": "Open source DNA",
-        "desc": "We work in open repos whenever possible. Traceability and PR culture are our default."
+        "desc": "We work in open repos; traceability and PR culture as default."
       },
       "multi": {
         "title": "Multi-vertical reps",
-        "desc": "Fintech, media, SaaS and marketplaces. Each Group product is our own real case, not a slide."
+        "desc": "Fintech, media, SaaS and marketplaces — real cases, not slides."
       },
       "nearshore": {
         "title": "Bilingual nearshore",
-        "desc": "Team in Americas time zones, fluent communication in Spanish and English with clients in the US, LatAm and EU."
+        "desc": "Americas time zones, Spanish and English with global clients."
       },
       "operate": {
         "title": "Built to operate",
-        "desc": "We don't deliver and disappear. We design for day 100 after launch, not just day 1."
+        "desc": "We design for day 100 after launch, not just day 1."
       }
     }
   },
