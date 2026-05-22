@@ -1,78 +1,235 @@
 {
   "meta": {
-    "title": "Lerna · Development agency",
-    "description": "Lerna builds platforms, digital products and technical operations for companies that need to build and operate."
+    "title": "Lerna Group · Software agency",
+    "description": "Lerna Group builds platforms, digital products and technical operations end-to-end for companies that need to build and operate."
   },
   "nav": {
     "home": "Home",
-    "about": "About",
     "services": "Services",
-    "portfolio": "Portfolio",
-    "contact": "Contact Us"
+    "industries": "Industries",
+    "portfolio": "Work",
+    "company": "Company",
+    "about": "About",
+    "contact": "Contact",
+    "startProject": "Start a project"
   },
   "hero": {
-    "title": "When we build,<br/>let us think<br/>that we build the best.",
-    "subtitle": "Build your platform and products to be more attractive by collaborating with Lerna.",
-    "cta": "Contact Us",
-    "ctaSecondary": "View Our Works <span aria-hidden=\"true\">→</span>"
-  },
-  "logos": {
-    "title": "We worked with biggest brands &<br/>powerful digital products"
-  },
-  "services": {
-    "title": "Our Services",
-    "subtitle": "We provide complete solutions for your startup, brand or company. We have more than 10k+ satisfied clients. We are the best software house based in America.",
-    "web": {
-      "title": "Web Development",
-      "desc": "We design engaging digital products used by millions of people with iOS, Android and an expert vision."
-    },
-    "mobile": {
-      "title": "Mobile Apps",
-      "desc": "We team up with marketing departments of companies & startups to deliver user-centered websites.",
-      "link": "Details <span aria-hidden=\"true\">→</span>"
-    },
-    "cloud": {
-      "title": "Cloud Computing",
-      "desc": "High quality and cutting edge design for software products, infrastructure and ongoing operations."
+    "eyebrow": "Software agency · Lerna Group",
+    "title": "We build software<br/><span class=\"accent\">that operates</span>,<br/>not just software that ships.",
+    "subtitle": "Lerna Group partners with companies that need to design, build and operate critical digital products. Small senior teams, end-to-end ownership.",
+    "cta": "Start a project",
+    "ctaSecondary": "See capabilities <span aria-hidden=\"true\">→</span>",
+    "stats": {
+      "years": "years building",
+      "engineers": "engineers",
+      "products": "products in production",
+      "verticals": "verticals"
     }
   },
-  "about": {
-    "title": "About Us",
-    "desc": "Our team is proficient in a variety of services that can help improve productivity for your company or institution. With our ability to produce websites, mobile apps and iOS apps, we will help solve problems with good and useful products. Let's talk about how our services can add value to your company.",
-    "stats": {
-      "clients": "Clients Satisfied",
-      "projects": "Projects Completed",
-      "team": "Team Members"
+  "logos": {
+    "title": "Trusted by teams that ship"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "End-to-end capabilities",
+    "subtitle": "We design, build and operate digital platforms. We work as a single team: discovery, architecture, code, deployment and ongoing operations.",
+    "web": {
+      "title": "Web platforms",
+      "desc": "SaaS apps, internal dashboards and high-traffic sites built with modern stacks."
     },
-    "cta": "View More"
+    "mobile": {
+      "title": "Mobile apps",
+      "desc": "Native and hybrid apps connected to our own or third-party back-ends, performance-first."
+    },
+    "cloud": {
+      "title": "Cloud & DevOps",
+      "desc": "Infrastructure, continuous deployment, observability and ops on AWS, GCP or serverless."
+    },
+    "data": {
+      "title": "Data & Analytics",
+      "desc": "Pipelines, modeling, business dashboards and feedback loops embedded in product."
+    },
+    "design": {
+      "title": "Product design",
+      "desc": "Discovery, design systems, prototypes and user validation before we build."
+    },
+    "staff": {
+      "title": "Staff augmentation",
+      "desc": "Senior engineers that join your team: design, frontend, backend, mobile, data or DevOps."
+    }
+  },
+  "industries": {
+    "eyebrow": "Industries",
+    "title": "Verticals where we have real reps",
+    "subtitle": "Each Group product taught us something. This is the experience we put to work for your vertical.",
+    "fintech": {
+      "title": "Fintech & lending",
+      "desc": "Personal finance platforms, microlending and banking onboarding. Learned at BudgetApp and MicroImpulso."
+    },
+    "media": {
+      "title": "Media & streaming",
+      "desc": "Catalogs, embedded players and progressive sync without a traditional backend. Learned at Devil TV."
+    },
+    "saas": {
+      "title": "SaaS & no-code",
+      "desc": "Multi-tenant visual builders, templating systems and automated publishing. Learned at Lerna Studio."
+    },
+    "marketplace": {
+      "title": "Marketplaces & ERP",
+      "desc": "Stores with their own back-office, inventory management and ongoing ops. Learned at workshop-suite."
+    }
+  },
+  "why": {
+    "eyebrow": "Why Lerna Group",
+    "title": "What makes us different",
+    "items": {
+      "endToEnd": {
+        "title": "End-to-end teams",
+        "desc": "Design, code, infrastructure and ops under the same team. Zero handoffs, zero \"not my area\"."
+      },
+      "senior": {
+        "title": "Senior by design",
+        "desc": "Small teams of experienced people. No outsourced junior ladders, no constant rotation."
+      },
+      "openSource": {
+        "title": "Open source DNA",
+        "desc": "We work in open repos whenever possible. Traceability and PR culture are our default."
+      },
+      "multi": {
+        "title": "Multi-vertical reps",
+        "desc": "Fintech, media, SaaS and marketplaces. Each Group product is our own real case, not a slide."
+      },
+      "nearshore": {
+        "title": "Bilingual nearshore",
+        "desc": "Team in Americas time zones, fluent communication in Spanish and English with clients in the US, LatAm and EU."
+      },
+      "operate": {
+        "title": "Built to operate",
+        "desc": "We don't deliver and disappear. We design for day 100 after launch, not just day 1."
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "One process, five steps",
+    "subtitle": "Light at the start to reduce risk, dense in delivery to ensure quality, persistent after launch so it operates.",
+    "steps": {
+      "s1": { "title": "Discovery", "desc": "We understand the business, the users and the constraints. We exit with a shared brief." },
+      "s2": { "title": "Architecture", "desc": "We define stack, modules, integrations and deployment plan. No surprises on sprint 3." },
+      "s3": { "title": "Build", "desc": "Short sprints, weekly demos, trunk-based branches. What you see is already deployed." },
+      "s4": { "title": "Launch", "desc": "Controlled rollout, observability active from day one, runbooks ready for the client team." },
+      "s5": { "title": "Operate", "desc": "Support, evolution and continuous improvements with clear SLAs. This is where most fail." }
+    }
   },
   "works": {
-    "title": "Our Works",
-    "subtitle": "We provide complete solutions for your startup, brand or company. We have more than 10k+ satisfied clients. We are the best software house based in America.",
-    "feature": {
-      "title": "Uno Banking — Website",
-      "desc": "Responsive banking platform with frictionless onboarding, account dashboard, transfers and secure communication between client and operator.",
-      "link": "View More <span aria-hidden=\"true\">→</span>"
+    "eyebrow": "Featured cases",
+    "title": "Real products from the Group",
+    "subtitle": "These are products we designed, built and operate. The experience we offer comes straight from here.",
+    "cases": {
+      "budget": {
+        "tag": "Personal fintech",
+        "title": "BudgetApp",
+        "desc": "Personal finance platform: Next.js frontend, serverless backend on AWS Lambda and React mobile app.",
+        "m1n": "3", "m1l": "apps in production",
+        "m2n": "100%", "m2l": "automated deployment"
+      },
+      "studio": {
+        "tag": "SaaS no-code",
+        "title": "Lerna Studio",
+        "desc": "Wix-style multi-tenant visual builder. React SPA + persistence via Git + Pages, no traditional backend.",
+        "m1n": "7", "m1l": "integrated templates",
+        "m2n": "0", "m2l": "server infrastructure"
+      },
+      "devil": {
+        "tag": "Media & streaming",
+        "title": "Devil TV",
+        "desc": "Streaming catalog with no backend: progressive sync via GitHub Issues + Actions, legal VidAPI embed.",
+        "m1n": "1k+", "m1l": "titles catalogued",
+        "m2n": "$0", "m2l": "hosting cost"
+      }
+    }
+  },
+  "org": {
+    "eyebrow": "Org chart",
+    "title": "How Lerna Group is organized",
+    "subtitle": "Three business units under a single governance. Software house, agency and a jewelry vertical (currently paused).",
+    "nodes": {
+      "group": "Lerna Group",
+      "groupSub": "Governance · Holding",
+      "soft": "Lerna Soft",
+      "softSub": "Software house",
+      "admin": "Lerna Admin",
+      "adminSub": "Digital agency",
+      "jewelry": "Lerna Jewelry",
+      "jewelrySub": "Vertical paused"
+    },
+    "products": {
+      "budget": "BudgetApp",
+      "devil": "Devil TV",
+      "studio": "Lerna Studio",
+      "micro": "MicroImpulso",
+      "workshop": "Workshop Suite",
+      "jeweryErp": "jewelry-erp (archived)",
+      "jeweryShop": "jewelry-online-store (archived)"
+    },
+    "services": {
+      "consulting": "Consulting & discovery",
+      "delivery": "End-to-end delivery",
+      "ops": "Ongoing operations"
+    }
+  },
+  "team": {
+    "eyebrow": "Leadership",
+    "title": "The people behind the Group",
+    "subtitle": "Distributed team with a nearshore operational base. Replace these profiles with real names when you're ready.",
+    "members": {
+      "m1": { "name": "Name Surname", "role": "CEO · Group" },
+      "m2": { "name": "Name Surname", "role": "CTO · Lerna Soft" },
+      "m3": { "name": "Name Surname", "role": "Head of Delivery · Lerna Admin" },
+      "m4": { "name": "Name Surname", "role": "Head of Operations" }
+    }
+  },
+  "testimonials": {
+    "eyebrow": "What they say",
+    "title": "Voices from those who worked with us",
+    "items": {
+      "t1": {
+        "quote": "\"We went from a fragile MVP to a platform that operates 24/7 without us having to think about it. The team gets into the problem, not just the code.\"",
+        "author": "Name Surname",
+        "role": "Founder · Brand A"
+      },
+      "t2": {
+        "quote": "\"They onboarded in a week, understood the domain in two sprints and within two months we were shipping new features with confidence. Highly recommended.\"",
+        "author": "Name Surname",
+        "role": "CTO · Brand B"
+      }
     }
   },
   "contact": {
+    "eyebrow": "Contact",
     "title": "Ready for your<br/><span class=\"accent\">next project?</span>",
     "subtitle": "Tell us what you need. We respond in under 24 hours with an initial proposal and next steps.",
+    "points": {
+      "p1": "Small teams, senior profile",
+      "p2": "Free initial proposal",
+      "p3": "Communication in Spanish and English"
+    },
     "form": {
-      "email": "Work Email",
+      "email": "Work email",
       "emailPh": "e.g. johndoe@email.com",
       "service": "What service are you looking for?",
       "servicePh": "Select a service",
-      "message": "Where can we start from?",
+      "message": "Tell us about the project",
       "messagePh": "Type here...",
-      "submit": "Send Message",
+      "submit": "Send message",
       "note": "Thanks. We'll be in touch soon."
     }
   },
   "footer": {
-    "tagline": "Digital products for companies that need to build and operate.",
-    "col1": { "title": "Company" },
-    "col2": { "title": "Contact" },
+    "tagline": "Digital products for companies that need to build and operate. Part of Lerna Group.",
+    "col1": { "title": "Services" },
+    "col2": { "title": "Company" },
+    "col3": { "title": "Group" },
     "rights": "All rights reserved."
   }
 }
