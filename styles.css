@@ -576,22 +576,46 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
 .services .section-head .h-display { font-size: clamp(26px, 3vw, 40px); margin-bottom: 8px; }
 .services .section-head .section-lead { font-size: 14px; }
 .services-list {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 .services-list li {
-  display: grid;
-  grid-template-columns: 56px 44px minmax(0, 1.1fr) minmax(0, 2fr) 36px;
-  gap: 18px;
-  align-items: center;
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 22px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  position: relative;
   cursor: default;
-  transition: padding-left .3s ease, background .3s ease, color .2s;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
 }
-.services-list .svc-title { font-size: 16px; }
-.services-list .svc-desc { font-size: 13px; line-height: 1.4; }
+.services-list li:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -20px rgba(37, 99, 235, 0.25);
+}
+.services-list .svc-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.services-list .svc-title { font-size: 16px; font-weight: 700; line-height: 1.25; color: var(--text); margin: 0; }
+.services-list .svc-desc {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .3s ease, opacity .2s ease, margin-top .2s ease;
+}
+.services-list li:hover .svc-desc { max-height: 140px; opacity: 1; }
+.services-list .svc-arrow { display: none; }
 .services-list li:hover {
   padding-left: 32px;
   background: linear-gradient(90deg, var(--accent-soft), transparent 60%);
@@ -603,8 +627,8 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
   letter-spacing: 0.1em;
 }
 .svc-icon {
-  width: 52px; height: 52px;
-  border-radius: 12px;
+  width: 44px; height: 44px;
+  border-radius: 10px;
   background: var(--bg-2);
   color: var(--text);
   display: grid; place-items: center;
