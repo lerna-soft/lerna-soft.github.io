@@ -1418,7 +1418,7 @@ html { scroll-padding-top: 80px; }
    This breakpoint catches both. */
 @media (max-height: 900px) {
   .hero       { padding-block: 40px 112px; }  /* less top, big bottom to clear the scroll arrow */
-  .page-hero  { padding-block: 56px 56px; }
+  .page-hero  { padding-block: 40px 112px; }
   .display    { font-size: clamp(24px, 3.4vw, 46px); line-height: 1.06; }
   .page-hero-title { font-size: clamp(26px, 4vw, 52px); }
   .hero .hero-copy .eyebrow    { margin-bottom: 14px; }
@@ -1426,7 +1426,8 @@ html { scroll-padding-top: 80px; }
   .hero .hero-copy .lead       { margin-bottom: 20px; }
   .hero .hero-copy .hero-cta   { margin-bottom: 24px; }
   .hero-stats { padding-top: 12px; }
-  .page-hero-scroll { margin-top: 28px; }
+  .page-hero-eyebrow  { margin-bottom: 14px; }
+  .page-hero-lead     { margin-bottom: 22px; }
 }
 
 /* ----- ≤680px tall (very short — landscape phones, ultra-thin) */
@@ -1491,7 +1492,8 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 .page-hero {
   position: relative;
   min-height: calc(100dvh - 80px);   /* 80 = topbar height */
-  padding-block: 96px 80px;
+  padding-block: clamp(48px, 4vw, 72px) clamp(104px, 8vw, 132px);
+  /* mirrors .hero: tight top, generous bottom to leave room for the absolute scroll arrow */
   overflow: hidden;
   isolation: isolate;
   text-align: center;
@@ -1537,15 +1539,19 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 }
 .page-hero-actions { display: inline-flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 .page-hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin-top: 44px;
   color: var(--muted-d);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.18em;
+  text-decoration: none;
 }
 .page-hero-scroll .arrow-circle {
   width: 44px; height: 36px;
