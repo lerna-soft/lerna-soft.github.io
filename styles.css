@@ -251,17 +251,24 @@ html { scroll-padding-top: 80px; }
 .brand {
   font-family: 'Anton', 'Inter', system-ui, sans-serif;
   font-weight: 400;            /* Anton has a single weight */
-  font-size: 26px;
   letter-spacing: 0.01em;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
+  gap: 4px;
   color: var(--text);
   line-height: 1;
 }
+.brand-icon {
+  display: block;
+  height: 28px;
+  width: auto;
+  color: currentColor;
+}
 .brand-mark {
   display: inline-block;
+  font-size: 18px;
   transform: skewX(-8deg);     /* italic via skew (Anton has no italic) */
-  transform-origin: center;
   color: currentColor;
 }
 .is-dark .brand { color: var(--text-d); }
@@ -1237,7 +1244,9 @@ html { scroll-padding-top: 80px; }
   border-top: 1px solid var(--line-d);
   border-bottom: 1px solid var(--line-d);
 }
-.footer-brand .brand { margin-bottom: 18px; font-size: 36px; }
+.footer-brand .brand { margin-bottom: 18px; align-items: flex-start; gap: 8px; }
+.footer-brand .brand-icon { height: 56px; }
+.footer-brand .brand-mark { font-size: 36px; }
 .footer-brand .muted { max-width: 38ch; font-size: 14px; line-height: 1.55; color: var(--muted-d); }
 .footer-col h4 {
   margin: 0 0 18px;
