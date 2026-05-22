@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Lerna · Development agency",
+    "description": "Lerna builds platforms, digital products and technical operations for companies that need to build and operate."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "When we build,<br/>let us think<br/>that we build the best.",
+    "subtitle": "Build your platform and products to be more attractive by collaborating with Lerna.",
+    "cta": "Contact Us",
+    "ctaSecondary": "View Our Works <span aria-hidden=\"true\">→</span>"
+  },
+  "logos": {
+    "title": "We worked with biggest brands &<br/>powerful digital products"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We provide complete solutions for your startup, brand or company. We have more than 10k+ satisfied clients. We are the best software house based in America.",
+    "web": {
+      "title": "Web Development",
+      "desc": "We design engaging digital products used by millions of people with iOS, Android and an expert vision."
+    },
+    "mobile": {
+      "title": "Mobile Apps",
+      "desc": "We team up with marketing departments of companies & startups to deliver user-centered websites.",
+      "link": "Details <span aria-hidden=\"true\">→</span>"
+    },
+    "cloud": {
+      "title": "Cloud Computing",
+      "desc": "High quality and cutting edge design for software products, infrastructure and ongoing operations."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "desc": "Our team is proficient in a variety of services that can help improve productivity for your company or institution. With our ability to produce websites, mobile apps and iOS apps, we will help solve problems with good and useful products. Let's talk about how our services can add value to your company.",
+    "stats": {
+      "clients": "Clients Satisfied",
+      "projects": "Projects Completed",
+      "team": "Team Members"
+    },
+    "cta": "View More"
+  },
+  "works": {
+    "title": "Our Works",
+    "subtitle": "We provide complete solutions for your startup, brand or company. We have more than 10k+ satisfied clients. We are the best software house based in America.",
+    "feature": {
+      "title": "Uno Banking — Website",
+      "desc": "Responsive banking platform with frictionless onboarding, account dashboard, transfers and secure communication between client and operator.",
+      "link": "View More <span aria-hidden=\"true\">→</span>"
+    }
+  },
+  "contact": {
+    "title": "Ready for your<br/><span class=\"accent\">next project?</span>",
+    "subtitle": "Tell us what you need. We respond in under 24 hours with an initial proposal and next steps.",
+    "form": {
+      "email": "Work Email",
+      "emailPh": "e.g. johndoe@email.com",
+      "service": "What service are you looking for?",
+      "servicePh": "Select a service",
+      "message": "Where can we start from?",
+      "messagePh": "Type here...",
+      "submit": "Send Message",
+      "note": "Thanks. We'll be in touch soon."
+    }
+  },
+  "footer": {
+    "tagline": "Digital products for companies that need to build and operate.",
+    "col1": { "title": "Company" },
+    "col2": { "title": "Contact" },
+    "rights": "All rights reserved."
+  }
+}

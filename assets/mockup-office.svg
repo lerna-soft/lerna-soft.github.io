@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360">
+  <defs>
+    <linearGradient id="ofbg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2b3144"/>
+      <stop offset="1" stop-color="#161a2a"/>
+    </linearGradient>
+    <linearGradient id="ofscr" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#3a4259"/>
+      <stop offset="1" stop-color="#252b3e"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="360" rx="12" fill="url(#ofbg)"/>
+  <!-- ceiling lights -->
+  <rect x="60" y="20" width="100" height="6" rx="2" fill="#fff" opacity="0.55"/>
+  <rect x="230" y="20" width="100" height="6" rx="2" fill="#fff" opacity="0.55"/>
+  <rect x="400" y="20" width="100" height="6" rx="2" fill="#fff" opacity="0.55"/>
+  <!-- back wall windows -->
+  <rect x="40" y="60" width="480" height="80" rx="4" fill="#1a1f33" opacity="0.5"/>
+  <line x1="160" y1="60" x2="160" y2="140" stroke="#3a4259" stroke-width="2"/>
+  <line x1="280" y1="60" x2="280" y2="140" stroke="#3a4259" stroke-width="2"/>
+  <line x1="400" y1="60" x2="400" y2="140" stroke="#3a4259" stroke-width="2"/>
+  <!-- desk row 1 -->
+  <rect x="40" y="180" width="220" height="80" rx="6" fill="#262b3e"/>
+  <rect x="60" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
+  <rect x="70" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="70" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
+  <rect x="70" y="219" width="36" height="3" fill="#fff" opacity="0.4"/>
+  <rect x="140" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
+  <rect x="150" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="150" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
+  <!-- people silhouettes row 1 -->
+  <circle cx="90" cy="178" r="10" fill="#1a1d2e"/>
+  <circle cx="170" cy="178" r="10" fill="#1a1d2e"/>
+  <!-- desk row 2 -->
+  <rect x="300" y="180" width="220" height="80" rx="6" fill="#262b3e"/>
+  <rect x="320" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
+  <rect x="330" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="330" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
+  <rect x="400" y="195" width="60" height="40" rx="3" fill="url(#ofscr)"/>
+  <rect x="410" y="205" width="40" height="3" fill="#C2F73C" opacity="0.7"/>
+  <rect x="410" y="212" width="30" height="3" fill="#fff" opacity="0.4"/>
+  <circle cx="350" cy="178" r="10" fill="#1a1d2e"/>
+  <circle cx="430" cy="178" r="10" fill="#1a1d2e"/>
+  <!-- floor -->
+  <rect x="0" y="300" width="560" height="60" fill="#0c0e2c"/>
+</svg>

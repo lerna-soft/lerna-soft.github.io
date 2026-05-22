@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Lerna · Agencia de desarrollo",
+    "description": "Lerna construye plataformas, productos digitales y operación técnica para empresas que necesitan construir y operar."
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "contact": "Contáctanos"
+  },
+  "hero": {
+    "title": "Cuando construimos,<br/>pensamos<br/>y construimos lo mejor.",
+    "subtitle": "Construye tu plataforma y tus productos para que sean más atractivos colaborando con Lerna.",
+    "cta": "Contáctanos",
+    "ctaSecondary": "Ver nuestro trabajo <span aria-hidden=\"true\">→</span>"
+  },
+  "logos": {
+    "title": "Hemos trabajado con grandes marcas y<br/>productos digitales potentes"
+  },
+  "services": {
+    "title": "Nuestros servicios",
+    "subtitle": "Damos una solución completa para tu startup, marca o empresa. Tenemos más de 10k+ clientes satisfechos. Somos el mejor estudio de software basado en América.",
+    "web": {
+      "title": "Desarrollo Web",
+      "desc": "Diseñamos productos digitales atractivos usados por millones de personas con iOS, Android y una visión experta."
+    },
+    "mobile": {
+      "title": "Apps Móviles",
+      "desc": "Nos integramos con los equipos de marketing de empresas y startups para entregar sitios web centrados en el usuario.",
+      "link": "Detalles <span aria-hidden=\"true\">→</span>"
+    },
+    "cloud": {
+      "title": "Cloud Computing",
+      "desc": "Diseño de alta calidad y vanguardia para productos de software, infraestructura y operación continua."
+    }
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "desc": "Nuestro equipo es proficiente en una variedad de servicios que pueden ayudar a mejorar la productividad de tu empresa o institución. Con nuestra capacidad para producir sitios web, apps móviles e iOS, te ayudaremos a resolver problemas con productos buenos y útiles. Hablemos sobre cómo nuestros servicios pueden aportar valor a tu empresa.",
+    "stats": {
+      "clients": "Clientes satisfechos",
+      "projects": "Proyectos completados",
+      "team": "Miembros del equipo"
+    },
+    "cta": "Ver más"
+  },
+  "works": {
+    "title": "Nuestro trabajo",
+    "subtitle": "Damos una solución completa para tu startup, marca o empresa. Tenemos más de 10k+ clientes satisfechos. Somos el mejor estudio de software basado en América.",
+    "feature": {
+      "title": "Uno Banking — Sitio web",
+      "desc": "Plataforma bancaria responsive con onboarding sin fricción, panel de cuentas, transferencias y comunicación segura entre cliente y operadora.",
+      "link": "Ver más <span aria-hidden=\"true\">→</span>"
+    }
+  },
+  "contact": {
+    "title": "¿Listo para tu<br/><span class=\"accent\">próximo proyecto?</span>",
+    "subtitle": "Cuéntanos qué necesitas. Te respondemos en menos de 24 horas con una propuesta inicial y próximos pasos.",
+    "form": {
+      "email": "Email de trabajo",
+      "emailPh": "ej: johndoe@email.com",
+      "service": "¿Qué servicio buscas?",
+      "servicePh": "Selecciona un servicio",
+      "message": "¿Desde dónde podemos empezar?",
+      "messagePh": "Escribe aquí...",
+      "submit": "Enviar mensaje",
+      "note": "Gracias. Te contactamos pronto."
+    }
+  },
+  "footer": {
+    "tagline": "Productos digitales para empresas que necesitan construir y operar.",
+    "col1": { "title": "Empresa" },
+    "col2": { "title": "Contacto" },
+    "rights": "Todos los derechos reservados."
+  }
+}
