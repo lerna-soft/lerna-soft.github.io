@@ -137,6 +137,26 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  /* ------------------ reveal on scroll ------------------ */
+  function wireReveal() {
+    const els = document.querySelectorAll(".reveal");
+    if (!els.length) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+      els.forEach(function (el) { el.classList.add("is-in-view"); });
+      return;
+    }
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in-view");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
   /* ------------------ boot ------------------ */
   document.addEventListener("DOMContentLoaded", function () {
     wireYear();
@@ -144,6 +164,7 @@
     wireSmoothScroll();
     wireForm();
     wireLangButtons();
+    wireReveal();
     setLang(resolveLang(), false);
   });
 })();
