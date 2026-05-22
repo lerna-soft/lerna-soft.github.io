@@ -3,148 +3,242 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark light" />
-    <title>Lerna Admin · Agency Portfolio</title>
-    <meta name="description" content="Portafolio de agencia de Lerna Admin y Lerna Group: productos digitales, plataformas operativas e implementación técnica." />
+    <meta name="color-scheme" content="dark" />
+    <title data-i18n="meta.title">Lerna · Agencia de desarrollo</title>
+    <meta name="description" data-i18n-attr="content:meta.description" content="Lerna construye plataformas, productos digitales y operación técnica para empresas que necesitan construir y operar." />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg" aria-hidden="true"></div>
-    <aside class="sidebar">
-      <div class="sidebar-inner">
-        <div class="s-avatar"><img src="assets/avatar-01.svg" alt="" /></div>
-        <div class="s-name">Lerna Admin</div>
-        <div class="s-role">Digital agency · Lerna Group</div>
-        <nav class="s-nav" aria-label="Sidebar navigation">
-          <a class="is-active" href="#top">Inicio</a>
-          <a href="#projects">Proyectos</a>
-          <a href="#about">Perfil</a>
-          <a href="#services">Servicios</a>
+    <!-- ============ TOPBAR ============ -->
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#top" aria-label="Lerna">
+          <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#top" data-i18n="nav.home">Inicio</a>
+          <a href="#about" data-i18n="nav.about">Nosotros</a>
+          <a href="#services" data-i18n="nav.services">Servicios</a>
+          <a href="#works" data-i18n="nav.portfolio">Portafolio</a>
         </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="#contact" data-i18n="nav.contact">Contáctanos</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </aside>
+    </header>
 
-    <main id="top" class="page">
+    <main id="top">
+      <!-- ============ HERO ============ -->
       <section class="hero">
-        <div class="hero-grid">
-          <div class="hero-left">
-            <div class="hero-top">
-              <div class="idblock">
-                <img class="avatar" src="assets/avatar-01.svg" alt="" />
-                <div class="idcopy">
-                  <div class="idname">Lerna Admin</div>
-                  <div class="idrole">Product engineering agency</div>
-                </div>
-              </div>
-              <div class="hero-media" aria-label="Hero media">
-                <img class="hmedia hmedia-a" src="assets/hero-01.svg" alt="" />
-                <img class="hmedia hmedia-b" src="assets/hero-02.svg" alt="" />
-                <img class="hmedia hmedia-c" src="assets/hero-03.svg" alt="" />
-              </div>
-            </div>
-
-            <div class="availability" aria-label="Availability">
-              <span class="avail-dot" aria-hidden="true"></span>
-              <span>Disponible para productos, plataformas y operaciones ( Remote / LATAM )</span>
-            </div>
-
-            <h1 class="hero-title">
-              <span>DIGITAL PRODUCTS</span>
-              <span>FOR COMPANIES</span>
-              <span>THAT NEED TO</span>
-              <span>BUILD AND OPERATE</span>
+        <div class="waves waves-bl" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1 class="display" data-i18n-html="hero.title">
+              Cuando construimos,<br/>pensamos<br/>y construimos lo mejor.
             </h1>
-
-            <p class="hero-body">
-              Lerna Admin desarrolla productos web, plataformas operativas y sistemas conectados con negocio real. Trabajamos desde la idea hasta la operación técnica, combinando frontend, backend, UX, infraestructura y flujos de entrega.
+            <p class="lead" data-i18n="hero.subtitle">
+              Construye tu plataforma y tus productos para que sean más atractivos colaborando con Lerna.
             </p>
-
-            <div class="cta-rows" aria-label="Hero CTAs">
-              <div class="cta-row">
-                <button class="btn btn-outline" id="copyEmailA" type="button">Copiar contacto</button>
-                <a class="btn btn-fill" id="bookCallA" href="#" rel="noreferrer">Ver proyectos</a>
-              </div>
-              <div class="cta-row">
-                <button class="btn btn-outline" id="copyEmailB" type="button">Copiar contacto</button>
-                <a class="btn btn-outline" href="#services">Ver servicios</a>
-              </div>
+            <div class="hero-cta">
+              <a href="#contact" class="btn btn-primary" data-i18n="hero.cta">Contáctanos</a>
+              <a href="#works" class="btn btn-ghost" data-i18n-html="hero.ctaSecondary">Ver nuestro trabajo <span aria-hidden="true">→</span></a>
             </div>
           </div>
-          <div class="hero-right">
-            <img class="astronaut" src="assets/hero-astronaut.svg" alt="" />
-            <div class="hero-schematic"></div>
+          <div class="hero-collage" aria-hidden="true">
+            <img class="m1" src="assets/mockup-laptop.svg" alt="" />
+            <img class="m2" src="assets/mockup-desktop.svg" alt="" />
+            <img class="m3" src="assets/mockup-meeting.svg" alt="" />
           </div>
         </div>
       </section>
 
-      <section id="projects" class="projects">
-        <div class="content-col">
-          <h2 class="section-title">
-            <span>FEATURED PRODUCTS,</span>
-            <span>REAL OPERATING SYSTEMS.</span>
-          </h2>
-          <div id="projectGrid" class="project-stack" aria-label="Featured projects"></div>
+      <!-- ============ LOGOS STRIP ============ -->
+      <section class="logos">
+        <div class="container logos-inner">
+          <p class="logos-title" data-i18n-html="logos.title">
+            Hemos trabajado con grandes marcas y<br/>productos digitales potentes
+          </p>
+          <ul class="logos-row" aria-label="Clients">
+            <li><img src="assets/brand-aurora.svg" alt="Aurora" /></li>
+            <li><img src="assets/brand-helix.svg" alt="Helix" /></li>
+            <li><img src="assets/brand-nimbus.svg" alt="Nimbus" /></li>
+            <li><img src="assets/brand-orbit.svg" alt="Orbit" /></li>
+            <li><img src="assets/brand-vector.svg" alt="Vector" /></li>
+          </ul>
         </div>
       </section>
 
-      <section class="transition">
-        <div class="content-col">
-          <img class="transition-media" src="assets/transition-01.svg" alt="" />
+      <!-- ============ SERVICES ============ -->
+      <section class="services" id="services">
+        <div class="container services-grid">
+          <div class="services-intro">
+            <h2 class="h-display" data-i18n="services.title">Nuestros servicios</h2>
+            <p class="muted" data-i18n="services.subtitle">
+              Damos una solución completa para tu startup, marca o empresa. Tenemos más de 10k+ clientes satisfechos. Somos el mejor estudio de software basado en América.
+            </p>
+          </div>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+            </div>
+            <h3 data-i18n="services.web.title">Desarrollo Web</h3>
+            <p data-i18n="services.web.desc">Diseñamos productos digitales atractivos usados por millones de personas con iOS, Android y una visión experta.</p>
+          </article>
+          <article class="card card-featured">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            </div>
+            <h3 data-i18n="services.mobile.title">Apps Móviles</h3>
+            <p data-i18n="services.mobile.desc">Nos integramos con los equipos de marketing de empresas y startups para entregar sitios web centrados en el usuario.</p>
+            <a class="card-link" href="#contact" data-i18n-html="services.mobile.link">Detalles <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 19 18H7z"/><path d="M12 12v6m0 0l-3-3m3 3l3-3"/></svg>
+            </div>
+            <h3 data-i18n="services.cloud.title">Cloud Computing</h3>
+            <p data-i18n="services.cloud.desc">Diseño de alta calidad y vanguardia para productos de software, infraestructura y operación continua.</p>
+          </article>
         </div>
       </section>
 
-      <section class="testimonials">
-        <div class="content-col">
-          <h2 class="section-title">
-            <span>HOW WE WORK,</span>
-            <span>WHAT WE DELIVER</span>
-          </h2>
-          <div id="testimonialGrid" class="testimonial-grid" aria-label="Testimonials"></div>
+      <!-- ============ ABOUT ============ -->
+      <section class="about" id="about">
+        <div class="container about-grid">
+          <div class="about-image">
+            <img src="assets/mockup-office.svg" alt="" />
+          </div>
+          <div class="about-copy">
+            <h2 class="h-display" data-i18n="about.title">Sobre nosotros</h2>
+            <p class="muted" data-i18n="about.desc">
+              Nuestro equipo es proficiente en una variedad de servicios que pueden ayudar a mejorar la productividad de tu empresa o institución. Con nuestra capacidad para producir sitios web, apps móviles e iOS, te ayudaremos a resolver problemas con productos buenos y útiles. Hablemos sobre cómo nuestros servicios pueden aportar valor a tu empresa.
+            </p>
+            <ul class="stats">
+              <li>
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg>
+                </div>
+                <div class="stat-num">300+</div>
+                <div class="stat-label" data-i18n="about.stats.clients">Clientes satisfechos</div>
+              </li>
+              <li>
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <div class="stat-num">420+</div>
+                <div class="stat-label" data-i18n="about.stats.projects">Proyectos completados</div>
+              </li>
+              <li>
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/></svg>
+                </div>
+                <div class="stat-num">40+</div>
+                <div class="stat-label" data-i18n="about.stats.team">Miembros del equipo</div>
+              </li>
+            </ul>
+            <a class="btn btn-primary" href="#contact" data-i18n="about.cta">Ver más</a>
+          </div>
         </div>
       </section>
 
-      <section class="finalcta">
-        <div class="content-col">
-          <h2 class="final-title">READY TO SHIP?</h2>
-          <div class="slashline">// product engineering // ux // infrastructure // delivery //</div>
-          <div class="questions" aria-label="Questions">
-            <div>✦ ¿Necesitas construir un producto nuevo con base técnica sólida?</div>
-            <div>✦ ¿Tu operación depende de varias herramientas desconectadas?</div>
-            <div>✦ ¿Quieres una agencia que entienda producto y también implementación?</div>
-            <div>✦ ¿O necesitas ordenar una plataforma que ya existe?</div>
+      <!-- ============ WORKS ============ -->
+      <section class="works" id="works">
+        <div class="container works-grid">
+          <div class="works-image">
+            <img src="assets/mockup-featured.svg" alt="" />
           </div>
-          <div class="final-actions">
-            <button class="btn btn-outline" id="copyEmailC" type="button">Copiar contacto</button>
-            <a class="btn btn-fill" id="bookCallB" href="#" rel="noreferrer">Hablar con Lerna Admin</a>
+          <div class="works-copy">
+            <h2 class="h-display" data-i18n="works.title">Nuestro trabajo</h2>
+            <p class="muted" data-i18n="works.subtitle">
+              Damos una solución completa para tu startup, marca o empresa. Tenemos más de 10k+ clientes satisfechos. Somos el mejor estudio de software basado en América.
+            </p>
+            <article class="work-card">
+              <div class="work-mark" aria-hidden="true">
+                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#C2F73C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h6a8 8 0 1 1 0 16H6z"/><path d="M20 8l6 16"/></svg>
+              </div>
+              <h3 data-i18n="works.feature.title">Uno Banking — Sitio web</h3>
+              <p data-i18n="works.feature.desc">
+                Plataforma bancaria responsive con onboarding sin fricción, panel de cuentas, transferencias y comunicación segura entre cliente y operadora.
+              </p>
+              <a class="card-link" href="#contact" data-i18n-html="works.feature.link">Ver más <span aria-hidden="true">→</span></a>
+            </article>
           </div>
         </div>
       </section>
 
-      <footer class="footer">
-        <div class="content-col footer-inner">
-          <div class="foot-col">
-            <div class="foot-head">Connect</div>
-            <a class="foot-link" href="#" rel="noreferrer">Talk to us on GitHub</a>
+      <!-- ============ CONTACT ============ -->
+      <section class="contact" id="contact">
+        <div class="container contact-grid">
+          <div class="contact-copy">
+            <h2 class="h-display" data-i18n-html="contact.title">¿Listo para tu<br/><span class="accent">próximo proyecto?</span></h2>
+            <p class="muted" data-i18n="contact.subtitle">
+              Cuéntanos qué necesitas. Te respondemos en menos de 24 horas con una propuesta inicial y próximos pasos.
+            </p>
           </div>
-          <div class="foot-col">
-            <div class="foot-label">Contact</div>
-            <div class="foot-value" id="footerEmail">admin@lernagroup.dev</div>
-          </div>
-          <div class="foot-col">
-            <div class="foot-label">Base</div>
-            <div class="foot-value">Remote / LATAM</div>
-          </div>
+          <form class="contact-form" autocomplete="off" novalidate>
+            <label>
+              <span data-i18n="contact.form.email">Email de trabajo</span>
+              <input type="email" name="email" placeholder="ej: johndoe@email.com" data-i18n-attr="placeholder:contact.form.emailPh" required />
+            </label>
+            <label>
+              <span data-i18n="contact.form.service">¿Qué servicio buscas?</span>
+              <select name="service" required>
+                <option value="" disabled selected data-i18n="contact.form.servicePh">Selecciona un servicio</option>
+                <option value="web" data-i18n="services.web.title">Desarrollo Web</option>
+                <option value="mobile" data-i18n="services.mobile.title">Apps Móviles</option>
+                <option value="cloud" data-i18n="services.cloud.title">Cloud Computing</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="contact.form.message">¿Desde dónde podemos empezar?</span>
+              <textarea name="message" rows="4" placeholder="Escribe aquí..." data-i18n-attr="placeholder:contact.form.messagePh"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary" data-i18n="contact.form.submit">Enviar mensaje</button>
+            <p class="form-note" hidden data-i18n="contact.form.note">Gracias. Te contactamos pronto.</p>
+          </form>
         </div>
-        <div class="content-col foot-legal">
-          <div class="copy">©2026 Lerna Admin</div>
-          <div class="legal">
-            Lerna Admin es la unidad de entrega y construcción de productos digitales dentro de Lerna Group. Este portfolio presenta capacidad de producto, sistemas y operación técnica.
-          </div>
-          <a class="framer" href="#" rel="noreferrer">See organization profile</a>
-        </div>
-      </footer>
+      </section>
     </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <span class="brand-mark">Lerna</span><span class="brand-dot">.</span>
+          </a>
+          <p class="muted" data-i18n="footer.tagline">
+            Productos digitales para empresas que necesitan construir y operar.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.col1.title">Empresa</h4>
+          <a href="#about" data-i18n="nav.about">Nosotros</a>
+          <a href="#services" data-i18n="nav.services">Servicios</a>
+          <a href="#works" data-i18n="nav.portfolio">Portafolio</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.col2.title">Contacto</h4>
+          <a href="mailto:hello@lerna-admin.github.io">hello@lerna-admin.github.io</a>
+          <a href="https://github.com/lerna-admin" rel="noopener" target="_blank">github.com/lerna-admin</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> Lerna Group</span>
+        <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+      </div>
+    </footer>
 
     <script src="app.js"></script>
   </body>

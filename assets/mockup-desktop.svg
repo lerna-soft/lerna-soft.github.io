@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 280">
+  <defs>
+    <linearGradient id="dscr" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1b1f4a"/>
+      <stop offset="1" stop-color="#0c0e2c"/>
+    </linearGradient>
+  </defs>
+  <!-- background canvas (desk) -->
+  <rect width="360" height="280" rx="10" fill="#e8e6e1"/>
+  <!-- shadow -->
+  <ellipse cx="180" cy="240" rx="120" ry="10" fill="#000" opacity="0.08"/>
+  <!-- monitor -->
+  <rect x="50" y="50" width="260" height="160" rx="8" fill="#1a1d3f" stroke="#2a2e5c" stroke-width="2"/>
+  <rect x="58" y="58" width="244" height="144" rx="4" fill="url(#dscr)"/>
+  <!-- code lines -->
+  <rect x="70" y="74" width="60" height="6" rx="2" fill="#C2F73C"/>
+  <rect x="135" y="74" width="100" height="6" rx="2" fill="#fff" opacity="0.55"/>
+  <rect x="70" y="88" width="140" height="6" rx="2" fill="#fff" opacity="0.35"/>
+  <rect x="70" y="102" width="180" height="6" rx="2" fill="#fff" opacity="0.5"/>
+  <rect x="86" y="116" width="120" height="6" rx="2" fill="#C2F73C" opacity="0.7"/>
+  <rect x="86" y="130" width="160" height="6" rx="2" fill="#fff" opacity="0.4"/>
+  <rect x="70" y="144" width="80" height="6" rx="2" fill="#fff" opacity="0.55"/>
+  <rect x="70" y="158" width="220" height="6" rx="2" fill="#fff" opacity="0.35"/>
+  <rect x="86" y="172" width="100" height="6" rx="2" fill="#C2F73C" opacity="0.6"/>
+  <!-- stand -->
+  <rect x="170" y="210" width="20" height="20" fill="#22264d"/>
+  <rect x="140" y="228" width="80" height="6" rx="3" fill="#22264d"/>
+  <!-- keyboard -->
+  <rect x="100" y="240" width="160" height="14" rx="3" fill="#cfcdc6"/>
+  <rect x="108" y="244" width="144" height="6" rx="1" fill="#9b9892"/>
+</svg>
