@@ -86,70 +86,70 @@
         </div>
       </section>
 
-      <!-- ============ TRUST STRIP (marquee) ============ -->
-      <section class="logos" id="trust">
-        <div class="container logos-inner">
-          <p class="logos-title" data-i18n="logos.title">Confían en nuestros equipos</p>
-          <div class="logos-marquee" aria-hidden="true">
-            <div class="logos-track">
-              <img src="assets/brand-aurora.svg" alt="" />
-              <img src="assets/brand-helix.svg" alt="" />
-              <img src="assets/brand-nimbus.svg" alt="" />
-              <img src="assets/brand-orbit.svg" alt="" />
-              <img src="assets/brand-vector.svg" alt="" />
-              <img src="assets/brand-pulse.svg" alt="" />
-              <!-- duplicated for seamless loop -->
-              <img src="assets/brand-aurora.svg" alt="" />
-              <img src="assets/brand-helix.svg" alt="" />
-              <img src="assets/brand-nimbus.svg" alt="" />
-              <img src="assets/brand-orbit.svg" alt="" />
-              <img src="assets/brand-vector.svg" alt="" />
-              <img src="assets/brand-pulse.svg" alt="" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ WHY (manifesto numbered list) ============ -->
-      <section class="why">
+      <!-- ============ TRUST + DISTINCT (combined, one viewport) ============ -->
+      <section class="trust-distinct" id="trust">
         <span class="section-num">S<span>.01</span> — Why us</span>
         <div class="container">
-          <div class="section-head reveal">
-            <p class="eyebrow" data-i18n="why.eyebrow">Por qué Lerna Group</p>
-            <h2 class="h-display" data-i18n="why.title">Lo que nos hace distintos</h2>
+          <!-- Logos: title centered + marquee -->
+          <div class="td-trust reveal">
+            <p class="td-trust-title" data-i18n="logos.title">Confían en nosotros</p>
+            <div class="logos-marquee" aria-hidden="true">
+              <div class="logos-track">
+                <img src="assets/brand-aurora.svg" alt="" />
+                <img src="assets/brand-helix.svg" alt="" />
+                <img src="assets/brand-nimbus.svg" alt="" />
+                <img src="assets/brand-orbit.svg" alt="" />
+                <img src="assets/brand-vector.svg" alt="" />
+                <img src="assets/brand-pulse.svg" alt="" />
+                <img src="assets/brand-aurora.svg" alt="" />
+                <img src="assets/brand-helix.svg" alt="" />
+                <img src="assets/brand-nimbus.svg" alt="" />
+                <img src="assets/brand-orbit.svg" alt="" />
+                <img src="assets/brand-vector.svg" alt="" />
+                <img src="assets/brand-pulse.svg" alt="" />
+              </div>
+            </div>
           </div>
-          <ol class="why-list reveal">
-            <li class="why-item">
-              <span class="why-num">01</span>
-              <h3 data-i18n="why.items.endToEnd.title">Equipos end-to-end</h3>
-              <p data-i18n="why.items.endToEnd.desc">Diseño, código, infraestructura y operación bajo un mismo equipo. Cero handoffs, cero "no es mi área".</p>
-            </li>
-            <li class="why-item">
-              <span class="why-num">02</span>
-              <h3 data-i18n="why.items.senior.title">Senior por diseño</h3>
-              <p data-i18n="why.items.senior.desc">Equipos pequeños de gente con cancha. Sin escalafones de junior tercerizados ni rotación constante.</p>
-            </li>
-            <li class="why-item">
-              <span class="why-num">03</span>
-              <h3 data-i18n="why.items.openSource.title">Open source DNA</h3>
-              <p data-i18n="why.items.openSource.desc">Trabajamos en repositorios abiertos cuando se puede. La trazabilidad y la cultura de PRs es nuestro default.</p>
-            </li>
-            <li class="why-item">
-              <span class="why-num">04</span>
-              <h3 data-i18n="why.items.multi.title">Cancha multi-vertical</h3>
-              <p data-i18n="why.items.multi.desc">Fintech, media, SaaS y marketplaces. Cada producto del Group es nuestro propio caso real, no un slide.</p>
-            </li>
-            <li class="why-item">
-              <span class="why-num">05</span>
-              <h3 data-i18n="why.items.nearshore.title">Nearshore bilingüe</h3>
-              <p data-i18n="why.items.nearshore.desc">Equipo en zona horaria americana, comunicación fluida en español e inglés con clientes en EE.UU., LatAm y EU.</p>
-            </li>
-            <li class="why-item">
-              <span class="why-num">06</span>
-              <h3 data-i18n="why.items.operate.title">Construido para operar</h3>
-              <p data-i18n="why.items.operate.desc">No entregamos y desaparecemos. Diseñamos para el día 100 después del lanzamiento, no solo para el día 1.</p>
-            </li>
-          </ol>
+
+          <!-- Distinct: heading + compact 3×2 grid of 6 items -->
+          <div class="td-distinct reveal">
+            <div class="td-distinct-head">
+              <p class="eyebrow" data-i18n="why.eyebrow">Por qué Lerna Group</p>
+              <h2 class="td-distinct-title" data-i18n="why.title">Lo que nos hace distintos</h2>
+            </div>
+            <ol class="td-grid">
+              <li class="td-card">
+                <span class="td-num">01</span>
+                <h3 data-i18n="why.items.endToEnd.title">Equipos end-to-end</h3>
+                <p data-i18n="why.items.endToEnd.desc">Diseño, código, infraestructura y operación bajo un mismo equipo.</p>
+              </li>
+              <li class="td-card">
+                <span class="td-num">02</span>
+                <h3 data-i18n="why.items.senior.title">Senior por diseño</h3>
+                <p data-i18n="why.items.senior.desc">Equipos pequeños de gente con cancha, sin junior tercerizados.</p>
+              </li>
+              <li class="td-card">
+                <span class="td-num">03</span>
+                <h3 data-i18n="why.items.openSource.title">Open source DNA</h3>
+                <p data-i18n="why.items.openSource.desc">Trabajamos en repos abiertos; trazabilidad y cultura de PRs.</p>
+              </li>
+              <li class="td-card">
+                <span class="td-num">04</span>
+                <h3 data-i18n="why.items.multi.title">Cancha multi-vertical</h3>
+                <p data-i18n="why.items.multi.desc">Fintech, media, SaaS y marketplaces. Casos propios, no slides.</p>
+              </li>
+              <li class="td-card">
+                <span class="td-num">05</span>
+                <h3 data-i18n="why.items.nearshore.title">Nearshore bilingüe</h3>
+                <p data-i18n="why.items.nearshore.desc">Zona horaria americana, español e inglés con clientes globales.</p>
+              </li>
+              <li class="td-card">
+                <span class="td-num">06</span>
+                <h3 data-i18n="why.items.operate.title">Construido para operar</h3>
+                <p data-i18n="why.items.operate.desc">Diseñamos para el día 100 después del lanzamiento, no solo para el día 1.</p>
+              </li>
+            </ol>
+          </div>
         </div>
       </section>
 
