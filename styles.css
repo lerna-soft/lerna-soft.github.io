@@ -90,9 +90,9 @@ ul, ol { list-style: none; padding: 0; margin: 0; }
 
 .display {
   font-weight: 800;
-  font-size: clamp(36px, 5.2vw, 84px);   /* v6: reduced so hero fits 100dvh */
-  line-height: 1.02;
-  letter-spacing: -0.028em;
+  font-size: clamp(32px, 4.8vw, 76px);   /* v6: fits comfortably in 100dvh, even on 768px-tall laptops */
+  line-height: 1.04;
+  letter-spacing: -0.026em;
   margin: 0;
 }
 .h-display {
@@ -309,18 +309,21 @@ section { position: relative; }
   border-radius: 2px;
 }
 
-/* ---------- hero (DARK statement) ---------- */
+/* ---------- hero (DARK statement) — single column, centered ---------- */
 .hero {
   position: relative;
-  min-height: 100dvh;                    /* v6: hero always fills viewport */
+  min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  /* tighter padding so content fits within 100dvh on common viewports */
-  padding-block: clamp(72px, 8vw, 110px) clamp(60px, 7vw, 90px);
+  justify-content: center;
+  padding-block: clamp(96px, 10vw, 130px) clamp(72px, 8vw, 100px);
   overflow: hidden;
   isolation: isolate;
+  text-align: left;
 }
 .hero > .container { width: 100%; }
+.hero .hero-copy { max-width: 880px; margin-inline: auto; }
 .hero.is-dark::before {
   content: "";
   position: absolute;
@@ -1257,11 +1260,12 @@ section { position: relative; }
   }
   .topbar.is-open .topbar-cta { display: inline-flex; margin-top: 12px; }
 
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-collage { display: none; }                 /* v6: drop collage on tablet/mobile, frees vertical space */
-  .hero-bg-text { font-size: clamp(120px, 36vw, 240px); bottom: -10px; opacity: 0.05; }
+  /* hero on tablet: collage removed in HTML, single column already */
+  .hero { padding-block: 96px 72px; }
+  .hero .hero-copy { max-width: 100%; }
   .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; margin-top: 24px; }
   .hero-stats li:nth-child(2n+1) { padding-left: 0; border-left: 0; }
+  .hero-stats li:nth-child(2) { border-left: 0; padding-left: 0; }
 
   .logos-inner { grid-template-columns: 1fr; gap: 24px; }
 
@@ -1483,28 +1487,45 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 /* about page wider org-chart */
 body[data-page="about"] .org-chart { margin-top: 0; }
 
+/* ----- Tablet / small laptop (≤900px wide) ----- */
 @media (max-width: 900px) {
   .home-cta .container { grid-template-columns: 1fr; gap: 32px; }
   .page-hero-scroll { display: none; }
-  .page-hero { padding-block: clamp(64px, 9vw, 96px) clamp(48px, 7vw, 80px); }
-  .page-hero-title { font-size: clamp(32px, 7.5vw, 56px); max-width: 100%; }
-  .page-hero-lead { font-size: 16px; margin-bottom: 22px; }
+  .page-hero { padding-block: clamp(80px, 10vw, 100px) clamp(56px, 7vw, 80px); }
+  .page-hero-title { font-size: clamp(30px, 6.5vw, 52px); max-width: 100%; }
+  .page-hero-lead  { font-size: 16px; margin-bottom: 22px; }
 }
 
-/* very short viewports (landscape phones, small laptops) — let the hero
-   grow naturally instead of forcing 100dvh which would clip content. */
-@media (max-height: 700px) {
-  .hero, .page-hero { min-height: auto; padding-block: 96px 64px; }
-  .hero-scroll, .page-hero-scroll { display: none; }
-}
-
+/* ----- Mobile portrait (≤640px wide) ----- */
 @media (max-width: 640px) {
-  .hero, .page-hero { min-height: auto; }
-  .hero { padding-block: 64px 56px; }
-  .page-hero { padding-block: 56px 48px; }
-  .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px 0; }
+  .hero { padding-block: 88px 56px; min-height: 100dvh; }
+  .page-hero { padding-block: 80px 48px; min-height: 100dvh; }
+  .display { font-size: clamp(28px, 8vw, 40px); line-height: 1.1; }
+  .hero-copy .lead { font-size: 15px; margin-bottom: 22px; }
+  .hero-cta { gap: 8px; }
+  .hero-cta .btn { padding: 14px 22px; font-size: 13px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px 0; margin-top: 24px; }
   .hero-scroll, .page-hero-scroll { display: none; }
   .home-cta-aside { padding: 24px; }
+  .section-num { display: none; }
+}
+
+/* ----- Short viewports (landscape phones, ultra-thin laptops) -----
+   Don't force 100dvh; let the hero grow with content. */
+@media (max-height: 720px) {
+  .hero, .page-hero { min-height: auto; }
+  .hero       { padding-block: 96px 64px; }
+  .page-hero  { padding-block: 88px 56px; }
+  .hero-scroll, .page-hero-scroll { display: none; }
+}
+
+/* ----- Very short viewports (~landscape phone) ----- */
+@media (max-height: 520px) {
+  .hero       { padding-block: 80px 48px; }
+  .page-hero  { padding-block: 72px 44px; }
+  .display    { font-size: clamp(26px, 5vw, 44px); }
+  .page-hero-title { font-size: clamp(26px, 5vw, 44px); }
+  .hero-stats { margin-top: 18px; padding-top: 14px; }
 }
 
 /* ---------- reduced motion ---------- */
