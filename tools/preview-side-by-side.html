@@ -1,0 +1,24 @@
+<!doctype html>
+<html><body style="background:#FAF7F0;padding:20px;margin:0;font-family:system-ui">
+<style>
+  .row { display: flex; gap: 60px; align-items: flex-end; margin-bottom: 16px; }
+  .item .label { font: 11px monospace; color: #555; }
+  .item img { display: block; height: 44px; width: auto; outline: 1px solid red; }
+  .item .inline-wrap { outline: 1px solid red; display: inline-block; height: 44px; }
+  .inline-wrap svg { display: block; height: 44px; width: auto; }
+</style>
+<div class="row">
+  <div class="item">
+    <p class="label">standalone via &lt;img&gt; at 44px</p>
+    <img src="../assets/logo-owl.svg"/>
+  </div>
+  <div class="item">
+    <p class="label">inline svg at 44px (copy from index)</p>
+    <span class="inline-wrap"><svg class="brand-icon" aria-hidden="true" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="280 0 310 525" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,763.535323) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"> <path d="M3025 7633 c-190 -12 -365 -45 -524 -99 -84 -29 -271 -114 -271 -123 0 -3 48 -21 105 -40 265 -85 525 -263 718 -491 l47 -55 47 55 c193 228 453 406 718 491 57 19 105 37 105 40 0 9 -187 94 -271 123 -204 69 -489 111 -674 99z"/></g></svg></span>
+  </div>
+</div>
+<p style="font:12px monospace;color:#555;margin-top:30px">
+  Si los dos se ven distintos → el problema es el inline.<br>
+  Si los dos se ven iguales → el problema es CSS del topbar.
+</p>
+</body></html>
