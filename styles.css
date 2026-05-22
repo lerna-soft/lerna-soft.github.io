@@ -309,14 +309,17 @@ section { position: relative; }
   border-radius: 2px;
 }
 
-/* ---------- hero (DARK statement) — single column, centered ---------- */
+/* ---------- hero (DARK statement) — single column, safe-centered ----
+   `safe center` is the key: if content fits in 100dvh → it centers;
+   if content is taller → it falls back to flex-start (no clipping).
+   ------------------------------------------------------------------- */
 .hero {
   position: relative;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
   padding-block: clamp(96px, 10vw, 130px) clamp(72px, 8vw, 100px);
   overflow: hidden;
   isolation: isolate;
@@ -1233,23 +1236,34 @@ section { position: relative; }
   letter-spacing: 0.06em;
 }
 
-/* ---------- responsive ---------- */
+/* ============================================================
+   RESPONSIVE
+   Strategy: desktop-first. Width breakpoints first, then height.
+   - Width: ≤1100 (laptop) · ≤900 (tablet/mobile-landscape) · ≤640 (mobile)
+   - Height: ≤820 (laptop chrome eats vertical) · ≤680 (short) · ≤520 (very short)
+   The hero + page-hero are the most viewport-sensitive blocks: every
+   breakpoint touches their padding / type / min-height accordingly.
+   ============================================================ */
+
+/* ----- ≤1100px (laptop / tablet landscape) ----------------- */
 @media (max-width: 1100px) {
-  .ind-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .process-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .ind-grid       { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-steps  { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
   .process-steps::before { display: none; }
-  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team-grid      { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .services-list li {
     grid-template-columns: 60px 48px minmax(0, 1.2fr) 40px;
     gap: 18px;
   }
-  .svc-desc { grid-column: 3 / 5; padding-top: 6px; font-size: 14px; }
+  .svc-desc  { grid-column: 3 / 5; padding-top: 6px; font-size: 14px; }
   .svc-arrow { grid-column: 4 / 5; grid-row: 1; }
 }
 
+/* ----- ≤900px (tablet portrait / mobile landscape) --------- */
 @media (max-width: 900px) {
+  /* nav becomes a drawer */
   .nav, .topbar-cta { display: none; }
-  .menu-toggle { display: grid; place-items: center; }
+  .menu-toggle      { display: grid; place-items: center; }
   .topbar.is-open .nav {
     display: flex; flex-direction: column;
     position: absolute; top: 80px; left: 0; right: 0;
@@ -1260,60 +1274,125 @@ section { position: relative; }
   }
   .topbar.is-open .topbar-cta { display: inline-flex; margin-top: 12px; }
 
-  /* hero on tablet: collage removed in HTML, single column already */
-  .hero { padding-block: 96px 72px; }
+  /* hero (home) — single column already, just tighten padding */
+  .hero            { padding-block: 88px 64px; }
   .hero .hero-copy { max-width: 100%; }
-  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; margin-top: 24px; }
+  .display         { font-size: clamp(30px, 5.6vw, 56px); line-height: 1.06; }
+  .hero-copy .lead { margin: 14px 0 22px; font-size: 15px; }
+  .hero-cta .btn   { padding: 14px 22px; font-size: 13px; }
+  .hero-stats      { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 0; margin-top: 24px; padding-top: 16px; }
   .hero-stats li:nth-child(2n+1) { padding-left: 0; border-left: 0; }
-  .hero-stats li:nth-child(2) { border-left: 0; padding-left: 0; }
+  .hero-stats li:nth-child(2)    { border-left: 0; padding-left: 0; }
 
-  .logos-inner { grid-template-columns: 1fr; gap: 24px; }
+  /* page-hero (subpages) */
+  .page-hero            { padding-block: 80px 56px; }
+  .page-hero-title      { font-size: clamp(28px, 5.4vw, 48px); max-width: 100%; line-height: 1.08; }
+  .page-hero-lead       { font-size: 15px; margin-bottom: 22px; }
+  .page-hero-scroll     { display: none; }
 
+  /* layout collapses */
+  .logos-inner   { grid-template-columns: 1fr; gap: 24px; }
   .why-item {
     grid-template-columns: 80px 1fr;
     grid-template-rows: auto auto;
     gap: 16px 22px;
   }
-  .why-num { grid-row: 1 / 3; }
-  .why-item p { grid-column: 2 / 3; }
-
-  .case-row { grid-template-columns: 1fr; }
+  .why-num             { grid-row: 1 / 3; }
+  .why-item p          { grid-column: 2 / 3; }
+  .case-row            { grid-template-columns: 1fr; }
   .case-row--reverse .case-img { order: 0; }
-
-  .org-units { grid-template-columns: 1fr; gap: 28px; }
-  .org-units::before { display: none; }
-  .org-unit::before { display: none; }
-  .org-root { margin-bottom: 24px; }
-  .org-root::after { display: none; }
-
-  .testi-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
-
-  .section-num { display: none; }
+  .org-units           { grid-template-columns: 1fr; gap: 28px; }
+  .org-units::before   { display: none; }
+  .org-unit::before    { display: none; }
+  .org-root            { margin-bottom: 24px; }
+  .org-root::after     { display: none; }
+  .testi-grid          { grid-template-columns: 1fr; }
+  .contact-grid        { grid-template-columns: 1fr; }
+  .home-cta .container { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid         { grid-template-columns: 1fr 1fr; }
+  .footer-brand        { grid-column: 1 / -1; }
+  .section-num         { display: none; }
 }
 
+/* ----- ≤640px (mobile portrait) ---------------------------- */
 @media (max-width: 640px) {
-  .ind-grid { grid-template-columns: 1fr; }
-  .process-steps { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .testi-card { padding: 36px; }
-  .contact-form { padding: 28px; }
+  /* hero: aggressively compressed */
+  .hero            { padding-block: 72px 48px; }
+  .display         { font-size: clamp(26px, 7vw, 36px); line-height: 1.12; letter-spacing: -0.02em; }
+  .hero-copy .lead { margin: 12px 0 20px; font-size: 14px; line-height: 1.5; }
+  .hero-cta        { gap: 8px; }
+  .hero-cta .btn   { padding: 12px 18px; font-size: 12px; }
+  .hero-stats      { grid-template-columns: 1fr 1fr; gap: 10px 0; margin-top: 22px; padding-top: 14px; max-width: 100%; }
+  .hs-num          { font-size: 22px; }
+  .hs-label        { font-size: 10px; }
+
+  /* page-hero compressed */
+  .page-hero          { padding-block: 64px 40px; }
+  .page-hero-eyebrow  { font-size: 11px; margin-bottom: 14px; }
+  .page-hero-title    { font-size: clamp(24px, 6.4vw, 32px); line-height: 1.12; margin-bottom: 16px; }
+  .page-hero-lead     { font-size: 14px; margin-bottom: 20px; }
+  .page-hero-actions  { gap: 10px; }
+  .page-hero-actions .btn { padding: 12px 18px; font-size: 12px; }
+
+  /* layout */
+  .ind-grid       { grid-template-columns: 1fr; }
+  .process-steps  { grid-template-columns: 1fr; }
+  .team-grid      { grid-template-columns: 1fr 1fr; }
+  .footer-grid    { grid-template-columns: 1fr; }
+  .footer-bottom  { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .testi-card     { padding: 36px; }
+  .contact-form   { padding: 28px; }
+  .home-cta-aside { padding: 24px; }
   .services-list li {
     grid-template-columns: 50px 1fr 40px;
     grid-template-rows: auto auto;
     gap: 12px 14px;
     padding: 28px 6px;
   }
-  .svc-num { grid-column: 1 / 2; }
-  .svc-icon { display: none; }
+  .svc-num   { grid-column: 1 / 2; }
+  .svc-icon  { display: none; }
   .svc-title { grid-column: 2 / 3; font-size: 19px; }
-  .svc-desc { grid-column: 1 / 4; padding-top: 0; font-size: 14px; }
+  .svc-desc  { grid-column: 1 / 4; padding-top: 0; font-size: 14px; }
   .svc-arrow { grid-column: 3 / 4; grid-row: 1; width: 40px; height: 40px; }
+}
+
+/* ============================================================
+   HEIGHT BREAKPOINTS — when vertical room is the constraint.
+   Most laptops have only ~600-680px visible after browser chrome
+   on a 768-tall screen, so 820 / 680 / 520 cover the realistic cases.
+   ============================================================ */
+
+/* ----- ≤820px tall (laptop with chrome — typical 1366×768) - */
+@media (max-height: 820px) {
+  .hero       { padding-block: 64px 48px; }
+  .page-hero  { padding-block: 56px 40px; }
+  .display    { font-size: clamp(26px, 4vw, 56px); line-height: 1.06; }
+  .page-hero-title { font-size: clamp(26px, 4.2vw, 56px); }
+  .hero-copy .lead { margin: 12px 0 20px; }
+  .page-hero-lead  { margin-bottom: 20px; }
+  .hero-stats { margin-top: 22px; padding-top: 14px; }
+  .hero-scroll, .page-hero-scroll { bottom: 18px; }
+}
+
+/* ----- ≤680px tall (very short — landscape phones, ultra-thin) */
+@media (max-height: 680px) {
+  /* drop 100dvh — let content determine height */
+  .hero, .page-hero       { min-height: auto; }
+  .hero       { padding-block: 56px 40px; }
+  .page-hero  { padding-block: 48px 32px; }
+  .hero-scroll, .page-hero-scroll { display: none; }
+  .display    { font-size: clamp(24px, 3.6vw, 44px); }
+  .page-hero-title { font-size: clamp(24px, 3.8vw, 44px); }
+}
+
+/* ----- ≤520px tall (landscape phone) ----------------------- */
+@media (max-height: 520px) {
+  .hero       { padding-block: 40px 28px; }
+  .page-hero  { padding-block: 36px 24px; }
+  .display    { font-size: clamp(22px, 3.2vw, 36px); }
+  .page-hero-title { font-size: clamp(22px, 3.4vw, 36px); }
+  .hero-stats { display: none; }
+  .hero-copy .lead, .page-hero-lead { margin-bottom: 16px; }
 }
 
 /* =========================================================
@@ -1350,13 +1429,15 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   border-radius: 1px;
 }
 
-/* ---------- page-hero (subpages, DARK statement) ---------- */
+/* ---------- page-hero (subpages, DARK statement) ----------
+   Same safe-center pattern as .hero: never clips on short viewports. */
 .page-hero {
   position: relative;
   min-height: 100dvh;
   display: flex;
-  align-items: center;
-  /* tighter padding so subpage hero fits in 100dvh on typical laptops */
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: safe center;
   padding-block: clamp(72px, 8vw, 110px) clamp(60px, 7vw, 90px);
   overflow: hidden;
   isolation: isolate;
@@ -1486,47 +1567,6 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* about page wider org-chart */
 body[data-page="about"] .org-chart { margin-top: 0; }
-
-/* ----- Tablet / small laptop (≤900px wide) ----- */
-@media (max-width: 900px) {
-  .home-cta .container { grid-template-columns: 1fr; gap: 32px; }
-  .page-hero-scroll { display: none; }
-  .page-hero { padding-block: clamp(80px, 10vw, 100px) clamp(56px, 7vw, 80px); }
-  .page-hero-title { font-size: clamp(30px, 6.5vw, 52px); max-width: 100%; }
-  .page-hero-lead  { font-size: 16px; margin-bottom: 22px; }
-}
-
-/* ----- Mobile portrait (≤640px wide) ----- */
-@media (max-width: 640px) {
-  .hero { padding-block: 88px 56px; min-height: 100dvh; }
-  .page-hero { padding-block: 80px 48px; min-height: 100dvh; }
-  .display { font-size: clamp(28px, 8vw, 40px); line-height: 1.1; }
-  .hero-copy .lead { font-size: 15px; margin-bottom: 22px; }
-  .hero-cta { gap: 8px; }
-  .hero-cta .btn { padding: 14px 22px; font-size: 13px; }
-  .hero-stats { grid-template-columns: 1fr 1fr; gap: 12px 0; margin-top: 24px; }
-  .hero-scroll, .page-hero-scroll { display: none; }
-  .home-cta-aside { padding: 24px; }
-  .section-num { display: none; }
-}
-
-/* ----- Short viewports (landscape phones, ultra-thin laptops) -----
-   Don't force 100dvh; let the hero grow with content. */
-@media (max-height: 720px) {
-  .hero, .page-hero { min-height: auto; }
-  .hero       { padding-block: 96px 64px; }
-  .page-hero  { padding-block: 88px 56px; }
-  .hero-scroll, .page-hero-scroll { display: none; }
-}
-
-/* ----- Very short viewports (~landscape phone) ----- */
-@media (max-height: 520px) {
-  .hero       { padding-block: 80px 48px; }
-  .page-hero  { padding-block: 72px 44px; }
-  .display    { font-size: clamp(26px, 5vw, 44px); }
-  .page-hero-title { font-size: clamp(26px, 5vw, 44px); }
-  .hero-stats { margin-top: 18px; padding-top: 14px; }
-}
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
