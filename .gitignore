@@ -1,0 +1,5 @@
+.venv-pw/
+tools/screenshots/
+.DS_Store
+*.pyc
+__pycache__/
