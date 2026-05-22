@@ -1622,10 +1622,12 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* ---------- section-scroll (reusable inter-section chevron) ---------- */
 .section-scroll-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 56px;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  margin-top: clamp(48px, 6vh, 80px);
-  grid-column: 1 / -1;   /* span all columns when parent is a grid */
 }
 .section-scroll {
   display: inline-flex;
@@ -1664,15 +1666,12 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* ---------- home CTA strip ---------- */
 .home-cta {
-  padding-block: clamp(28px, 3vw, 48px);
+  padding-block: clamp(28px, 3vw, 48px) clamp(96px, 8vw, 128px);
   min-height: calc(100dvh - 80px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
   background: var(--surface-2);
   border-block: 1px solid var(--line);
 }
-.home-cta > .container { width: 100%; }
 .home-cta .container {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -1716,13 +1715,10 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 
 /* tighter section padding on subpages so first section after page-hero breathes */
 .subpage main > section:not(.page-hero) {
-  padding-block: clamp(28px, 3vw, 48px);
+  padding-block: clamp(28px, 3vw, 48px) clamp(96px, 8vw, 128px);  /* extra bottom for the absolute scroll arrow */
   min-height: calc(100dvh - 80px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
 }
-.subpage main > section:not(.page-hero) > .container { width: 100%; }
 
 /* about page wider org-chart */
 body[data-page="about"] .org-chart { margin-top: 0; }
@@ -1736,19 +1732,15 @@ body[data-page="about"] .org-chart { margin-top: 0; }
 .trust-distinct {
   position: relative;
   min-height: calc(100dvh - 80px);
-  padding-block: 0 48px;
+  padding-block: 24px clamp(96px, 8vw, 128px);
   background: var(--bg);
   border-block: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 .trust-distinct > .container {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3vh, 36px);
+  gap: clamp(20px, 2.5vh, 32px);
 }
-.trust-distinct .td-trust { padding-top: 16px; }
 
 /* --- Trust block (logos) --- */
 .td-trust { text-align: center; }
