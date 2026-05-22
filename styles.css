@@ -309,9 +309,10 @@ section { position: relative; }
   border-radius: 2px;
 }
 
-/* ---------- hero (DARK statement) — single column, safe-centered ----
-   `safe center` is the key: if content fits in 100dvh → it centers;
-   if content is taller → it falls back to flex-start (no clipping).
+/* ---------- hero (DARK statement) — single column, fully centered ----
+   - text-align: center so title, lead, CTAs, stats all share the same axis.
+   - safe-center on flex so content never clips on short viewports.
+   - tight padding-block so the hero leaves room for the scroll arrow.
    ------------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -320,13 +321,32 @@ section { position: relative; }
   flex-direction: column;
   align-items: center;
   justify-content: safe center;
-  padding-block: clamp(96px, 10vw, 130px) clamp(72px, 8vw, 100px);
+  padding-block: clamp(80px, 6vw, 96px) clamp(64px, 5vw, 80px);
   overflow: hidden;
   isolation: isolate;
-  text-align: left;
+  text-align: center;
 }
 .hero > .container { width: 100%; }
-.hero .hero-copy { max-width: 880px; margin-inline: auto; }
+.hero .hero-copy {
+  max-width: 880px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero .hero-copy .eyebrow,
+.hero .hero-copy .lead,
+.hero .hero-copy .hero-cta,
+.hero .hero-copy .hero-stats { margin-inline: auto; }
+
+/* hero eyebrow: symmetric decorative dashes on both sides for centered layout */
+.hero .hero-copy .eyebrow::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
 .hero.is-dark::before {
   content: "";
   position: absolute;
@@ -371,31 +391,33 @@ section { position: relative; }
   align-items: center;
 }
 .hero-copy .lead {
-  margin: 18px 0 26px;
+  margin: 18px auto 26px;
   font-size: clamp(15px, 1.05vw, 17px);
   color: var(--muted-d);
-  max-width: 52ch;
+  max-width: 56ch;
   line-height: 1.5;
 }
-.hero-cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.hero-cta { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
-  margin: 32px 0 0;
+  margin: 32px auto 0;             /* explicit auto inline = centered block */
   padding-top: 20px;
   border-top: 1px solid var(--line-d);
   max-width: 540px;
+  width: 100%;
 }
 .hero-stats li {
   display: flex;
   flex-direction: column;
+  align-items: center;             /* center num + label inside each column */
   gap: 6px;
-  padding-right: 14px;
+  padding-inline: 8px;
+  text-align: center;
 }
 .hero-stats li + li {
-  padding-left: 20px;
   border-left: 1px solid var(--line-d);
 }
 .hs-num {
@@ -1362,16 +1384,18 @@ section { position: relative; }
    on a 768-tall screen, so 820 / 680 / 520 cover the realistic cases.
    ============================================================ */
 
-/* ----- ≤820px tall (laptop with chrome — typical 1366×768) - */
-@media (max-height: 820px) {
-  .hero       { padding-block: 64px 48px; }
-  .page-hero  { padding-block: 56px 40px; }
-  .display    { font-size: clamp(26px, 4vw, 56px); line-height: 1.06; }
-  .page-hero-title { font-size: clamp(26px, 4.2vw, 56px); }
-  .hero-copy .lead { margin: 12px 0 20px; }
-  .page-hero-lead  { margin-bottom: 20px; }
-  .hero-stats { margin-top: 22px; padding-top: 14px; }
-  .hero-scroll, .page-hero-scroll { bottom: 18px; }
+/* ----- ≤900px tall (covers most laptops with browser chrome) -
+   1366×768 ⇒ viewport visible ~668. 1920×1080 with bookmarks ⇒ ~880.
+   This breakpoint catches both. */
+@media (max-height: 900px) {
+  .hero       { padding-block: 56px 40px; }
+  .page-hero  { padding-block: 48px 36px; }
+  .display    { font-size: clamp(26px, 3.8vw, 52px); line-height: 1.06; }
+  .page-hero-title { font-size: clamp(26px, 4vw, 52px); }
+  .hero-copy .lead { margin: 12px auto 18px; }
+  .page-hero-lead  { margin-bottom: 18px; }
+  .hero-stats { margin-top: 20px; padding-top: 14px; }
+  .hero-scroll, .page-hero-scroll { bottom: 16px; }
 }
 
 /* ----- ≤680px tall (very short — landscape phones, ultra-thin) */
@@ -1430,18 +1454,20 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
 }
 
 /* ---------- page-hero (subpages, DARK statement) ----------
-   Same safe-center pattern as .hero: never clips on short viewports. */
+   Same fully-centered pattern as .hero for consistency. */
 .page-hero {
   position: relative;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: safe center;
-  padding-block: clamp(72px, 8vw, 110px) clamp(60px, 7vw, 90px);
+  padding-block: clamp(80px, 6vw, 96px) clamp(64px, 5vw, 80px);
   overflow: hidden;
   isolation: isolate;
+  text-align: center;
 }
+.page-hero > .container { display: flex; flex-direction: column; align-items: center; }
 .page-hero > .container { width: 100%; max-width: 1100px; }
 .page-hero.is-dark::before {
   content: "";
@@ -1459,7 +1485,8 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   margin: 0 0 16px;
   display: inline-flex; align-items: center; gap: 10px;
 }
-.page-hero-eyebrow::before {
+.page-hero-eyebrow::before,
+.page-hero-eyebrow::after {
   content: ""; width: 28px; height: 1px;
   background: currentColor; opacity: 0.8;
 }
@@ -1468,9 +1495,9 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   font-size: clamp(34px, 5vw, 76px);
   line-height: 1.04;
   letter-spacing: -0.028em;
-  margin: 0 0 20px;
+  margin: 0 auto 20px;
   color: var(--text-d);
-  max-width: 20ch;
+  max-width: 22ch;
 }
 .page-hero-title .accent { color: var(--accent); }
 .page-hero-lead {
@@ -1478,9 +1505,9 @@ body[data-page="contact"]    .nav a[data-page-link="contact"]::after {
   line-height: 1.55;
   color: var(--muted-d);
   max-width: 60ch;
-  margin: 0 0 28px;
+  margin: 0 auto 28px;
 }
-.page-hero-actions { display: inline-flex; flex-wrap: wrap; gap: 16px; }
+.page-hero-actions { display: inline-flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 .page-hero-scroll {
   position: absolute;
   left: 50%;
