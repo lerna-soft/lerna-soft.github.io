@@ -161,7 +161,7 @@ section { position: relative; }
 /* When scrolling to a section via anchor, reserve space for the sticky
    topbar (80px) + a little visual breathing room so the section title
    isn't tucked under the bar. */
-html { scroll-padding-top: 80px; }
+html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
 
 /* buttons */
 .btn {
@@ -1238,10 +1238,15 @@ html { scroll-padding-top: 80px; }
 
 /* ---------- footer (DARK statement) ---------- */
 .footer {
-  padding-top: 110px;
+  padding-top: 60px;
   padding-bottom: 32px;
   position: relative;
+  min-height: calc(100dvh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+.footer > .container { width: 100%; }
 .footer-hero {
   font-weight: 800;
   font-size: clamp(44px, 7vw, 108px);
