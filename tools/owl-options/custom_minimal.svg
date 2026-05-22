@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- Cuerpo oval -->
+  <ellipse cx="32" cy="34" rx="20" ry="24" />
+  <!-- Orejitas -->
+  <path d="M19 13 L23 19" />
+  <path d="M45 13 L41 19" />
+  <!-- Una sola curva que forma la máscara y sugiere los 2 ojos -->
+  <path d="M20 22 Q26 32 32 32 Q38 32 44 22" />
+  <!-- Línea simple del cuerpo interno -->
+  <path d="M32 36 L32 50" />
+</svg>

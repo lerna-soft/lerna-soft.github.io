@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8" />
+<title>Owl options</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #FAF7F0; color: #0A0E27; padding: 32px; margin: 0; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .18em; color: #5A607C; margin: 40px 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .card { background: #fff; border: 1px solid rgba(10,14,39,0.1); border-radius: 10px; padding: 24px; text-align: center; }
+  .card .label { font: 12px/1.4 ui-monospace, monospace; color: #5A607C; margin-bottom: 14px; }
+  .card .name { font-size: 11px; color: #5A607C; margin-top: 12px; font-family: ui-monospace, monospace; }
+  .card img { display: inline-block; height: 72px; width: auto; color: #0A0E27; }
+  .dark { background: #0A0E27; }
+  .dark .card { background: #161C44; border-color: rgba(255,255,255,0.1); }
+  .dark .label, .dark .name { color: #9AA1C7; }
+  .dark .card img { filter: invert(1); }
+  .topbar-sim {
+    margin-top: 24px; padding: 14px 32px;
+    background: #FAF7F0; border: 1px solid rgba(10,14,39,0.1);
+    border-radius: 12px;
+    display: flex; gap: 24px; align-items: center;
+  }
+  .topbar-sim .brand-mini {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .topbar-sim img { height: 28px; }
+  .topbar-sim .mark {
+    font-family: 'Anton', sans-serif; font-size: 16px; line-height: 1;
+    transform: skewX(-8deg); color: #0A0E27;
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" />
+</head>
+<body>
+
+  <h2>Diseños propios (inspirados en line-art continuous)</h2>
+  <div class="grid">
+    <div class="card"><p class="label">Propio · Continuous</p><img src="owl-options/custom_continuous.svg"/><p class="name">scale-style</p></div>
+    <div class="card"><p class="label">Propio · Minimal</p><img src="owl-options/custom_minimal.svg"/><p class="name">simple</p></div>
+  </div>
+
+  <h2>Open-source (gratis, atribución casi siempre opcional)</h2>
+  <div class="grid">
+    <div class="card"><p class="label">Material outline</p><img src="owl-options/material-symbols_owl-outline.svg"/><p class="name">Apache 2.0</p></div>
+    <div class="card"><p class="label">Material outline rounded</p><img src="owl-options/material-symbols_owl-outline-rounded.svg"/><p class="name">Apache 2.0</p></div>
+    <div class="card"><p class="label">MDI owl</p><img src="owl-options/mdi_owl.svg"/><p class="name">Apache 2.0</p></div>
+    <div class="card"><p class="label">Lucide Lab owl</p><img src="owl-options/lucide-lab_owl.svg"/><p class="name">ISC</p></div>
+    <div class="card"><p class="label">Icon Park outline</p><img src="owl-options/icon-park-outline_owl.svg"/><p class="name">Apache 2.0</p></div>
+    <div class="card"><p class="label">Boxicons owl</p><img src="owl-options/boxicons_owl.svg"/><p class="name">MIT</p></div>
+  </div>
+
+  <h2>Mismos en dark (cómo se verían en footer)</h2>
+  <div class="dark" style="padding:20px;border-radius:10px">
+    <div class="grid">
+      <div class="card"><p class="label">Propio · Continuous</p><img src="owl-options/custom_continuous.svg"/></div>
+      <div class="card"><p class="label">Propio · Minimal</p><img src="owl-options/custom_minimal.svg"/></div>
+      <div class="card"><p class="label">Material outline</p><img src="owl-options/material-symbols_owl-outline.svg"/></div>
+      <div class="card"><p class="label">MDI</p><img src="owl-options/mdi_owl.svg"/></div>
+    </div>
+  </div>
+
+  <h2>Cómo se verían en topbar real (con LERNASOFT al lado, 28px)</h2>
+  <div class="topbar-sim">
+    <div class="brand-mini"><img src="owl-options/custom_continuous.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/custom_minimal.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/material-symbols_owl-outline.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/material-symbols_owl-outline-rounded.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/mdi_owl.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/lucide-lab_owl.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/icon-park-outline_owl.svg"/><span class="mark">LERNASOFT</span></div>
+    <div class="brand-mini"><img src="owl-options/boxicons_owl.svg"/><span class="mark">LERNASOFT</span></div>
+  </div>
+
+</body></html>

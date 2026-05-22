@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8" />
+<title>Logo font preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Russo+One&family=Bowlby+One&family=Saira+Condensed:wght@900&family=Black+Ops+One&family=Archivo+Black&display=swap" />
+<style>
+  body { font-family: system-ui, sans-serif; background: #FAF7F0; padding: 40px; color: #0A0E27; }
+  .card { background: #fff; padding: 32px; margin-bottom: 24px; border-radius: 8px; border: 1px solid rgba(10,14,39,0.1); }
+  .card .title { font: 12px/1 'JetBrains Mono', monospace; letter-spacing: .14em; color: #5A607C; margin-bottom: 16px; text-transform: uppercase; }
+  .card .logo { font-size: 36px; font-weight: 900; line-height: 1; color: #0A0E27; }
+  .accent .so, .accent .ft { color: #2563EB; }
+  .it { font-style: italic; }
+  .skew { display: inline-block; transform: skewX(-8deg); }
+  /* topbar dark sim */
+  .dark { background: #0A0E27; color: #fff; }
+  .dark .title { color: #9AA1C7; }
+  .dark .logo { color: #fff; }
+  .dark .accent .so, .dark .accent .ft { color: #3B82F6; }
+</style>
+</head>
+<body>
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:0 0 24px">Logo wordmark font candidates</h1>
+
+  <div class="card"><p class="title">A · Anton (true italic via skew)</p>
+    <div class="logo" style="font-family:'Anton'"><span class="skew">LERNASOFT</span></div>
+  </div>
+  <div class="card"><p class="title">B · Russo One (true italic via skew)</p>
+    <div class="logo" style="font-family:'Russo One'"><span class="skew">LERNASOFT</span></div>
+  </div>
+  <div class="card"><p class="title">C · Bowlby One</p>
+    <div class="logo" style="font-family:'Bowlby One'"><span class="skew">LERNASOFT</span></div>
+  </div>
+  <div class="card"><p class="title">D · Saira Condensed 900 italic</p>
+    <div class="logo it" style="font-family:'Saira Condensed';font-weight:900">LERNASOFT</div>
+  </div>
+  <div class="card"><p class="title">E · Black Ops One (geometric military)</p>
+    <div class="logo" style="font-family:'Black Ops One'"><span class="skew">LERNASOFT</span></div>
+  </div>
+  <div class="card"><p class="title">F · Archivo Black (skewed)</p>
+    <div class="logo" style="font-family:'Archivo Black'"><span class="skew">LERNASOFT</span></div>
+  </div>
+
+  <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:48px 0 24px">With accent color (LERNA + SOFT in blue)</h2>
+
+  <div class="card accent"><p class="title">A · Anton + accent</p>
+    <div class="logo" style="font-family:'Anton'"><span class="skew">LERNA<span class="so">SOFT</span></span></div>
+  </div>
+  <div class="card accent"><p class="title">B · Russo One + accent</p>
+    <div class="logo" style="font-family:'Russo One'"><span class="skew">LERNA<span class="so">SOFT</span></span></div>
+  </div>
+
+  <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:48px 0 24px">On dark background (footer scenario)</h2>
+
+  <div class="card dark accent"><p class="title">A · Anton dark</p>
+    <div class="logo" style="font-family:'Anton'"><span class="skew">LERNA<span class="so">SOFT</span></span></div>
+  </div>
+  <div class="card dark accent"><p class="title">B · Russo One dark</p>
+    <div class="logo" style="font-family:'Russo One'"><span class="skew">LERNA<span class="so">SOFT</span></span></div>
+  </div>
+</body></html>
