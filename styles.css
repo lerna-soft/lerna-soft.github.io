@@ -325,7 +325,9 @@ html { scroll-padding-top: 80px; }
 .hero {
   position: relative;
   min-height: calc(100dvh - 80px);   /* 80 = topbar height; fills exactly the visible viewport */
-  padding-block: 96px 88px;       /* 96 = topbar height + small gap; 88 = bottom for scroll arrow */
+  padding-block: clamp(48px, 4vw, 72px) clamp(104px, 8vw, 132px);
+  /* top: tight breathing room (topbar already covers 80px on its own)
+     bottom: reserves space so the scroll arrow doesn't overlap the stats */
   overflow: hidden;
   isolation: isolate;
   text-align: center;
@@ -1399,15 +1401,15 @@ html { scroll-padding-top: 80px; }
    1366×768 ⇒ viewport visible ~668. 1920×1080 with bookmarks ⇒ ~880.
    This breakpoint catches both. */
 @media (max-height: 900px) {
-  .hero       { padding-block: 96px 56px; }   /* keep topbar offset (96), trim bottom */
-  .page-hero  { padding-block: 88px 48px; }
-  .display    { font-size: clamp(26px, 3.8vw, 52px); line-height: 1.06; }
+  .hero       { padding-block: 40px 112px; }  /* less top, big bottom to clear the scroll arrow */
+  .page-hero  { padding-block: 56px 56px; }
+  .display    { font-size: clamp(24px, 3.4vw, 46px); line-height: 1.06; }
   .page-hero-title { font-size: clamp(26px, 4vw, 52px); }
-  .hero .hero-copy .eyebrow    { margin-bottom: 18px; }
-  .hero .hero-copy .display    { margin-bottom: 20px; }
-  .hero .hero-copy .lead       { margin-bottom: 26px; }
-  .hero .hero-copy .hero-cta   { margin-bottom: 32px; }
-  .hero-stats { padding-top: 16px; }
+  .hero .hero-copy .eyebrow    { margin-bottom: 14px; }
+  .hero .hero-copy .display    { margin-bottom: 16px; }
+  .hero .hero-copy .lead       { margin-bottom: 20px; }
+  .hero .hero-copy .hero-cta   { margin-bottom: 24px; }
+  .hero-stats { padding-top: 12px; }
   .page-hero-scroll { margin-top: 28px; }
 }
 
