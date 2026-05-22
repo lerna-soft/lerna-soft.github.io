@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8" />
+<title>Owl logo preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" />
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; background: #FAF7F0; padding: 40px; color: #0A0E27; }
+  .card { background: #fff; padding: 28px; margin-bottom: 18px; border-radius: 8px; border: 1px solid rgba(10,14,39,0.1); }
+  .card .title { font: 12px/1 monospace; letter-spacing: .14em; color: #5A607C; margin-bottom: 18px; text-transform: uppercase; }
+  .logo { display: inline-flex; align-items: center; gap: 12px; }
+  .logo svg { display: block; height: 40px; width: auto; }
+  .logo .text { font-family: 'Anton'; font-size: 32px; line-height: 1; transform: skewX(-8deg); display: inline-block; color: #0A0E27; }
+  .accent { color: #2563EB; }
+  .dark { background: #0A0E27; color: #fff; }
+  .dark .title { color: #9AA1C7; }
+  .dark .logo .text { color: #fff; }
+  /* variant: owl in a box */
+  .box .ico { background: #2563EB; color: #fff; padding: 6px; border-radius: 8px; display: inline-flex; }
+  .box .ico svg { height: 28px; }
+  /* variant: stacked */
+  .stacked { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .stacked .text { font-size: 24px; }
+  .stacked svg { height: 56px; }
+  /* size variants */
+  .small svg { height: 28px; }
+  .small .text { font-size: 22px; }
+  .large svg { height: 64px; }
+  .large .text { font-size: 52px; }
+</style>
+</head>
+<body>
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:0 0 18px">A · Solo búho</h1>
+  <div class="card"><p class="title">topbar size</p><div class="logo"><svg viewBox="0 0 64 64"><use href="../assets/logo-owl.svg#__root__"/></svg></div></div>
+
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:24px 0 18px">B · Búho + LERNASOFT horizontal</h1>
+  <div class="card"><p class="title">topbar (light)</p>
+    <div class="logo"><img src="../assets/logo-owl.svg" style="height:40px"/><span class="text">LERNASOFT</span></div>
+  </div>
+  <div class="card dark"><p class="title">footer (dark)</p>
+    <div class="logo"><img src="../assets/logo-owl.svg" style="height:40px;filter:invert(1)"/><span class="text">LERNASOFT</span></div>
+  </div>
+
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:24px 0 18px">C · Búho en caja azul + texto</h1>
+  <div class="card"><p class="title">box variant — owl always white on blue</p>
+    <div class="logo box"><span class="ico"><img src="../assets/logo-owl.svg" style="height:28px;filter:invert(1)"/></span><span class="text">LERNASOFT</span></div>
+  </div>
+  <div class="card dark"><p class="title">box variant on dark</p>
+    <div class="logo box"><span class="ico"><img src="../assets/logo-owl.svg" style="height:28px;filter:invert(1)"/></span><span class="text">LERNASOFT</span></div>
+  </div>
+
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:24px 0 18px">D · Búho stacked sobre LERNASOFT</h1>
+  <div class="card"><p class="title">vertical lockup (about page / hero scenarios)</p>
+    <div class="logo stacked"><img src="../assets/logo-owl.svg" style="height:56px"/><span class="text">LERNASOFT</span></div>
+  </div>
+
+  <h1 style="font-size:14px;text-transform:uppercase;letter-spacing:.18em;color:#5A607C;margin:24px 0 18px">Tamaños de búho aislado</h1>
+  <div class="card"><p class="title">small (favicon-size, 24px)</p>
+    <div class="logo small"><img src="../assets/logo-owl.svg" style="height:24px"/></div>
+  </div>
+  <div class="card"><p class="title">medium (40px topbar)</p>
+    <div class="logo"><img src="../assets/logo-owl.svg" style="height:40px"/></div>
+  </div>
+  <div class="card"><p class="title">large (96px hero)</p>
+    <div class="logo large"><img src="../assets/logo-owl.svg" style="height:96px"/></div>
+  </div>
+</body></html>
