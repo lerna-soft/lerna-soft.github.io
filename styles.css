@@ -2836,19 +2836,20 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .post-body blockquote { padding-left: 14px; }
 
   /* ----- contact form ----------------------------------------------- */
-  .contact-grid { grid-template-columns: 1fr; gap: 20px; }
-  .contact-copy h2 { font-size: 22px; margin-bottom: 10px; line-height: 1.2; }
-  .contact-copy .muted { font-size: 14px; }
-  .contact-points { margin-top: 14px; gap: 6px; }
-  .contact-points li { font-size: 13px; padding-left: 26px; }
-  .contact-points li::before { width: 14px; top: 8px; }
-  .contact-form { padding: 16px; gap: 14px; border-radius: 12px; }
-  .contact-form label { font-size: 11px; gap: 6px; }
+  .contact { padding-block: 24px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+  .contact-copy h2 { font-size: 20px; margin-bottom: 8px; line-height: 1.2; }
+  .contact-copy .muted { font-size: 13px; }
+  .contact-points { margin-top: 12px; gap: 4px; }
+  .contact-points li { font-size: 12px; padding-left: 22px; }
+  .contact-points li::before { width: 12px; top: 7px; }
+  .contact-form { padding: 14px; gap: 12px; border-radius: 12px; }
+  .contact-form label { font-size: 10px; gap: 4px; }
   .contact-form input,
   .contact-form select,
-  .contact-form textarea { font-size: 16px; padding: 10px 0; }
-  .contact-form textarea { min-height: 80px; }
-  .contact-form .btn { width: 100%; justify-content: center; padding: 13px 18px; font-size: 14px; }
+  .contact-form textarea { font-size: 16px; padding: 8px 0; }
+  .contact-form textarea { min-height: 60px; }
+  .contact-form .btn { width: 100%; justify-content: center; padding: 11px 16px; font-size: 14px; }
 
   /* ----- works / cases — horizontal compact rows -------------------- */
   /* Image stays visible (it carries product identity) but as an 80px
