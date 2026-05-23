@@ -1806,6 +1806,27 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   transition: border-color .2s ease, transform .2s ease;
 }
 .td-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+/* Accordion scaffolding (HTML-only on desktop, fully active on ≤700px).
+   In desktop the <button> wrapper and the panel <div> use display:contents
+   so they vanish from layout — their children (num, h3, p) flow as direct
+   children of .td-card and the visual stays identical to the pre-accordion
+   version. The +/− icon is hidden. The mobile override later in this file
+   reactivates everything as a real collapsible. */
+.td-card-toggle {
+  display: contents;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: default;
+}
+.td-card-panel { display: contents; }
+.td-card-icon  { display: none; }
+
 .td-num {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -2590,6 +2611,91 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     margin: 24px auto 0;
     bottom: auto;
     left: auto;
+  }
+
+  /* "Lo que nos hace distintos" — turn the 6 cards into a vertical
+     accordion. Cards lose their box/border/padding; the .td-card-toggle
+     becomes a real flex row header with the number, title, and a +/×
+     indicator. .td-card-panel collapses via max-height and expands when
+     the parent .td-card has data-open="true". JS handler in app.js. */
+  .td-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .td-card {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    padding: 0;
+    display: block;
+    transition: none;
+  }
+  .td-card:hover { border-color: var(--line); transform: none; }
+
+  .td-card-toggle {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 18px 4px;
+    cursor: pointer;
+  }
+  .td-card-toggle .td-num {
+    flex: 0 0 auto;
+    min-width: 26px;
+    font-size: 13px;
+    margin: 0;
+  }
+  .td-card-toggle h3 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+  .td-card-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    color: var(--accent);
+    position: relative;
+    transition: transform .22s ease, border-color .22s ease;
+  }
+  /* + glyph drawn with two pseudo-elements so it rotates cleanly to × */
+  .td-card-icon::before,
+  .td-card-icon::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    border-radius: 1px;
+  }
+  .td-card-icon::before { width: 12px; height: 2px; }
+  .td-card-icon::after  { width: 2px; height: 12px; }
+  .td-card[data-open="true"] .td-card-icon {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+  }
+
+  .td-card-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .td-card[data-open="true"] .td-card-panel {
+    max-height: 360px;
+  }
+  .td-card-panel p {
+    margin: 0;
+    padding: 0 4px 18px 44px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* Anchor jumps land flush under the sticky topbar. */
