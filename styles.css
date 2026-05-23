@@ -2949,15 +2949,65 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     line-height: 1.5;
   }
 
-  /* ----- process steps — already 1-column on mobile, just tighten more
-     so the 5 steps + section-scroll arrow fit comfortably in one fold. */
+  /* ----- process steps — accordion on mobile (same pattern as
+     services-list and home distinct). 5 cards with full descriptions
+     would push the section past the viewport, so collapse them by
+     default and let the user tap to expand. The decorative ps-num is
+     kept but shrunk; the ::after dot (timeline marker) is hidden in
+     accordion mode since there's no horizontal flow line on mobile. */
   .process { padding-block: 24px; }
-  .process-steps { grid-template-columns: 1fr; gap: 14px; }
-  .process-steps li { padding: 12px 0 0; }
-  .ps-num { font-size: 36px; margin-bottom: 10px; }
-  .ps-num::after { bottom: -8px; width: 8px; height: 8px; border-width: 2px; }
-  .process-steps h3 { margin: 6px 0 4px; font-size: 15px; }
-  .process-steps p { font-size: 13px; line-height: 1.45; }
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .process-steps::before { display: none; }
+  .process-steps li {
+    padding: 0;
+    border-bottom: 1px solid var(--line-strong);
+    display: block;
+  }
+  .process-steps .td-card-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 4px;
+    cursor: pointer;
+  }
+  .process-steps .ps-num {
+    font-size: 24px;
+    margin: 0;
+    min-width: 38px;
+    flex: 0 0 auto;
+    line-height: 1;
+  }
+  .process-steps .ps-num::after { display: none; }
+  .process-steps .td-card-toggle h3 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .process-steps li[data-open="true"] .td-card-icon {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+  }
+  .process-steps .td-card-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .process-steps li[data-open="true"] .td-card-panel { max-height: 280px; }
+  .process-steps .td-card-panel p {
+    margin: 0;
+    padding: 0 4px 14px 50px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
 
   /* ----- about / testimonials --------------------------------------- */
   .testimonials { padding-block: 32px; }
