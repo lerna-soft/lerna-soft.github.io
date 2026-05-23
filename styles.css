@@ -2605,7 +2605,7 @@ body[data-page="about"] .org-chart { margin-top: 0; }
      viewport. */
   .page-hero {
     min-height: calc(100dvh - 80px);
-    padding-block: 16px;
+    padding-block: 16px 20px;
     display: flex;
     flex-direction: column;
   }
@@ -2614,15 +2614,17 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 0;
   }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 0 auto;
+    margin: 8px auto 0;
     bottom: auto;
     left: auto;
+    flex-shrink: 0;
   }
 
   /* Inter-section scroll arrow (reused in trust-distinct, services, about,
