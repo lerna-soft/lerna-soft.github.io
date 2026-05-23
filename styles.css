@@ -2599,14 +2599,31 @@ body[data-page="about"] .org-chart { margin-top: 0; }
      used to be hidden on mobile because it was position:absolute and
      would float below the content; now it joins the document flow and
      sits centered below the actions, matching the pattern we use for
-     .hero-scroll and .section-scroll-wrap. */
-  .page-hero { min-height: auto; padding-block: 24px 24px; }
+     .hero-scroll and .section-scroll-wrap.
+
+     Forces the hero to fill the visible viewport on entry (100svh, the
+     small-viewport unit, which is stable against the browser chrome
+     dynamic resize and won't cause jumps). Content centers vertically,
+     scroll arrow is pinned at the bottom of the hero via margin-top:
+     auto inside a flex column. */
+  .page-hero {
+    min-height: calc(100svh - 80px);
+    padding-block: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-hero > .container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 20px auto 0;
+    margin: 12px auto 4px;
     bottom: auto;
     left: auto;
   }
@@ -2854,6 +2871,14 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .ind-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 14px; }
   .ind-card h3 { font-size: 16px; margin-bottom: 8px; }
   .ind-card p { font-size: 13px; line-height: 1.5; }
+
+  /* ----- services section head — the "Capacidades / Lo que hacemos"
+     header just repeats info the page-hero already gave. Hide the eyebrow
+     on mobile to recover ~30px and keep the section above the fold. */
+  .services .section-head .eyebrow { display: none; }
+  .services .section-head { margin-bottom: 14px; }
+  .services .section-head .h-display { margin-bottom: 6px; font-size: 22px; }
+  .services .section-head .section-lead { font-size: 13px; line-height: 1.45; }
 
   /* ----- services list — accordion (same UX pattern as home distinct /
      about values). Each <li> becomes a collapsible row: number · icon ·
