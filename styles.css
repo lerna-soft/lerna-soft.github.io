@@ -2603,27 +2603,22 @@ body[data-page="about"] .org-chart { margin-top: 0; }
 
      padding-block stays minimal so the dark block isn't taller than the
      viewport. */
+  /* Match the home .hero recipe exactly (which the user approved):
+     min-height auto + same padding-block + scroll arrow in flow. Subpages
+     are content-sized like the home — no forced viewport, no grid/flex
+     centering acrobatics. */
   .page-hero {
-    min-height: calc(100dvh - 80px);
-    padding-block: 16px 20px;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    align-items: center;
-    justify-items: center;
-  }
-  .page-hero > .container {
-    width: 100%;
-    grid-row: 1;
+    min-height: auto;
+    padding-block: 24px 40px;
   }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 0;
+    margin: 20px auto 0;
     bottom: auto;
     left: auto;
-    grid-row: 2;
   }
 
   /* Inter-section scroll arrow (reused in trust-distinct, services, about,
