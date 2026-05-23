@@ -19,7 +19,7 @@
   // PAT cipher: filled in by running `node tools/encode-pat.mjs <PAT>` locally.
   // Same XOR + base64 pattern as devil-tv (app.js:62). Empty = issue creation disabled.
   const GITHUB_ISSUE_TOKEN_SEED = "lerna_blog_issue_token_v1";
-  const GITHUB_ISSUE_TOKEN_CIPHER = "Cw0dMSsdUgQlKixeKgk6LG8jFwkTJW8jZyIjBBQZNlo9C1cYAktEJA==";
+  const GITHUB_ISSUE_TOKEN_CIPHER = "Cw0dMTAODS4bBQo5Bh4EAm0SLjwfBTglfyAKNykpElZdW1Q9JRUWMw==";
 
   /* ---------- utils ---------- */
   function escapeHtml(s) {
