@@ -1,3 +1,18 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "slug": "prueba",
+      "title": "prueba",
+      "excerpt": "esta es una prueba",
+      "tags": [
+        "dev",
+        "home"
+      ],
+      "cover": "",
+      "lang": "es",
+      "date": "2026-05-23T12:00:00.000Z",
+      "author": "henry8812@gmail.com",
+      "readTime": 1
+    }
+  ]
 }

@@ -1,0 +1,15 @@
+{
+  "slug": "prueba",
+  "title": "prueba",
+  "excerpt": "esta es una prueba",
+  "tags": [
+    "dev",
+    "home"
+  ],
+  "cover": "",
+  "lang": "es",
+  "date": "2026-05-23T12:00:00.000Z",
+  "author": "henry8812@gmail.com",
+  "readTime": 1,
+  "html": "<p>en efecto funciona <img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJTS1Ce5Ps-h9K4a2QxBTrDrD4p8Iqu53JA&amp;s\" alt=\"750+ Vintage Car Pictures [HD] | Download Free Images on Unsplash\"></p>"
+}
