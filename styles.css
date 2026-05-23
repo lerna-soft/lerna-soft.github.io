@@ -1900,6 +1900,29 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   padding: 8px 16px;
   font-size: 13px;
 }
+
+/* ----- toast (session-closed feedback, future generic) ----- */
+.blog-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  padding: 12px 20px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.22);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events: none;
+}
+.blog-toast.is-visible { opacity: 1; transform: translateY(0); }
 .post-actions {
   margin-bottom: 28px;
 }
@@ -2317,6 +2340,9 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   transition: border-color .15s ease, background .15s ease;
   overflow: hidden;
 }
+/* Force-hide children that use the boolean [hidden] attribute, because our
+   display:flex declarations below would otherwise win over the UA default. */
+.cover-dropzone [hidden] { display: none !important; }
 .cover-dropzone:hover,
 .cover-dropzone:focus-visible {
   border-color: var(--accent);

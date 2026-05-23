@@ -351,6 +351,7 @@
     "editorAccess": "Editor access →",
     "editLabel": "Edit",
     "deleteLabel": "Delete",
+    "sessionClosed": "Signed out",
     "empty": "No articles published yet. Check back soon.",
     "readMore": "Read article",
     "minRead": "min read",

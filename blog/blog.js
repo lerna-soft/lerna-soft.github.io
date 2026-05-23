@@ -267,12 +267,29 @@
     return template.innerHTML;
   }
 
+  /* ---------- ui helpers ---------- */
+  function showToast(message, timeout) {
+    let el = document.querySelector(".blog-toast");
+    if (!el) {
+      el = document.createElement("div");
+      el.className = "blog-toast";
+      el.setAttribute("role", "status");
+      document.body.appendChild(el);
+    }
+    el.textContent = String(message || "");
+    void el.offsetWidth; // force reflow so the transition replays
+    el.classList.add("is-visible");
+    clearTimeout(el._timer);
+    el._timer = setTimeout(() => el.classList.remove("is-visible"), timeout || 2400);
+  }
+
   /* ---------- expose ---------- */
   window.lernaBlog = {
     config: { REPO_OWNER, REPO_NAME, ISSUE_LABEL, COVER_MAX_BYTES },
     auth: { login, logout, getSession, isAuthenticated },
     github: { openIssue, buildArticleIssueBody, uploadCoverImage },
     posts: { fetchPost },
+    ui: { showToast },
     utils: { escapeHtml, slugify, sha256Hex, readingTime, sanitizeHtml }
   };
 })();

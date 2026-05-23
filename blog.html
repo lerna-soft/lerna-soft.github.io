@@ -148,8 +148,12 @@
           }
         }
         document.getElementById("blogLogoutBtn").addEventListener("click", () => {
-          if (window.lernaBlog) window.lernaBlog.auth.logout();
+          if (!window.lernaBlog) return;
+          window.lernaBlog.auth.logout();
           syncBlogActions();
+          const dict = window.__i18nDict;
+          const msg = (dict && dict.blog && dict.blog.sessionClosed) || "Sesión cerrada";
+          window.lernaBlog.ui.showToast(msg);
         });
         syncBlogActions();
 
