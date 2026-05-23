@@ -10,6 +10,7 @@
     "portfolio": "Trabajo",
     "company": "Empresa",
     "about": "Nosotros",
+    "blog": "Blog",
     "contact": "Contacto",
     "startProject": "Iniciar proyecto"
   },
@@ -338,5 +339,19 @@
     "eyebrow": "Capacidades",
     "title": "Lo que hacemos",
     "subtitle": "Seis prácticas que cubren ciclo de vida completo de un producto digital — desde el primer sprint hasta la operación continua."
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Apuntes desde la trinchera",
+    "subtitle": "Cómo construimos, qué aprendimos y qué romperíamos hoy. Notas de equipo, decisiones técnicas y casos de operación.",
+    "filterAll": "Todos",
+    "filterLabel": "Filtrar por tema",
+    "empty": "Aún no hay artículos publicados. Volvé pronto.",
+    "readMore": "Leer artículo",
+    "minRead": "min de lectura",
+    "back": "← Volver al blog",
+    "notFoundTitle": "Artículo no encontrado",
+    "notFoundLead": "El slug que abriste no corresponde a un artículo publicado.",
+    "notFoundBack": "Ir al blog"
   }
 }

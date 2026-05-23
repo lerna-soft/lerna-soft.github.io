@@ -10,6 +10,7 @@
     "portfolio": "Work",
     "company": "Company",
     "about": "About",
+    "blog": "Blog",
     "contact": "Contact",
     "startProject": "Start a project"
   },
@@ -338,5 +339,19 @@
     "eyebrow": "Capabilities",
     "title": "What we do",
     "subtitle": "Six practices covering the full life cycle of a digital product — from sprint zero to ongoing operation."
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Notes from the trenches",
+    "subtitle": "How we build, what we learned and what we'd break today. Team notes, technical decisions and operations stories.",
+    "filterAll": "All",
+    "filterLabel": "Filter by topic",
+    "empty": "No articles published yet. Check back soon.",
+    "readMore": "Read article",
+    "minRead": "min read",
+    "back": "← Back to blog",
+    "notFoundTitle": "Article not found",
+    "notFoundLead": "The slug you opened doesn't match any published article.",
+    "notFoundBack": "Go to blog"
   }
 }

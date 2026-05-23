@@ -1,0 +1,63 @@
+name: Resolve article publish issue
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: article-publish-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  resolve:
+    if: contains(github.event.issue.labels.*.name, 'article-publish')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout (master)
+        uses: actions/checkout@v4
+
+      - name: Configure git identity
+        shell: bash
+        run: |
+          set -euxo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync, commit and push (retry-safe)
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euxo pipefail
+          for attempt in 1 2 3 4 5; do
+            git fetch origin master
+            git checkout -B master origin/master
+            node tools/sync-articles-from-issues.mjs
+            git add blog/posts
+            if git diff --cached --quiet; then
+              echo "No staged changes."
+              exit 0
+            fi
+            git commit -m "blog: sync from issue #${{ github.event.issue.number }}"
+            if git push origin HEAD:master; then
+              echo "Push succeeded on attempt ${attempt}"
+              exit 0
+            fi
+            echo "Push rejected on attempt ${attempt}; retrying from latest origin/master"
+          done
+          echo "Failed to push after retries"
+          exit 1

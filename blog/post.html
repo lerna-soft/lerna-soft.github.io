@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Lerna Soft · Blog</title>
+    <meta name="description" content="Artículo del blog de Lerna Soft." />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-page="blog" class="subpage">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="../index.html" aria-label="Lerna Soft">
+          <img class="brand-icon" src="../assets/logo-owl.svg" alt="Lerna Soft owl logo · designed by Vecteezy.com"><span class="brand-mark">LERNASOFT</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="../index.html"      data-page-link="home"       data-i18n="nav.home">Inicio</a>
+          <a href="../services.html"   data-page-link="services"   data-i18n="nav.services">Servicios</a>
+          <a href="../industries.html" data-page-link="industries" data-i18n="nav.industries">Industrias</a>
+          <a href="../work.html"       data-page-link="work"       data-i18n="nav.portfolio">Trabajo</a>
+          <a href="../about.html"      data-page-link="about"      data-i18n="nav.about">Nosotros</a>
+          <a href="../blog.html"       data-page-link="blog"       data-i18n="nav.blog">Blog</a>
+          <a href="../contact.html"    data-page-link="contact"    data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="../contact.html" data-i18n="nav.startProject">Iniciar proyecto</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="post-shell">
+        <div class="container" id="postRoot">
+          <p class="post-loading" style="color:var(--muted);font-size:14px;">Cargando…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer is-dark" id="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="../index.html">
+              <img class="brand-icon" src="../assets/logo-owl.svg" alt="Lerna Soft owl logo · designed by Vecteezy.com"><span class="brand-mark">LERNASOFT</span>
+            </a>
+            <p class="muted" data-i18n="footer.tagline">
+              Productos digitales para empresas que necesitan construir y operar. Parte de Lerna Soft.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col1.title">Servicios</h4>
+            <a href="../services.html#web"    data-i18n="services.web.title">Plataformas web</a>
+            <a href="../services.html#mobile" data-i18n="services.mobile.title">Apps móviles</a>
+            <a href="../services.html#cloud"  data-i18n="services.cloud.title">Cloud & DevOps</a>
+            <a href="../services.html#staff"  data-i18n="services.staff.title">Staff augmentation</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col2.title">Empresa</h4>
+            <a href="../about.html"      data-i18n="nav.about">Nosotros</a>
+            <a href="../industries.html" data-i18n="nav.industries">Industrias</a>
+            <a href="../work.html"       data-i18n="nav.portfolio">Trabajo</a>
+            <a href="../blog.html"       data-i18n="nav.blog">Blog</a>
+            <a href="../contact.html"    data-i18n="nav.contact">Contacto</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col3.title">Group</h4>
+            <a href="https://github.com/lerna-soft" rel="noopener" target="_blank">github.com/lerna-soft</a>
+            <a href="mailto:hello@lerna-soft.github.io">hello@lerna-soft.github.io</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year"></span> LERNA SOFT</span>
+          <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- i18n + topbar wiring need app.js, but app.js loads i18n from /i18n which is relative to root.
+         We swap to absolute paths inside this subpage by patching fetch base. Simpler: re-host the
+         small subset of app.js logic we need (i18n + lang + menu + year). -->
+    <script>
+      // Mini app bootstrap for subpaths under /blog/.
+      (function () {
+        "use strict";
+        const SUPPORTED = ["es", "en"];
+        const STORAGE_KEY = "lerna.lang";
+
+        function resolveLang() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored && SUPPORTED.includes(stored)) return stored;
+          const nav = (navigator.language || "es").slice(0, 2).toLowerCase();
+          return SUPPORTED.includes(nav) ? nav : "es";
+        }
+        function deepGet(obj, path) {
+          return path.split(".").reduce((acc, k) => (acc != null ? acc[k] : undefined), obj);
+        }
+        async function loadDict(lang) {
+          const res = await fetch(`../i18n/${lang}.json`, { cache: "no-cache" });
+          if (!res.ok) throw new Error("i18n load failed");
+          return res.json();
+        }
+        function applyDict(dict) {
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const v = deepGet(dict, el.getAttribute("data-i18n"));
+            if (typeof v === "string") el.textContent = v;
+          });
+          document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+            const v = deepGet(dict, el.getAttribute("data-i18n-html"));
+            if (typeof v === "string") el.innerHTML = v;
+          });
+        }
+        async function setLang(lang, persist) {
+          if (!SUPPORTED.includes(lang)) lang = "es";
+          try {
+            const dict = await loadDict(lang);
+            window.__i18nDict = dict;
+            applyDict(dict);
+            document.documentElement.setAttribute("lang", lang);
+            if (persist) localStorage.setItem(STORAGE_KEY, lang);
+            document.querySelectorAll(".lang-btn").forEach((b) => {
+              const active = b.getAttribute("data-lang") === lang;
+              b.classList.toggle("is-active", active);
+              b.setAttribute("aria-pressed", String(active));
+            });
+            window.dispatchEvent(new CustomEvent("lerna:i18n-ready", { detail: { lang } }));
+          } catch (e) { console.error(e); }
+        }
+        document.querySelectorAll(".lang-btn").forEach((b) => {
+          b.addEventListener("click", () => setLang(b.getAttribute("data-lang"), true));
+        });
+        const t = document.querySelector(".menu-toggle");
+        const tb = document.querySelector(".topbar");
+        if (t && tb) {
+          t.addEventListener("click", () => {
+            const open = tb.classList.toggle("is-open");
+            t.setAttribute("aria-expanded", String(open));
+          });
+        }
+        const yr = document.getElementById("year");
+        if (yr) yr.textContent = String(new Date().getFullYear());
+        setLang(resolveLang(), false);
+      })();
+    </script>
+    <script src="blog.js"></script>
+    <script>
+      (function () {
+        "use strict";
+
+        function getSlug() {
+          const params = new URLSearchParams(window.location.search);
+          return String(params.get("slug") || "").trim();
+        }
+
+        function tr(path, fallback) {
+          const dict = window.__i18nDict;
+          if (!dict) return fallback;
+          const parts = path.split(".");
+          let cur = dict;
+          for (const p of parts) cur = cur ? cur[p] : null;
+          return typeof cur === "string" ? cur : fallback;
+        }
+
+        function formatDate(iso) {
+          if (!iso) return "";
+          const d = new Date(iso);
+          if (Number.isNaN(d.getTime())) return iso;
+          const lang = document.documentElement.lang || "es";
+          try {
+            return d.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
+              year: "numeric", month: "long", day: "numeric"
+            });
+          } catch (e) {
+            return iso;
+          }
+        }
+
+        function renderNotFound() {
+          const root = document.getElementById("postRoot");
+          root.innerHTML = `
+            <div class="post-not-found">
+              <h1 class="post-title" style="margin-bottom:12px;">${lernaBlog.utils.escapeHtml(tr("blog.notFoundTitle", "Artículo no encontrado"))}</h1>
+              <p>${lernaBlog.utils.escapeHtml(tr("blog.notFoundLead", "El slug que abriste no corresponde a un artículo publicado."))}</p>
+              <p style="margin-top:24px;"><a class="btn btn-primary" href="../blog.html">${lernaBlog.utils.escapeHtml(tr("blog.notFoundBack", "Ir al blog"))}</a></p>
+            </div>`;
+        }
+
+        async function deletePost(slug) {
+          if (!confirm(`¿Borrar el artículo "${slug}"? Esta acción es definitiva.`)) return;
+          const session = lernaBlog.auth.getSession();
+          try {
+            await lernaBlog.github.openIssue({
+              title: `[blog] delete ${slug}`,
+              body: lernaBlog.github.buildArticleIssueBody({
+                action: "delete",
+                slug,
+                author: session && session.user ? session.user.email : ""
+              }),
+              labels: [lernaBlog.config.ISSUE_LABEL]
+            });
+            alert("Solicitud de borrado enviada. El artículo desaparecerá en ~1 minuto cuando el workflow termine.");
+            setTimeout(() => { window.location.href = "../blog.html"; }, 800);
+          } catch (e) {
+            console.error(e);
+            alert("Error: " + e.message);
+          }
+        }
+
+        function renderPost(post) {
+          const root = document.getElementById("postRoot");
+          const authed = lernaBlog.auth.isAuthenticated();
+          document.title = `${post.title} · Lerna Soft · Blog`;
+          const metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc && post.excerpt) metaDesc.setAttribute("content", post.excerpt);
+
+          const dateStr = formatDate(post.date);
+          const minutes = post.readTime || lernaBlog.utils.readingTime(post.html);
+          const minLabel = tr("blog.minRead", "min de lectura");
+          const backLabel = tr("blog.back", "← Volver al blog");
+
+          const tagsHtml = (post.tags || []).map((t) =>
+            `<span class="post-tag">${lernaBlog.utils.escapeHtml(t)}</span>`
+          ).join("");
+
+          const coverHtml = post.cover
+            ? `<div class="post-cover"><img src="${lernaBlog.utils.escapeHtml(post.cover)}" alt="${lernaBlog.utils.escapeHtml(post.title)}"/></div>`
+            : "";
+
+          const adminBar = authed
+            ? `<div style="display:flex;gap:10px;margin-bottom:24px;">
+                 <a class="btn btn-ghost" href="nuevo.html?slug=${encodeURIComponent(post.slug)}">Editar</a>
+                 <button type="button" class="btn btn-ghost" id="postDeleteBtn" style="color:#B91C1C;border-color:#B91C1C;">Borrar</button>
+               </div>`
+            : "";
+
+          root.innerHTML = `
+            <article>
+              <header class="post-head">
+                <a class="post-back" href="../blog.html">${lernaBlog.utils.escapeHtml(backLabel)}</a>
+                ${adminBar}
+                <p class="post-meta">
+                  ${dateStr ? `<span>${lernaBlog.utils.escapeHtml(dateStr)}</span><span class="dot"></span>` : ""}
+                  <span>${minutes} ${lernaBlog.utils.escapeHtml(minLabel)}</span>
+                  ${post.author ? `<span class="dot"></span><span>${lernaBlog.utils.escapeHtml(post.author)}</span>` : ""}
+                </p>
+                <h1 class="post-title">${lernaBlog.utils.escapeHtml(post.title)}</h1>
+                ${post.excerpt ? `<p class="post-excerpt">${lernaBlog.utils.escapeHtml(post.excerpt)}</p>` : ""}
+                ${tagsHtml ? `<div class="post-tags">${tagsHtml}</div>` : ""}
+              </header>
+              ${coverHtml}
+              <div class="post-body" id="postBody"></div>
+            </article>`;
+
+          document.getElementById("postBody").innerHTML = lernaBlog.utils.sanitizeHtml(post.html || "");
+
+          if (authed) {
+            const btn = document.getElementById("postDeleteBtn");
+            if (btn) btn.addEventListener("click", () => deletePost(post.slug));
+          }
+        }
+
+        async function boot() {
+          const slug = getSlug();
+          if (!slug) return renderNotFound();
+          const post = await lernaBlog.posts.fetchPost(slug);
+          if (!post || !post.slug) return renderNotFound();
+          renderPost(post);
+        }
+
+        // i18n may not be ready yet; wait one tick for the dict before booting
+        if (window.__i18nDict) boot();
+        else window.addEventListener("lerna:i18n-ready", boot, { once: true });
+        // safety: if i18n fails, still render
+        setTimeout(() => { if (!document.getElementById("postBody") && !document.querySelector(".post-not-found")) boot(); }, 2000);
+      })();
+    </script>
+  </body>
+</html>
