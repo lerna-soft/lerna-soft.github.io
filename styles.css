@@ -2580,6 +2580,18 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .page-hero { min-height: auto; padding-block: 88px 48px; }
   .page-hero-scroll { display: none; }
 
+  /* Inter-section scroll arrow (reused in trust-distinct, services, about,
+     work, industries, contact): drop the absolute positioning on mobile so
+     it cannot float over the content of a tall section. Mirrors the same
+     change applied to .hero-scroll above. */
+  .section-scroll-wrap {
+    position: static;
+    transform: none;
+    margin: 24px auto 0;
+    bottom: auto;
+    left: auto;
+  }
+
   /* Anchor jumps land flush under the sticky topbar. */
   html { scroll-padding-top: 80px; }
   main > section[id] { scroll-margin-top: 80px; }
