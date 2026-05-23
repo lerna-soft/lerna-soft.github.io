@@ -76,6 +76,7 @@
           <div class="blog-toolbar">
             <p class="blog-toolbar-title" data-i18n="blog.filterLabel">Filtrar por tema</p>
             <div class="blog-tags-filter" id="blogTagsFilter"></div>
+            <a class="blog-toolbar-editor" id="blogEditorLink" href="blog/nuevo.html" data-i18n="blog.editorAccess" hidden>Acceso editor →</a>
           </div>
           <div class="blog-grid" id="blogGrid"></div>
           <div class="blog-empty" id="blogEmpty" hidden data-i18n="blog.empty">
@@ -135,12 +136,15 @@
         function syncBlogActions() {
           const actions = document.getElementById("blogActions");
           const emailLabel = document.getElementById("blogActionsEmail");
+          const editorLink = document.getElementById("blogEditorLink");
           const session = window.lernaBlog && window.lernaBlog.auth.getSession();
           if (session && session.user) {
             emailLabel.textContent = session.user.email;
             actions.hidden = false;
+            editorLink.hidden = true;
           } else {
             actions.hidden = true;
+            editorLink.hidden = false;
           }
         }
         document.getElementById("blogLogoutBtn").addEventListener("click", () => {

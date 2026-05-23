@@ -48,6 +48,7 @@ jobs:
             git checkout -B master origin/master
             node tools/sync-articles-from-issues.mjs
             git add blog/posts
+            if [ -d assets/blog ]; then git add assets/blog; fi
             if git diff --cached --quiet; then
               echo "No staged changes."
               exit 0

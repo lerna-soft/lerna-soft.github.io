@@ -1900,6 +1900,17 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   padding: 8px 16px;
   font-size: 13px;
 }
+.post-actions {
+  margin-bottom: 28px;
+}
+.post-actions .post-delete-btn {
+  color: #B91C1C;
+  border-color: rgba(185, 28, 28, 0.4);
+}
+.post-actions .post-delete-btn:hover {
+  background: #FEE2E2;
+  border-color: #B91C1C;
+}
 .blog-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -1908,6 +1919,19 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   gap: 16px;
   margin-bottom: clamp(24px, 3vw, 48px);
 }
+.blog-toolbar-editor {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color .15s ease;
+  margin-left: auto;
+}
+.blog-toolbar-editor:hover { color: var(--accent); }
 .blog-toolbar-title {
   font-family: var(--font-mono);
   font-size: 12px;
