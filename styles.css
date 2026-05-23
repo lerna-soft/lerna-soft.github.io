@@ -2716,52 +2716,58 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   /* Home CTA strip — drop the forced full-viewport height (it left a lot
      of empty space below the card), compress paddings, stack the action
      buttons full-width, and densify the 3-point aside card so the whole
-     block reads as one compact, scannable unit on phones. */
+     block + the "Más información" scroll arrow fit inside the fold on
+     real mobile Chrome viewports (~600-670px usable). */
   .home-cta {
     min-height: auto;
-    padding-block: 32px 32px;
+    padding-block: 24px 24px;
   }
   .home-cta .container {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 18px;
     align-items: stretch;
   }
   .home-cta h2 {
-    font-size: 24px;
+    font-size: 23px;
     line-height: 1.15;
-    margin: 0 0 12px;
+    margin: 0 0 8px;
   }
   .home-cta p {
     font-size: 14px;
     line-height: 1.5;
-    margin: 0 0 18px;
+    margin: 0 0 14px;
     max-width: 100%;
   }
   .home-cta-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
   }
   .home-cta-actions .btn {
     width: 100%;
     justify-content: center;
     text-align: center;
-    padding: 13px 18px;
+    padding: 12px 18px;
     font-size: 14px;
   }
   .home-cta-aside {
-    padding: 18px;
-    gap: 14px;
+    padding: 14px;
+    gap: 10px;
     border-radius: 12px;
   }
   .home-cta-aside li {
-    grid-template-columns: 26px 1fr;
+    grid-template-columns: 24px 1fr;
     gap: 10px;
   }
   .home-cta-aside .cta-num { font-size: 11px; padding-top: 2px; }
-  .home-cta-aside strong { font-size: 14px; margin-bottom: 1px; }
-  .home-cta-aside span.muted { font-size: 13px; line-height: 1.45; }
+  .home-cta-aside strong { font-size: 14px; margin-bottom: 1px; line-height: 1.25; }
+  .home-cta-aside span.muted { font-size: 13px; line-height: 1.4; }
+
+  /* Tighter top margin on the inter-section arrow inside .home-cta so the
+     "Más información" link gets pulled closer to the card and lands in the
+     fold. (Other sections keep the default 24px.) */
+  .home-cta .section-scroll-wrap { margin-top: 14px; }
 
   /* Anchor jumps land flush under the sticky topbar. */
   html { scroll-padding-top: 80px; }
