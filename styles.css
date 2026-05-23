@@ -2803,6 +2803,17 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .team-card h3 { font-size: 14px; }
   .team-card p { font-size: 11px; }
 
+  /* ----- works / cases ---------------------------------------------- */
+  .works-cases { grid-template-columns: 1fr; gap: 14px; }
+  .case-row { padding: 14px; gap: 12px; border-radius: 12px; }
+  .case-img { aspect-ratio: 16 / 10; padding: 10px; }
+  .case-content h3 { font-size: 17px; margin-bottom: 6px; }
+  .case-content > p { font-size: 13px; -webkit-line-clamp: 4; margin-bottom: 10px; }
+  .case-metrics { padding-top: 10px; }
+  .case-metrics strong { font-size: 16px; }
+  .case-metrics strong::before { width: 8px; height: 8px; margin-right: 6px; transform: translateY(-3px); }
+  .case-metrics span { font-size: 9px; }
+
   /* ----- industries grid -------------------------------------------- */
   .ind-grid { grid-template-columns: 1fr; gap: 12px; }
   .ind-card { padding: 18px; border-radius: 12px; }
