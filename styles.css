@@ -2803,6 +2803,21 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .team-card h3 { font-size: 14px; }
   .team-card p { font-size: 11px; }
 
+  /* ----- contact form ----------------------------------------------- */
+  .contact-grid { grid-template-columns: 1fr; gap: 20px; }
+  .contact-copy h2 { font-size: 22px; margin-bottom: 10px; line-height: 1.2; }
+  .contact-copy .muted { font-size: 14px; }
+  .contact-points { margin-top: 14px; gap: 6px; }
+  .contact-points li { font-size: 13px; padding-left: 26px; }
+  .contact-points li::before { width: 14px; top: 8px; }
+  .contact-form { padding: 16px; gap: 14px; border-radius: 12px; }
+  .contact-form label { font-size: 11px; gap: 6px; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea { font-size: 16px; padding: 10px 0; }
+  .contact-form textarea { min-height: 80px; }
+  .contact-form .btn { width: 100%; justify-content: center; padding: 13px 18px; font-size: 14px; }
+
   /* ----- works / cases ---------------------------------------------- */
   .works-cases { grid-template-columns: 1fr; gap: 14px; }
   .case-row { padding: 14px; gap: 12px; border-radius: 12px; }
