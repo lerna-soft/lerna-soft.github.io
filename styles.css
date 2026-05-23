@@ -2803,6 +2803,24 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .team-card h3 { font-size: 14px; }
   .team-card p { font-size: 11px; }
 
+  /* ----- blog post reader ------------------------------------------- */
+  .post-shell { padding-block: 24px; }
+  .post-back { margin-bottom: 18px; font-size: 11px; }
+  .post-meta { font-size: 10px; gap: 8px; margin-bottom: 10px; }
+  .post-title { font-size: 26px; line-height: 1.15; margin-bottom: 12px; }
+  .post-excerpt { font-size: 15px; line-height: 1.5; margin-bottom: 18px; }
+  .post-tags { margin-bottom: 20px; gap: 5px; }
+  .post-tag { font-size: 10px; padding: 4px 10px; }
+  .post-cover { aspect-ratio: 16 / 10; margin-bottom: 20px; border-radius: 12px; }
+  .post-body { font-size: 15px; line-height: 1.6; }
+  .post-body h1 { font-size: 22px; }
+  .post-body h2 { font-size: 20px; }
+  .post-body h3 { font-size: 18px; }
+  .post-body h4 { font-size: 16px; }
+  .post-body pre { padding: 14px; font-size: 12px; border-radius: 8px; }
+  .post-body code { font-size: 13px; }
+  .post-body blockquote { padding-left: 14px; }
+
   /* ----- contact form ----------------------------------------------- */
   .contact-grid { grid-template-columns: 1fr; gap: 20px; }
   .contact-copy h2 { font-size: 22px; margin-bottom: 10px; line-height: 1.2; }
