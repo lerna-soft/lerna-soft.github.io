@@ -158,6 +158,10 @@ function computeReadTime(html) {
 
 async function writePost(payload) {
   const filePath = path.join(POSTS_DIR, `${payload.slug}.json`);
+  const prev = await readPostFile(filePath);
+  if (prev && prev.cover && prev.cover !== payload.cover) {
+    await deleteLocalCover(prev.cover);
+  }
   const json = {
     slug: payload.slug,
     title: payload.title,
@@ -176,10 +180,62 @@ async function writePost(payload) {
 
 async function deletePost(slug, index) {
   const filePath = path.join(POSTS_DIR, `${slug}.json`);
+  const prev = await readPostFile(filePath);
+  if (prev && prev.cover) {
+    await deleteLocalCover(prev.cover);
+  }
   await fs.rm(filePath, { force: true });
   const idx = index.posts.findIndex((p) => p.slug === slug);
   if (idx >= 0) index.posts.splice(idx, 1);
   console.log(`[blog-sync] removed ${filePath}`);
+}
+
+async function readPostFile(filePath) {
+  const raw = await fs.readFile(filePath, 'utf8').catch(() => '');
+  if (!raw.trim()) return null;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * If `coverUrl` points to an asset under our own assets/blog/covers/ tree,
+ * resolve it to a path inside the repo and delete it. External URLs are
+ * left alone. Path traversal is rejected.
+ */
+async function deleteLocalCover(coverUrl) {
+  const rel = coverUrlToRepoPath(coverUrl);
+  if (!rel) return;
+  const absolute = path.resolve(PROJECT_ROOT, rel);
+  const safeRoot = path.resolve(PROJECT_ROOT, 'assets', 'blog', 'covers');
+  if (!absolute.startsWith(safeRoot + path.sep)) {
+    console.warn(`[blog-sync] refused to delete cover outside covers/: ${rel}`);
+    return;
+  }
+  await fs.rm(absolute, { force: true }).catch(() => null);
+  console.log(`[blog-sync] removed orphan cover ${rel}`);
+}
+
+function coverUrlToRepoPath(coverUrl) {
+  const raw = String(coverUrl || '').trim();
+  if (!raw) return null;
+  const owner = (OWNER_REPO.split('/')[0] || 'lerna-soft').toLowerCase();
+  const liveOrigins = [
+    `https://${owner}.github.io/`,
+    `http://${owner}.github.io/`
+  ];
+  for (const origin of liveOrigins) {
+    if (raw.startsWith(origin)) {
+      const candidate = raw.slice(origin.length);
+      if (candidate.startsWith('assets/blog/covers/')) return candidate;
+      return null;
+    }
+  }
+  if (raw.startsWith('/assets/blog/covers/')) return raw.slice(1);
+  if (raw.startsWith('assets/blog/covers/')) return raw;
+  return null;
 }
 
 function upsertIndexEntry(index, payload) {
