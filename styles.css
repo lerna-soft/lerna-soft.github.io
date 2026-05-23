@@ -2595,35 +2595,21 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     margin: 20px auto 0;
   }
 
-  /* Subpage hero (.page-hero) — same treatment as home hero. The arrow
-     used to be hidden on mobile because it was position:absolute and
-     would float below the content; now it joins the document flow and
-     sits centered below the actions, matching the pattern we use for
-     .hero-scroll and .section-scroll-wrap.
-
-     Forces the hero to fill the visible viewport on entry (100svh, the
-     small-viewport unit, which is stable against the browser chrome
-     dynamic resize and won't cause jumps). Content centers vertically,
-     scroll arrow is pinned at the bottom of the hero via margin-top:
-     auto inside a flex column. */
+  /* Subpage hero (.page-hero) — content-sized, no forced viewport height.
+     Padding stays just enough for the topbar to clear; scroll arrow sits
+     directly below the action buttons in normal document flow, so the
+     whole hero is exactly as tall as its content and the arrow is always
+     in the fold. */
   .page-hero {
-    min-height: calc(100svh - 80px);
+    min-height: auto;
     padding-block: 24px;
-    display: flex;
-    flex-direction: column;
-  }
-  .page-hero > .container {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 12px auto 4px;
+    margin: 16px auto 0;
     bottom: auto;
     left: auto;
   }
