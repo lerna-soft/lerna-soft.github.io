@@ -112,7 +112,7 @@
   },
   "process": {
     "eyebrow": "Cómo trabajamos",
-    "title": "Un proceso, cinco pasos",
+    "title": "Nuestro proceso",
     "subtitle": "Ligero al inicio para reducir riesgo, denso en la entrega para asegurar calidad, persistente después del launch para que opere.",
     "steps": {
       "s1": {
@@ -306,7 +306,7 @@
   },
   "values": {
     "eyebrow": "Cómo trabajamos",
-    "title": "Seis principios que guían cada producto",
+    "title": "Nuestros principios",
     "subtitle": "La forma de trabajar define el resultado. Aplicamos estos principios desde el sprint cero hasta el día 1000 — y son lo que nos hace distintos.",
     "items": {
       "end2end": {
