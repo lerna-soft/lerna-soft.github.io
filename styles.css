@@ -2606,25 +2606,24 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .page-hero {
     min-height: calc(100dvh - 80px);
     padding-block: 16px 20px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    justify-items: center;
   }
   .page-hero > .container {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 0;
+    width: 100%;
+    grid-row: 1;
   }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 8px auto 0;
+    margin: 0;
     bottom: auto;
     left: auto;
-    flex-shrink: 0;
+    grid-row: 2;
   }
 
   /* Inter-section scroll arrow (reused in trust-distinct, services, about,
