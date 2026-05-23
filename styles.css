@@ -54,6 +54,9 @@
 /* ---------- reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+/* Enforce the boolean [hidden] attribute against any display:flex/grid/etc.
+   declared elsewhere. The UA default is too low-specificity to win. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font);
