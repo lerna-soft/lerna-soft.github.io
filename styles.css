@@ -2803,6 +2803,14 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .team-card h3 { font-size: 14px; }
   .team-card p { font-size: 11px; }
 
+  /* ----- industries grid -------------------------------------------- */
+  .ind-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ind-card { padding: 18px; border-radius: 12px; }
+  .ind-card::before { font-size: 48px; top: 12px; right: 16px; }
+  .ind-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 14px; }
+  .ind-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .ind-card p { font-size: 13px; line-height: 1.5; }
+
   /* ----- services list ---------------------------------------------- */
   /* Description was hidden behind :hover for desktop — on mobile there
      is no hover, so the description never shows. Force it visible and
