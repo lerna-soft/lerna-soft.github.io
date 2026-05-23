@@ -2713,6 +2713,56 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .trust-distinct .td-trust { padding-top: 12px; }
   .td-trust-title { margin-bottom: 14px; font-size: 11px; }
 
+  /* Home CTA strip — drop the forced full-viewport height (it left a lot
+     of empty space below the card), compress paddings, stack the action
+     buttons full-width, and densify the 3-point aside card so the whole
+     block reads as one compact, scannable unit on phones. */
+  .home-cta {
+    min-height: auto;
+    padding-block: 32px 32px;
+  }
+  .home-cta .container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .home-cta h2 {
+    font-size: 24px;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  .home-cta p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    max-width: 100%;
+  }
+  .home-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .home-cta-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+  .home-cta-aside {
+    padding: 18px;
+    gap: 14px;
+    border-radius: 12px;
+  }
+  .home-cta-aside li {
+    grid-template-columns: 26px 1fr;
+    gap: 10px;
+  }
+  .home-cta-aside .cta-num { font-size: 11px; padding-top: 2px; }
+  .home-cta-aside strong { font-size: 14px; margin-bottom: 1px; }
+  .home-cta-aside span.muted { font-size: 13px; line-height: 1.45; }
+
   /* Anchor jumps land flush under the sticky topbar. */
   html { scroll-padding-top: 80px; }
   main > section[id] { scroll-margin-top: 80px; }
