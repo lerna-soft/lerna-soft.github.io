@@ -2595,11 +2595,21 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     margin: 20px auto 0;
   }
 
-  /* Subpage hero (.page-hero) — same treatment, plus the scroll arrow
-     stays hidden on mobile because the page-hero content is short and
-     the arrow would float far below it. */
-  .page-hero { min-height: auto; padding-block: 88px 48px; }
-  .page-hero-scroll { display: none; }
+  /* Subpage hero (.page-hero) — same treatment as home hero. The arrow
+     used to be hidden on mobile because it was position:absolute and
+     would float below the content; now it joins the document flow and
+     sits centered below the actions, matching the pattern we use for
+     .hero-scroll and .section-scroll-wrap. */
+  .page-hero { min-height: auto; padding-block: 24px 24px; }
+  .page-hero-scroll {
+    display: flex;
+    position: static;
+    transform: none;
+    width: fit-content;
+    margin: 20px auto 0;
+    bottom: auto;
+    left: auto;
+  }
 
   /* Inter-section scroll arrow (reused in trust-distinct, services, about,
      work, industries, contact): drop the absolute positioning on mobile so
