@@ -2595,21 +2595,32 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     margin: 20px auto 0;
   }
 
-  /* Subpage hero (.page-hero) — content-sized, no forced viewport height.
-     Padding stays just enough for the topbar to clear; scroll arrow sits
-     directly below the action buttons in normal document flow, so the
-     whole hero is exactly as tall as its content and the arrow is always
-     in the fold. */
+  /* Subpage hero (.page-hero) — fills exactly the currently-visible
+     viewport (100dvh accounts for whatever chrome the browser is showing
+     right now, unlike svh which uses the small/stable value and can
+     overshoot). Flex column with the content centered and the scroll
+     arrow pushed to the bottom edge via margin-top: auto.
+
+     padding-block stays minimal so the dark block isn't taller than the
+     viewport. */
   .page-hero {
-    min-height: auto;
-    padding-block: 24px;
+    min-height: calc(100dvh - 80px);
+    padding-block: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-hero > .container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .page-hero-scroll {
     display: flex;
     position: static;
     transform: none;
     width: fit-content;
-    margin: 16px auto 0;
+    margin: 0 auto;
     bottom: auto;
     left: auto;
   }
