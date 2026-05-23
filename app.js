@@ -114,7 +114,22 @@
         const target = document.getElementById(id);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        // On mobile portrait the sticky topbar (80px) overlaps the top of
+        // the destination section when using scrollIntoView({block:"start"})
+        // — Chrome mobile does not always honor scroll-padding-top here.
+        // Compute the offset manually so the section's top lands flush
+        // against the topbar bottom edge. Desktop keeps the original
+        // behavior (sections have enough top padding that overlap is not
+        // noticeable).
+        if (window.innerWidth <= 700) {
+          const topbar = document.querySelector(".topbar");
+          const offset = topbar ? topbar.offsetHeight : 80;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        } else {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
     });
   }
