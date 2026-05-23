@@ -101,8 +101,35 @@
                   <input type="text" id="tags" name="tags" placeholder="ej: arquitectura, devops, fintech" />
                 </div>
                 <div class="editor-field">
-                  <label for="cover">URL de imagen de portada</label>
-                  <input type="url" id="cover" name="cover" placeholder="https://… (opcional)" />
+                  <label>Portada</label>
+                  <div class="cover-dropzone" id="coverDropzone" tabindex="0" role="button" aria-label="Subir imagen de portada">
+                    <div class="cover-empty" id="coverEmpty">
+                      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="9" cy="9" r="2" />
+                        <path d="m21 15-5-5L5 21" />
+                      </svg>
+                      <p class="cover-empty-title">Arrastrá, pegá (Ctrl+V) o hacé click</p>
+                      <p class="cover-empty-hint">JPG, PNG, WEBP o GIF — máx 5 MB</p>
+                    </div>
+                    <div class="cover-preview" id="coverPreview" hidden>
+                      <img id="coverPreviewImg" alt="Vista previa de la portada" />
+                      <div class="cover-preview-actions">
+                        <button type="button" class="cover-btn" id="coverReplaceBtn">Reemplazar</button>
+                        <button type="button" class="cover-btn cover-btn-danger" id="coverRemoveBtn">Quitar</button>
+                      </div>
+                    </div>
+                    <div class="cover-overlay" id="coverOverlay" hidden>
+                      <span class="cover-spinner" aria-hidden="true"></span>
+                      <span id="coverOverlayText">Subiendo…</span>
+                    </div>
+                    <input type="file" id="coverFile" accept="image/png,image/jpeg,image/webp,image/gif" hidden />
+                  </div>
+                  <p class="cover-status" id="coverStatus" aria-live="polite"></p>
+                  <details class="cover-url-fallback">
+                    <summary>…o pegá una URL externa</summary>
+                    <input type="url" id="cover" name="cover" placeholder="https://…" />
+                  </details>
                 </div>
               </div>
 
@@ -308,6 +335,7 @@
           document.getElementById("excerpt").value = post.excerpt || "";
           document.getElementById("tags").value = (post.tags || []).join(", ");
           document.getElementById("cover").value = post.cover || "";
+          if (post.cover) showCoverPreview(post.cover);
           document.getElementById("lang").value = post.lang || "es";
           document.getElementById("date").value = (post.date || "").slice(0, 10);
           if (tinyEditor) tinyEditor.setContent(post.html || "");
@@ -353,6 +381,123 @@
         titleInput.addEventListener("input", () => {
           if (slugDirty || slugInput.hasAttribute("readonly")) return;
           slugInput.value = lernaBlog.utils.slugify(titleInput.value);
+        });
+
+        /* ---------- COVER dropzone (click / drop / paste / URL fallback) ---------- */
+        const coverInput = document.getElementById("cover");
+        const coverDropzone = document.getElementById("coverDropzone");
+        const coverFileInput = document.getElementById("coverFile");
+        const coverEmpty = document.getElementById("coverEmpty");
+        const coverPreview = document.getElementById("coverPreview");
+        const coverPreviewImg = document.getElementById("coverPreviewImg");
+        const coverOverlay = document.getElementById("coverOverlay");
+        const coverOverlayText = document.getElementById("coverOverlayText");
+        const coverStatus = document.getElementById("coverStatus");
+
+        function showCoverPreview(url) {
+          if (!url) {
+            coverPreview.hidden = true;
+            coverEmpty.hidden = false;
+            coverPreviewImg.removeAttribute("src");
+            return;
+          }
+          coverPreviewImg.src = url;
+          coverPreview.hidden = false;
+          coverEmpty.hidden = true;
+        }
+        function setCoverBusy(busy, msg) {
+          coverOverlay.hidden = !busy;
+          if (msg) coverOverlayText.textContent = msg;
+        }
+        async function handleCoverFile(file) {
+          if (!file) return;
+          setStatus(coverStatus, "", null);
+          setCoverBusy(true, "Subiendo imagen…");
+          try {
+            const url = await lernaBlog.github.uploadCoverImage(file);
+            coverInput.value = url;
+            showCoverPreview(url);
+            setStatus(coverStatus, "Imagen subida ✓", "success");
+          } catch (e) {
+            console.error("[cover]", e);
+            setStatus(coverStatus, "Error: " + e.message, "error");
+          } finally {
+            setCoverBusy(false);
+          }
+        }
+
+        // click anywhere in empty dropzone → file picker
+        coverDropzone.addEventListener("click", (e) => {
+          if (e.target.closest(".cover-preview-actions")) return;
+          if (!coverPreview.hidden) return;
+          coverFileInput.click();
+        });
+        coverDropzone.addEventListener("keydown", (e) => {
+          if ((e.key === "Enter" || e.key === " ") && coverPreview.hidden) {
+            e.preventDefault();
+            coverFileInput.click();
+          }
+        });
+        coverFileInput.addEventListener("change", (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (file) handleCoverFile(file);
+          coverFileInput.value = "";
+        });
+
+        // drag & drop
+        ["dragenter", "dragover"].forEach((evt) => {
+          coverDropzone.addEventListener(evt, (e) => {
+            e.preventDefault(); e.stopPropagation();
+            coverDropzone.classList.add("is-dragover");
+          });
+        });
+        ["dragleave", "drop"].forEach((evt) => {
+          coverDropzone.addEventListener(evt, (e) => {
+            e.preventDefault(); e.stopPropagation();
+            coverDropzone.classList.remove("is-dragover");
+          });
+        });
+        coverDropzone.addEventListener("drop", (e) => {
+          const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+          if (file && file.type && file.type.startsWith("image/")) handleCoverFile(file);
+          else setStatus(coverStatus, "Solo se aceptan imágenes.", "error");
+        });
+
+        // paste (Ctrl+V) on the editor view, ignoring pastes inside TinyMCE iframe area
+        editorView.addEventListener("paste", (e) => {
+          if (e.target && e.target.closest && e.target.closest(".tox-tinymce")) return;
+          if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+          const items = e.clipboardData && e.clipboardData.items;
+          if (!items) return;
+          for (const item of items) {
+            if (item.kind === "file" && item.type.startsWith("image/")) {
+              e.preventDefault();
+              const file = item.getAsFile();
+              if (file) handleCoverFile(file);
+              return;
+            }
+          }
+        });
+
+        document.getElementById("coverReplaceBtn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          coverFileInput.click();
+        });
+        document.getElementById("coverRemoveBtn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          coverInput.value = "";
+          showCoverPreview("");
+          setStatus(coverStatus, "", null);
+        });
+        // URL fallback: when user pastes/types a URL, sync preview
+        coverInput.addEventListener("change", () => {
+          const url = coverInput.value.trim();
+          if (url) {
+            showCoverPreview(url);
+            setStatus(coverStatus, "Usando URL externa.", "success");
+          } else {
+            showCoverPreview("");
+          }
         });
 
         /* ---------- PUBLISH ---------- */

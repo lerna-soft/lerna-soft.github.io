@@ -169,6 +169,74 @@
     return lines.join("\n");
   }
 
+  /* ---------- image upload (cover) ---------- */
+  const COVER_MAX_BYTES = 5 * 1024 * 1024;
+  const COVER_EXT_BY_MIME = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+    "image/gif": "gif"
+  };
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = String(reader.result || "");
+        const comma = result.indexOf(",");
+        resolve(comma >= 0 ? result.slice(comma + 1) : result);
+      };
+      reader.onerror = () => reject(new Error("No se pudo leer el archivo."));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function randomId(bytes) {
+    const arr = new Uint8Array(bytes || 8);
+    crypto.getRandomValues(arr);
+    return [...arr].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function uploadCoverImage(file) {
+    if (!file) throw new Error("Sin archivo.");
+    const mime = String(file.type || "").toLowerCase();
+    const ext = COVER_EXT_BY_MIME[mime];
+    if (!ext) {
+      throw new Error("Formato no soportado. Usá JPG, PNG, WEBP o GIF.");
+    }
+    if (file.size > COVER_MAX_BYTES) {
+      const mb = (file.size / 1024 / 1024).toFixed(1);
+      throw new Error(`La imagen pesa ${mb} MB. Máximo 5 MB.`);
+    }
+    const token = decodeIssueToken(GITHUB_ISSUE_TOKEN_CIPHER, GITHUB_ISSUE_TOKEN_SEED);
+    if (!token) {
+      throw new Error("PAT no configurado para subir imágenes.");
+    }
+    const id = randomId(8);
+    const repoPath = `assets/blog/covers/${id}.${ext}`;
+    const base64 = await fileToBase64(file);
+    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${repoPath}`;
+    const res = await fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        accept: "application/vnd.github+json",
+        authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+        "x-github-api-version": "2022-11-28"
+      },
+      body: JSON.stringify({
+        message: `blog: upload cover ${id}.${ext}`,
+        content: base64,
+        branch: "master"
+      })
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Upload falló (${res.status})${text ? `: ${text}` : ""}`);
+    }
+    return `https://${REPO_OWNER}.github.io/${repoPath}`;
+  }
+
   /* ---------- post fetch ---------- */
   async function fetchPost(slug) {
     if (!slug) return null;
@@ -201,9 +269,9 @@
 
   /* ---------- expose ---------- */
   window.lernaBlog = {
-    config: { REPO_OWNER, REPO_NAME, ISSUE_LABEL },
+    config: { REPO_OWNER, REPO_NAME, ISSUE_LABEL, COVER_MAX_BYTES },
     auth: { login, logout, getSession, isAuthenticated },
-    github: { openIssue, buildArticleIssueBody },
+    github: { openIssue, buildArticleIssueBody, uploadCoverImage },
     posts: { fetchPost },
     utils: { escapeHtml, slugify, sha256Hex, readingTime, sanitizeHtml }
   };
