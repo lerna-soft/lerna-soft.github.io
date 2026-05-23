@@ -2731,12 +2731,14 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     font-size: 23px;
     line-height: 1.15;
     margin: 0 0 8px;
+    text-align: center;
   }
   .home-cta p {
     font-size: 14px;
     line-height: 1.5;
     margin: 0 0 14px;
     max-width: 100%;
+    text-align: center;
   }
   .home-cta-actions {
     display: flex;
