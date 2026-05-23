@@ -157,6 +157,23 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ------------------ distinct accordion (mobile only, but the
+     handler runs everywhere — desktop CSS uses display:contents so the
+     toggled data-open attribute has no visual effect there) ------ */
+  function wireDistinct() {
+    const toggles = document.querySelectorAll(".td-card-toggle");
+    if (!toggles.length) return;
+    toggles.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const card = btn.closest(".td-card");
+        if (!card) return;
+        const isOpen = card.getAttribute("data-open") === "true";
+        card.setAttribute("data-open", isOpen ? "false" : "true");
+        btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      });
+    });
+  }
+
   /* ------------------ boot ------------------ */
   document.addEventListener("DOMContentLoaded", function () {
     wireYear();
@@ -165,6 +182,7 @@
     wireForm();
     wireLangButtons();
     wireReveal();
+    wireDistinct();
     setLang(resolveLang(), false);
   });
 })();
