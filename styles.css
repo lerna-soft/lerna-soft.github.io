@@ -2557,10 +2557,12 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .topbar .brand-mark { font-size: 16px; }
 
   /* Home hero: stops forcing 100dvh, tightens copy spacing, scroll arrow
-     joins the document flow so it stays visible without scrolling. */
+     joins the document flow so it stays visible without scrolling.
+     Top padding is just enough to clear the 80px sticky topbar + a small
+     visual gap; anything larger pushes the scroll arrow below the fold. */
   .hero {
     min-height: auto;
-    padding-block: 88px 56px;
+    padding-block: 24px 40px;
   }
   .hero .hero-copy .eyebrow    { margin-bottom: 10px; }
   .hero .hero-copy .display    { margin-bottom: 12px; }
