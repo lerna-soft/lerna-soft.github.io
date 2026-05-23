@@ -370,7 +370,9 @@
 
         document.getElementById("logoutBtn").addEventListener("click", () => {
           lernaBlog.auth.logout();
-          window.location.reload();
+          const msg = (window.__i18nDict && window.__i18nDict.blog && window.__i18nDict.blog.sessionClosed) || "Sesión cerrada";
+          lernaBlog.ui.showToast(msg);
+          setTimeout(() => window.location.reload(), 600);
         });
 
         /* ---------- Slug auto from title ---------- */

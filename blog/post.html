@@ -282,6 +282,7 @@
             if (logoutBtn) logoutBtn.addEventListener("click", () => {
               lernaBlog.auth.logout();
               renderPost(post);
+              lernaBlog.ui.showToast(tr("blog.sessionClosed", "Sesión cerrada"));
             });
           }
         }

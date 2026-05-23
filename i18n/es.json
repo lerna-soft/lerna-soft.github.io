@@ -351,6 +351,7 @@
     "editorAccess": "Acceso editor →",
     "editLabel": "Editar",
     "deleteLabel": "Borrar",
+    "sessionClosed": "Sesión cerrada",
     "empty": "Aún no hay artículos publicados. Volvé pronto.",
     "readMore": "Leer artículo",
     "minRead": "min de lectura",
