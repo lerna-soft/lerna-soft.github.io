@@ -63,20 +63,19 @@
       <!-- ============ BLOG LIST ============ -->
       <section class="blog-list" id="blog-list">
         <div class="container reveal">
-          <div class="blog-actions" id="blogActions" hidden>
-            <span class="blog-actions-user">
+          <div class="blog-actions" id="blogActions">
+            <span class="blog-actions-user" id="blogActionsUserInfo" hidden>
               <span class="blog-actions-dot" aria-hidden="true"></span>
               Sesión activa: <strong id="blogActionsEmail"></strong>
             </span>
             <div class="blog-actions-buttons">
               <a class="btn btn-primary blog-actions-new" href="blog/nuevo.html" data-i18n="blog.newArticle">Nuevo artículo</a>
-              <button type="button" class="btn btn-ghost blog-actions-logout" id="blogLogoutBtn" data-i18n="blog.logout">Cerrar sesión</button>
+              <button type="button" class="btn btn-ghost blog-actions-logout" id="blogLogoutBtn" data-i18n="blog.logout" hidden>Cerrar sesión</button>
             </div>
           </div>
           <div class="blog-toolbar">
             <p class="blog-toolbar-title" data-i18n="blog.filterLabel">Filtrar por tema</p>
             <div class="blog-tags-filter" id="blogTagsFilter"></div>
-            <a class="blog-toolbar-editor" id="blogEditorLink" href="blog/nuevo.html" data-i18n="blog.editorAccess" hidden>Acceso editor →</a>
           </div>
           <div class="blog-grid" id="blogGrid"></div>
           <div class="blog-empty" id="blogEmpty" hidden data-i18n="blog.empty">
@@ -134,18 +133,18 @@
 
         /* ---------- session-aware action bar ---------- */
         function syncBlogActions() {
-          const actions = document.getElementById("blogActions");
+          const userInfo = document.getElementById("blogActionsUserInfo");
           const emailLabel = document.getElementById("blogActionsEmail");
-          const editorLink = document.getElementById("blogEditorLink");
+          const logoutBtn = document.getElementById("blogLogoutBtn");
           const session = window.lernaBlog && window.lernaBlog.auth.getSession();
           if (session && session.user) {
             emailLabel.textContent = session.user.email;
-            actions.hidden = false;
-            editorLink.hidden = true;
+            userInfo.hidden = false;
+            logoutBtn.hidden = false;
           } else {
             emailLabel.textContent = "";
-            actions.hidden = true;
-            editorLink.hidden = false;
+            userInfo.hidden = true;
+            logoutBtn.hidden = true;
           }
         }
         document.getElementById("blogLogoutBtn").addEventListener("click", () => {

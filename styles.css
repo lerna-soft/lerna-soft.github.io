@@ -1898,6 +1898,7 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-left: auto;
 }
 .blog-actions .btn {
   padding: 8px 16px;
