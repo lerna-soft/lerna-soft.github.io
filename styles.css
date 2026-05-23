@@ -1503,21 +1503,30 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
   .hero .hero-copy .lead, .page-hero-lead { margin-bottom: 14px; }
 }
 
-/* ----- ≤700px wide (mobile portrait): hero stops forcing 100dvh and the
-   scroll arrow joins the document flow. The bug it fixes: on a 360×740
-   phone the hero was ~660px tall but the content only filled ~500, so the
-   absolute-positioned arrow floated ~160px below the stats and looked
-   detached. */
+/* ----- ≤700px wide (mobile portrait): hero stops forcing 100dvh, tightens
+   internal spacing, and pins the scroll arrow to the document flow so the
+   whole thing fits in one ~740px viewport without scrolling. */
 @media (max-width: 700px) {
   .hero {
     min-height: auto;
-    padding-block: 96px 56px;
+    padding-block: 88px 40px;   /* 88 = 80 topbar + 8 breathing; 40 = compact bottom */
   }
+  /* Tighter copy spacing — overrides the ≤900px-tall rule for portrait phones */
+  .hero .hero-copy .eyebrow    { margin-bottom: 10px; }
+  .hero .hero-copy .display    { margin-bottom: 12px; }
+  .hero .hero-copy .lead       { margin-bottom: 16px; }
+  .hero .hero-copy .hero-cta   { margin-bottom: 20px; }
   .hero .hero-scroll {
     position: static;
     transform: none;
-    margin: 32px auto 0;
+    margin: 20px auto 0;
   }
+  /* Scroll-target padding shrinks too so internal anchors land snug under the
+     sticky topbar on mobile (topbar is still 80px). */
+  html { scroll-padding-top: 80px; }
+  /* Section anchor offset: every direct section under <main> gets the same
+     breathing so the section title is not flush against the sticky topbar. */
+  main > section[id] { scroll-margin-top: 80px; }
 }
 
 /* =========================================================
