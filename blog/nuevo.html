@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Lerna Soft · Editor de blog</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://cdn.tiny.cloud/1/ro7zz3s8qd5agecj1yw4flgil4i2wwk0qu7ka7oilyiduxcv/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+  </head>
+  <body data-page="blog" class="subpage">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="../index.html" aria-label="Lerna Soft">
+          <img class="brand-icon" src="../assets/logo-owl.svg" alt="Lerna Soft owl logo · designed by Vecteezy.com"><span class="brand-mark">LERNASOFT</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="../index.html"      data-page-link="home"       data-i18n="nav.home">Inicio</a>
+          <a href="../services.html"   data-page-link="services"   data-i18n="nav.services">Servicios</a>
+          <a href="../industries.html" data-page-link="industries" data-i18n="nav.industries">Industrias</a>
+          <a href="../work.html"       data-page-link="work"       data-i18n="nav.portfolio">Trabajo</a>
+          <a href="../about.html"      data-page-link="about"      data-i18n="nav.about">Nosotros</a>
+          <a href="../blog.html"       data-page-link="blog"       data-i18n="nav.blog">Blog</a>
+          <a href="../contact.html"    data-page-link="contact"    data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang" role="group" aria-label="Idioma">
+            <button type="button" class="lang-btn" data-lang="es">ES</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a class="btn btn-primary topbar-cta" href="../contact.html" data-i18n="nav.startProject">Iniciar proyecto</a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="editor-shell">
+        <div class="container">
+          <!-- LOGIN VIEW -->
+          <div id="loginView" hidden>
+            <div class="editor-head">
+              <h1>Acceso de editor</h1>
+              <p>Solo usuarios autorizados pueden publicar artículos. Ingresá con tu cuenta.</p>
+            </div>
+            <form class="editor-form" id="loginForm" autocomplete="on">
+              <div class="editor-field">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="email" required autocomplete="username" />
+              </div>
+              <div class="editor-field">
+                <label for="loginPassword">Contraseña</label>
+                <input type="password" id="loginPassword" name="password" required autocomplete="current-password" />
+              </div>
+              <div class="editor-actions">
+                <p class="editor-status" id="loginStatus"></p>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Ingresar</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- EDITOR VIEW -->
+          <div id="editorView" hidden>
+            <div class="editor-head">
+              <h1 id="editorTitle">Nuevo artículo</h1>
+              <p>Sesión activa como <strong id="editorUserEmail"></strong>. <button type="button" id="logoutBtn" class="btn btn-ghost" style="margin-left:8px;padding:6px 14px;font-size:13px;">Cerrar sesión</button></p>
+            </div>
+
+            <div class="token-prompt" id="tokenWarning" hidden>
+              <strong>⚠ PAT no configurado.</strong> Corré <code>node tools/encode-pat.mjs &lt;tu-PAT&gt;</code> local y pegá el cipher en <code>blog/blog.js</code> en <code>GITHUB_ISSUE_TOKEN_CIPHER</code>. Sin esto, "Publicar" no puede crear el issue.
+            </div>
+
+            <form class="editor-form" id="articleForm">
+              <div class="editor-row">
+                <div class="editor-field">
+                  <label for="title">Título</label>
+                  <input type="text" id="title" name="title" required maxlength="160" />
+                </div>
+                <div class="editor-field">
+                  <label for="slug">Slug</label>
+                  <input type="text" id="slug" name="slug" required maxlength="80" pattern="[a-z0-9-]+" />
+                  <p class="hint">Solo minúsculas, números y guiones. Se autogenera del título.</p>
+                </div>
+              </div>
+
+              <div class="editor-field">
+                <label for="excerpt">Resumen (excerpt)</label>
+                <textarea id="excerpt" name="excerpt" rows="2" maxlength="260" placeholder="120–200 caracteres que aparecen en el listado."></textarea>
+              </div>
+
+              <div class="editor-row">
+                <div class="editor-field">
+                  <label for="tags">Tags (separados por coma)</label>
+                  <input type="text" id="tags" name="tags" placeholder="ej: arquitectura, devops, fintech" />
+                </div>
+                <div class="editor-field">
+                  <label for="cover">URL de imagen de portada</label>
+                  <input type="url" id="cover" name="cover" placeholder="https://… (opcional)" />
+                </div>
+              </div>
+
+              <div class="editor-row">
+                <div class="editor-field">
+                  <label for="lang">Idioma</label>
+                  <select id="lang" name="lang">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                  </select>
+                </div>
+                <div class="editor-field">
+                  <label for="date">Fecha de publicación</label>
+                  <input type="date" id="date" name="date" />
+                </div>
+              </div>
+
+              <div class="editor-field">
+                <label for="body">Contenido</label>
+                <textarea id="body" name="body"></textarea>
+              </div>
+
+              <div class="editor-actions">
+                <p class="editor-status" id="publishStatus"></p>
+                <a class="btn btn-ghost" href="../blog.html">Cancelar</a>
+                <button type="submit" class="btn btn-primary" id="publishBtn">Publicar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer is-dark" id="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="../index.html">
+              <img class="brand-icon" src="../assets/logo-owl.svg" alt="Lerna Soft owl logo · designed by Vecteezy.com"><span class="brand-mark">LERNASOFT</span>
+            </a>
+            <p class="muted" data-i18n="footer.tagline">
+              Productos digitales para empresas que necesitan construir y operar. Parte de Lerna Soft.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col1.title">Servicios</h4>
+            <a href="../services.html#web"    data-i18n="services.web.title">Plataformas web</a>
+            <a href="../services.html#mobile" data-i18n="services.mobile.title">Apps móviles</a>
+            <a href="../services.html#cloud"  data-i18n="services.cloud.title">Cloud & DevOps</a>
+            <a href="../services.html#staff"  data-i18n="services.staff.title">Staff augmentation</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col2.title">Empresa</h4>
+            <a href="../about.html"      data-i18n="nav.about">Nosotros</a>
+            <a href="../industries.html" data-i18n="nav.industries">Industrias</a>
+            <a href="../work.html"       data-i18n="nav.portfolio">Trabajo</a>
+            <a href="../blog.html"       data-i18n="nav.blog">Blog</a>
+            <a href="../contact.html"    data-i18n="nav.contact">Contacto</a>
+          </div>
+          <div class="footer-col">
+            <h4 data-i18n="footer.col3.title">Group</h4>
+            <a href="https://github.com/lerna-soft" rel="noopener" target="_blank">github.com/lerna-soft</a>
+            <a href="mailto:hello@lerna-soft.github.io">hello@lerna-soft.github.io</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="year"></span> LERNA SOFT</span>
+          <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mini app bootstrap for /blog/ subpath
+      (function () {
+        "use strict";
+        const SUPPORTED = ["es", "en"];
+        const STORAGE_KEY = "lerna.lang";
+
+        function resolveLang() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored && SUPPORTED.includes(stored)) return stored;
+          const nav = (navigator.language || "es").slice(0, 2).toLowerCase();
+          return SUPPORTED.includes(nav) ? nav : "es";
+        }
+        function deepGet(obj, path) {
+          return path.split(".").reduce((acc, k) => (acc != null ? acc[k] : undefined), obj);
+        }
+        async function loadDict(lang) {
+          const res = await fetch(`../i18n/${lang}.json`, { cache: "no-cache" });
+          if (!res.ok) throw new Error("i18n load failed");
+          return res.json();
+        }
+        function applyDict(dict) {
+          document.querySelectorAll("[data-i18n]").forEach((el) => {
+            const v = deepGet(dict, el.getAttribute("data-i18n"));
+            if (typeof v === "string") el.textContent = v;
+          });
+          document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+            const v = deepGet(dict, el.getAttribute("data-i18n-html"));
+            if (typeof v === "string") el.innerHTML = v;
+          });
+        }
+        async function setLang(lang, persist) {
+          if (!SUPPORTED.includes(lang)) lang = "es";
+          try {
+            const dict = await loadDict(lang);
+            window.__i18nDict = dict;
+            applyDict(dict);
+            document.documentElement.setAttribute("lang", lang);
+            if (persist) localStorage.setItem(STORAGE_KEY, lang);
+            document.querySelectorAll(".lang-btn").forEach((b) => {
+              const active = b.getAttribute("data-lang") === lang;
+              b.classList.toggle("is-active", active);
+              b.setAttribute("aria-pressed", String(active));
+            });
+          } catch (e) { console.error(e); }
+        }
+        document.querySelectorAll(".lang-btn").forEach((b) => {
+          b.addEventListener("click", () => setLang(b.getAttribute("data-lang"), true));
+        });
+        const t = document.querySelector(".menu-toggle");
+        const tb = document.querySelector(".topbar");
+        if (t && tb) {
+          t.addEventListener("click", () => {
+            const open = tb.classList.toggle("is-open");
+            t.setAttribute("aria-expanded", String(open));
+          });
+        }
+        const yr = document.getElementById("year");
+        if (yr) yr.textContent = String(new Date().getFullYear());
+        setLang(resolveLang(), false);
+      })();
+    </script>
+    <script src="blog.js"></script>
+    <script>
+      (function () {
+        "use strict";
+
+        const loginView = document.getElementById("loginView");
+        const editorView = document.getElementById("editorView");
+        const userEmailLabel = document.getElementById("editorUserEmail");
+        const tokenWarning = document.getElementById("tokenWarning");
+        let tinyEditor = null;
+        let editMode = null; // { slug } | null
+
+        function showLogin() {
+          loginView.hidden = false;
+          editorView.hidden = true;
+        }
+        function showEditor(session) {
+          loginView.hidden = true;
+          editorView.hidden = false;
+          userEmailLabel.textContent = session.user.email;
+          mountEditor();
+        }
+
+        function checkTokenConfigured() {
+          // We can't actually decrypt here without exposing the seed-cipher pair to the user, but
+          // we can detect the empty string sentinel via a quick probe.
+          // Approach: try a no-op decode by attempting a fake decrypt; if blog.js exposes empty token, the openIssue will throw.
+          // Simpler heuristic: parse blog.js text? overkill. Just look for the constant via fetch.
+          fetch("blog.js", { cache: "no-cache" })
+            .then((r) => r.text())
+            .then((src) => {
+              const m = src.match(/GITHUB_ISSUE_TOKEN_CIPHER\s*=\s*"([^"]*)"/);
+              const cipher = m ? m[1] : "";
+              tokenWarning.hidden = !!cipher;
+            })
+            .catch(() => { tokenWarning.hidden = true; });
+        }
+
+        function mountEditor() {
+          if (tinyEditor) return; // already mounted
+          tinymce.init({
+            selector: "#body",
+            height: 540,
+            menubar: false,
+            plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
+            toolbar: "undo redo | blocks fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | codesample blockquote | removeformat",
+            content_css: "default",
+            promotion: false,
+            branding: false,
+            setup: (editor) => {
+              tinyEditor = editor;
+              editor.on("init", () => {
+                if (editMode && editMode.slug) {
+                  loadExistingPost(editMode.slug);
+                }
+              });
+            }
+          });
+          checkTokenConfigured();
+        }
+
+        async function loadExistingPost(slug) {
+          const post = await lernaBlog.posts.fetchPost(slug);
+          if (!post) return;
+          document.getElementById("editorTitle").textContent = `Editando "${post.title}"`;
+          document.getElementById("title").value = post.title || "";
+          document.getElementById("slug").value = post.slug || "";
+          document.getElementById("slug").setAttribute("readonly", "readonly");
+          document.getElementById("excerpt").value = post.excerpt || "";
+          document.getElementById("tags").value = (post.tags || []).join(", ");
+          document.getElementById("cover").value = post.cover || "";
+          document.getElementById("lang").value = post.lang || "es";
+          document.getElementById("date").value = (post.date || "").slice(0, 10);
+          if (tinyEditor) tinyEditor.setContent(post.html || "");
+          document.getElementById("publishBtn").textContent = "Guardar cambios";
+        }
+
+        function setStatus(el, msg, type) {
+          el.textContent = msg || "";
+          el.classList.remove("is-success", "is-error");
+          if (type === "success") el.classList.add("is-success");
+          else if (type === "error") el.classList.add("is-error");
+        }
+
+        /* ---------- LOGIN wiring ---------- */
+        document.getElementById("loginForm").addEventListener("submit", async (ev) => {
+          ev.preventDefault();
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+          const status = document.getElementById("loginStatus");
+          const btn = document.getElementById("loginBtn");
+          btn.disabled = true;
+          setStatus(status, "Validando…");
+          const result = await lernaBlog.auth.login(email, password);
+          btn.disabled = false;
+          if (!result.ok) {
+            setStatus(status, result.error || "Error de login", "error");
+            return;
+          }
+          setStatus(status, "OK", "success");
+          showEditor(lernaBlog.auth.getSession());
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          lernaBlog.auth.logout();
+          window.location.reload();
+        });
+
+        /* ---------- Slug auto from title ---------- */
+        const titleInput = document.getElementById("title");
+        const slugInput = document.getElementById("slug");
+        let slugDirty = false;
+        slugInput.addEventListener("input", () => { slugDirty = true; });
+        titleInput.addEventListener("input", () => {
+          if (slugDirty || slugInput.hasAttribute("readonly")) return;
+          slugInput.value = lernaBlog.utils.slugify(titleInput.value);
+        });
+
+        /* ---------- PUBLISH ---------- */
+        document.getElementById("articleForm").addEventListener("submit", async (ev) => {
+          ev.preventDefault();
+          const status = document.getElementById("publishStatus");
+          const btn = document.getElementById("publishBtn");
+          const session = lernaBlog.auth.getSession();
+          if (!session) { setStatus(status, "Sesión expirada — recargá", "error"); return; }
+
+          const html = tinyEditor ? tinyEditor.getContent() : "";
+          if (!html.replace(/<[^>]+>/g, "").trim()) {
+            setStatus(status, "El contenido no puede estar vacío.", "error");
+            return;
+          }
+
+          const slug = lernaBlog.utils.slugify(slugInput.value || titleInput.value);
+          if (!slug) { setStatus(status, "Slug inválido.", "error"); return; }
+
+          const dateValue = document.getElementById("date").value;
+          const date = dateValue ? new Date(dateValue + "T12:00:00Z").toISOString() : new Date().toISOString();
+
+          const tagsRaw = document.getElementById("tags").value || "";
+          const tags = tagsRaw.split(",").map((t) => t.trim()).filter(Boolean);
+
+          const payload = {
+            action: "publish",
+            slug,
+            title: titleInput.value.trim(),
+            excerpt: document.getElementById("excerpt").value.trim(),
+            tags,
+            cover: document.getElementById("cover").value.trim(),
+            lang: document.getElementById("lang").value || "es",
+            date,
+            author: session.user.email,
+            readTime: lernaBlog.utils.readingTime(html),
+            html
+          };
+
+          btn.disabled = true;
+          setStatus(status, editMode ? "Enviando actualización…" : "Publicando…");
+          try {
+            const issue = await lernaBlog.github.openIssue({
+              title: `[blog] ${editMode ? "update" : "publish"} ${slug}`,
+              body: lernaBlog.github.buildArticleIssueBody(payload),
+              labels: [lernaBlog.config.ISSUE_LABEL]
+            });
+            setStatus(
+              status,
+              `Issue #${issue.number} creado. El artículo aparecerá en ~1 minuto cuando el workflow termine.`,
+              "success"
+            );
+            setTimeout(() => { window.location.href = `post.html?slug=${encodeURIComponent(slug)}`; }, 2000);
+          } catch (e) {
+            console.error(e);
+            setStatus(status, "Error: " + e.message, "error");
+            btn.disabled = false;
+          }
+        });
+
+        /* ---------- BOOT ---------- */
+        function boot() {
+          // detect edit mode
+          const params = new URLSearchParams(window.location.search);
+          const slug = params.get("slug");
+          if (slug) editMode = { slug };
+
+          const session = lernaBlog.auth.getSession();
+          if (session) showEditor(session);
+          else showLogin();
+        }
+
+        boot();
+      })();
+    </script>
+  </body>
+</html>
