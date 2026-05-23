@@ -112,7 +112,7 @@
   },
   "process": {
     "eyebrow": "How we work",
-    "title": "One process, five steps",
+    "title": "Our process",
     "subtitle": "Light at the start to reduce risk, dense in delivery to ensure quality, persistent after launch so it operates.",
     "steps": {
       "s1": {
@@ -306,7 +306,7 @@
   },
   "values": {
     "eyebrow": "How we work",
-    "title": "Six principles that shape every product",
+    "title": "Our principles",
     "subtitle": "How you work defines the outcome. We apply these principles from sprint zero through day 1000 — they're what sets us apart.",
     "items": {
       "end2end": {
