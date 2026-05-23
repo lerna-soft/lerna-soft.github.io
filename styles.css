@@ -3093,19 +3093,19 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   }
 
   /* ----- about / testimonials --------------------------------------- */
-  .testimonials { padding-block: 32px; }
-  .testi-grid { grid-template-columns: 1fr; gap: 14px; }
-  .testi-card { padding: 18px; border-radius: 12px; }
-  .testi-card::before { font-size: 80px; top: 4px; left: 18px; }
+  .testimonials { padding-block: 24px; }
+  .testi-grid { grid-template-columns: 1fr; gap: 10px; }
+  .testi-card { padding: 14px; border-radius: 12px; }
+  .testi-card::before { font-size: 56px; top: 0; left: 14px; }
   .testi-card blockquote {
-    font-size: 15px;
-    line-height: 1.5;
-    padding-top: 36px;
-    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.45;
+    padding-top: 26px;
+    margin-bottom: 10px;
   }
-  .testi-card figcaption { padding-top: 14px; gap: 2px; }
-  .testi-card figcaption strong { font-size: 14px; }
-  .testi-card figcaption .muted { font-size: 11px; }
+  .testi-card figcaption { padding-top: 10px; gap: 1px; }
+  .testi-card figcaption strong { font-size: 13px; }
+  .testi-card figcaption .muted { font-size: 10px; }
 
   /* Footer — drop forced full-viewport height, shrink the oversized brand
      mark/icon (designed for desktop hero impact, way too big on a phone),
