@@ -1503,32 +1503,6 @@ html { scroll-padding-top: 81px; }   /* 80 topbar + 1 border-bottom */
   .hero .hero-copy .lead, .page-hero-lead { margin-bottom: 14px; }
 }
 
-/* ----- ≤700px wide (mobile portrait): hero stops forcing 100dvh, tightens
-   internal spacing, and pins the scroll arrow to the document flow so the
-   whole thing fits in one ~740px viewport without scrolling. */
-@media (max-width: 700px) {
-  .hero {
-    min-height: auto;
-    padding-block: 88px 40px;   /* 88 = 80 topbar + 8 breathing; 40 = compact bottom */
-  }
-  /* Tighter copy spacing — overrides the ≤900px-tall rule for portrait phones */
-  .hero .hero-copy .eyebrow    { margin-bottom: 10px; }
-  .hero .hero-copy .display    { margin-bottom: 12px; }
-  .hero .hero-copy .lead       { margin-bottom: 16px; }
-  .hero .hero-copy .hero-cta   { margin-bottom: 20px; }
-  .hero .hero-scroll {
-    position: static;
-    transform: none;
-    margin: 20px auto 0;
-  }
-  /* Scroll-target padding shrinks too so internal anchors land snug under the
-     sticky topbar on mobile (topbar is still 80px). */
-  html { scroll-padding-top: 80px; }
-  /* Section anchor offset: every direct section under <main> gets the same
-     breathing so the section title is not flush against the sticky topbar. */
-  main > section[id] { scroll-margin-top: 80px; }
-}
-
 /* =========================================================
    V6 MULTIPAGE additions — subpage hero, nav active states,
    home CTA block, page-specific tweaks.
@@ -2564,6 +2538,49 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   /* cover preview action buttons: tighter on small screens */
   .cover-preview-actions { top: 8px; right: 8px; gap: 4px; }
   .cover-btn { padding: 5px 10px; font-size: 10px; }
+}
+
+/* =========================================================
+   MOBILE PORTRAIT OVERRIDES (≤700px wide)
+   Placed at the very end so they outweight any later non-MQ rules
+   from the V6 block (e.g. .page-hero-scroll display:inline-flex,
+   .brand layout). Each rule scoped to one component, never global. */
+@media (max-width: 700px) {
+  /* Topbar brand: lay out icon + wordmark in a row, smaller icon, so the
+     mark does not visually drop out the bottom of the 80px topbar. */
+  .topbar .brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .topbar .brand-icon { height: 36px; }
+  .topbar .brand-mark { font-size: 16px; }
+
+  /* Home hero: stops forcing 100dvh, tightens copy spacing, scroll arrow
+     joins the document flow so it stays visible without scrolling. */
+  .hero {
+    min-height: auto;
+    padding-block: 88px 56px;
+  }
+  .hero .hero-copy .eyebrow    { margin-bottom: 10px; }
+  .hero .hero-copy .display    { margin-bottom: 12px; }
+  .hero .hero-copy .lead       { margin-bottom: 16px; }
+  .hero .hero-copy .hero-cta   { margin-bottom: 20px; }
+  .hero .hero-scroll {
+    position: static;
+    transform: none;
+    margin: 20px auto 0;
+  }
+
+  /* Subpage hero (.page-hero) — same treatment, plus the scroll arrow
+     stays hidden on mobile because the page-hero content is short and
+     the arrow would float far below it. */
+  .page-hero { min-height: auto; padding-block: 88px 48px; }
+  .page-hero-scroll { display: none; }
+
+  /* Anchor jumps land flush under the sticky topbar. */
+  html { scroll-padding-top: 80px; }
+  main > section[id] { scroll-margin-top: 80px; }
 }
 
 /* ---------- reduced motion ---------- */
