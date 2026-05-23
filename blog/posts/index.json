@@ -1,3 +1,17 @@
 {
-  "posts": []
+  "posts": [
+    {
+      "slug": "prueba-ale",
+      "title": "Prueba ale",
+      "excerpt": "Otra prueba",
+      "tags": [
+        "Prueba dev"
+      ],
+      "cover": "https://lerna-soft.github.io/assets/blog/covers/dc3200f02b318894.jpg",
+      "lang": "es",
+      "date": "2026-05-23T20:50:59.566Z",
+      "author": "henry8812@gmail.com",
+      "readTime": 1
+    }
+  ]
 }
