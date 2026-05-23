@@ -2803,6 +2803,35 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .team-card h3 { font-size: 14px; }
   .team-card p { font-size: 11px; }
 
+  /* ----- services list ---------------------------------------------- */
+  /* Description was hidden behind :hover for desktop — on mobile there
+     is no hover, so the description never shows. Force it visible and
+     tidy the card spacing for one-column reading. */
+  .services-list { grid-template-columns: 1fr; gap: 10px; }
+  .services-list li {
+    padding: 16px 14px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+  .services-list .svc-desc {
+    max-height: none;
+    opacity: 1;
+    overflow: visible;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .services-list li:hover { transform: none; padding-left: 14px; background: var(--surface); }
+  .services-list li:hover .svc-desc { max-height: none; }
+
+  /* ----- process steps ---------------------------------------------- */
+  .process { padding-block: 32px; }
+  .process-steps { grid-template-columns: 1fr; gap: 18px; }
+  .process-steps li { padding: 16px 0 0; }
+  .ps-num { font-size: 42px; margin-bottom: 14px; }
+  .ps-num::after { bottom: -10px; width: 10px; height: 10px; border-width: 2px; }
+  .process-steps h3 { margin: 8px 0 6px; font-size: 16px; }
+  .process-steps p { font-size: 13px; line-height: 1.45; }
+
   /* ----- about / testimonials --------------------------------------- */
   .testimonials { padding-block: 32px; }
   .testi-grid { grid-template-columns: 1fr; gap: 14px; }
