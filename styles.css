@@ -2855,33 +2855,86 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .ind-card h3 { font-size: 16px; margin-bottom: 8px; }
   .ind-card p { font-size: 13px; line-height: 1.5; }
 
-  /* ----- services list ---------------------------------------------- */
-  /* Description was hidden behind :hover for desktop — on mobile there
-     is no hover, so the description never shows. Force it visible and
-     tidy the card spacing for one-column reading. */
-  .services-list { grid-template-columns: 1fr; gap: 10px; }
+  /* ----- services list — accordion (same UX pattern as home distinct /
+     about values). Each <li> becomes a collapsible row: number · icon ·
+     title · +/× indicator, with the description in a panel that
+     max-height-collapses. Tap target stays ~46px. */
+  .services-list { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
   .services-list li {
-    padding: 16px 14px;
-    gap: 6px;
-    border-radius: 12px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    display: block;
+    box-shadow: none;
   }
-  .services-list .svc-desc {
+  .services-list li:hover {
+    transform: none;
+    padding-left: 0;
+    background: transparent;
+    border-color: var(--line);
+  }
+  .services-list .td-card-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 4px;
+    cursor: pointer;
+  }
+  .services-list .td-card-toggle .svc-num {
+    flex: 0 0 auto;
+    min-width: 22px;
+    font-size: 12px;
+    color: var(--accent);
+  }
+  .services-list .td-card-toggle .svc-icon {
+    display: none;            /* drop the colored square icon on mobile — title carries enough */
+  }
+  .services-list li:hover .svc-icon {
+    background: transparent;
+    color: inherit;
+  }
+  .services-list .td-card-toggle .svc-title {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .services-list .svc-arrow { display: none; }
+  .services-list .td-card-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .services-list li[data-open="true"] .td-card-panel {
+    max-height: 280px;
+  }
+  .services-list li[data-open="true"] .td-card-icon {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+  }
+  .services-list .td-card-panel .svc-desc {
     max-height: none;
     opacity: 1;
     overflow: visible;
+    margin: 0;
+    padding: 0 4px 14px 32px;
     font-size: 13px;
-    line-height: 1.45;
+    line-height: 1.5;
   }
-  .services-list li:hover { transform: none; padding-left: 14px; background: var(--surface); }
-  .services-list li:hover .svc-desc { max-height: none; }
 
-  /* ----- process steps ---------------------------------------------- */
-  .process { padding-block: 32px; }
-  .process-steps { grid-template-columns: 1fr; gap: 18px; }
-  .process-steps li { padding: 16px 0 0; }
-  .ps-num { font-size: 42px; margin-bottom: 14px; }
-  .ps-num::after { bottom: -10px; width: 10px; height: 10px; border-width: 2px; }
-  .process-steps h3 { margin: 8px 0 6px; font-size: 16px; }
+  /* ----- process steps — already 1-column on mobile, just tighten more
+     so the 5 steps + section-scroll arrow fit comfortably in one fold. */
+  .process { padding-block: 24px; }
+  .process-steps { grid-template-columns: 1fr; gap: 14px; }
+  .process-steps li { padding: 12px 0 0; }
+  .ps-num { font-size: 36px; margin-bottom: 10px; }
+  .ps-num::after { bottom: -8px; width: 8px; height: 8px; border-width: 2px; }
+  .process-steps h3 { margin: 6px 0 4px; font-size: 15px; }
   .process-steps p { font-size: 13px; line-height: 1.45; }
 
   /* ----- about / testimonials --------------------------------------- */

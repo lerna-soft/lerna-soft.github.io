@@ -75,67 +75,97 @@
           </div>
           <ul class="services-list reveal">
             <li id="web">
-              <span class="svc-num">01</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.web.title">Plataformas web</h3>
-              <p class="svc-desc" data-i18n="services.web.desc">Aplicaciones SaaS, paneles internos y sitios de alto tráfico construidos con stacks modernos.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-web">
+                <span class="svc-num">01</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.web.title">Plataformas web</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-web">
+                <p class="svc-desc" data-i18n="services.web.desc">Aplicaciones SaaS, paneles internos y sitios de alto tráfico construidos con stacks modernos.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </li>
             <li id="mobile">
-              <span class="svc-num">02</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.mobile.title">Apps móviles</h3>
-              <p class="svc-desc" data-i18n="services.mobile.desc">Apps nativas e híbridas conectadas a back-ends propios o de terceros, con foco en performance.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-mobile">
+                <span class="svc-num">02</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.mobile.title">Apps móviles</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-mobile">
+                <p class="svc-desc" data-i18n="services.mobile.desc">Apps nativas e híbridas conectadas a back-ends propios o de terceros, con foco en performance.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </li>
             <li id="cloud">
-              <span class="svc-num">03</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 19 18H7z"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.cloud.title">Cloud & DevOps</h3>
-              <p class="svc-desc" data-i18n="services.cloud.desc">Infraestructura, despliegue continuo, observabilidad y manejo operativo en AWS, GCP o serverless.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-cloud">
+                <span class="svc-num">03</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4 4 0 0 1 19 18H7z"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.cloud.title">Cloud & DevOps</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-cloud">
+                <p class="svc-desc" data-i18n="services.cloud.desc">Infraestructura, despliegue continuo, observabilidad y manejo operativo en AWS, GCP o serverless.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </li>
             <li id="data">
-              <span class="svc-num">04</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8m6 12V4m6 16v-8m6 8V12"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.data.title">Data & Analytics</h3>
-              <p class="svc-desc" data-i18n="services.data.desc">Pipelines, modelado, dashboards de negocio y feedback loops embebidos en producto.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-data">
+                <span class="svc-num">04</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8m6 12V4m6 16v-8m6 8V12"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.data.title">Data & Analytics</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-data">
+                <p class="svc-desc" data-i18n="services.data.desc">Pipelines, modelado, dashboards de negocio y feedback loops embebidos en producto.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </li>
             <li id="design">
-              <span class="svc-num">05</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.design.title">Product design</h3>
-              <p class="svc-desc" data-i18n="services.design.desc">Discovery, sistemas de diseño, prototipos y validación con usuarios reales antes de construir.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-design">
+                <span class="svc-num">05</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.design.title">Product design</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-design">
+                <p class="svc-desc" data-i18n="services.design.desc">Discovery, sistemas de diseño, prototipos y validación con usuarios reales antes de construir.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>
             </li>
             <li id="staff">
-              <span class="svc-num">06</span>
-              <span class="svc-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/></svg>
-              </span>
-              <h3 class="svc-title" data-i18n="services.staff.title">Staff augmentation</h3>
-              <p class="svc-desc" data-i18n="services.staff.desc">Ingenieros senior que se integran a tu equipo: diseño, frontend, backend, mobile, data o DevOps.</p>
+              <button class="td-card-toggle" type="button" aria-expanded="false" aria-controls="svc-panel-staff">
+                <span class="svc-num">06</span>
+                <span class="svc-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19a6 6 0 0 1 12 0M14 19a5 5 0 0 1 7 0"/></svg>
+                </span>
+                <h3 class="svc-title" data-i18n="services.staff.title">Staff augmentation</h3>
+                <span class="td-card-icon" aria-hidden="true"></span>
+              </button>
+              <div class="td-card-panel" id="svc-panel-staff">
+                <p class="svc-desc" data-i18n="services.staff.desc">Ingenieros senior que se integran a tu equipo: diseño, frontend, backend, mobile, data o DevOps.</p>
+              </div>
               <span class="svc-arrow" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
               </span>

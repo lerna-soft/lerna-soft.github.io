@@ -172,15 +172,18 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ------------------ distinct accordion (mobile only, but the
-     handler runs everywhere — desktop CSS uses display:contents so the
-     toggled data-open attribute has no visual effect there) ------ */
+  /* ------------------ accordion toggle (mobile only, but the handler
+     runs everywhere — desktop CSS uses display:contents so the toggled
+     data-open attribute has no visual effect there). Generic: works on
+     any .td-card-toggle wherever the button is a direct child of the
+     element that should receive data-open (td-card, services-list li,
+     etc.). */
   function wireDistinct() {
     const toggles = document.querySelectorAll(".td-card-toggle");
     if (!toggles.length) return;
     toggles.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        const card = btn.closest(".td-card");
+        const card = btn.parentElement;
         if (!card) return;
         const isOpen = card.getAttribute("data-open") === "true";
         card.setAttribute("data-open", isOpen ? "false" : "true");
