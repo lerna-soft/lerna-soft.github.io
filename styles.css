@@ -2781,6 +2781,30 @@ body[data-page="about"] .org-chart { margin-top: 0; }
      fold. (Other sections keep the default 24px.) */
   .home-cta .section-scroll-wrap { margin-top: 14px; }
 
+  /* Footer — drop forced full-viewport height, shrink the oversized brand
+     mark/icon (designed for desktop hero impact, way too big on a phone),
+     compress paddings, and let the bottom row stack with breathing room. */
+  .footer {
+    min-height: auto;
+    padding-top: 40px;
+    padding-bottom: 24px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-block: 32px;
+  }
+  .footer-brand .brand-icon { height: 64px; }
+  .footer-brand .brand-mark { font-size: 24px; }
+  .footer-brand .muted { max-width: 100%; font-size: 13px; line-height: 1.5; }
+  .footer-col h4 { margin-bottom: 12px; font-size: 10px; }
+  .footer-col a { font-size: 14px; padding: 4px 0; }
+  .footer-bottom {
+    padding-top: 20px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
   /* Anchor jumps land flush under the sticky topbar. */
   html { scroll-padding-top: 80px; }
   main > section[id] { scroll-margin-top: 80px; }
