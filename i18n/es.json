@@ -346,6 +346,8 @@
     "subtitle": "Cómo construimos, qué aprendimos y qué romperíamos hoy. Notas de equipo, decisiones técnicas y casos de operación.",
     "filterAll": "Todos",
     "filterLabel": "Filtrar por tema",
+    "newArticle": "Nuevo artículo",
+    "logout": "Cerrar sesión",
     "empty": "Aún no hay artículos publicados. Volvé pronto.",
     "readMore": "Leer artículo",
     "minRead": "min de lectura",

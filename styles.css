@@ -1861,6 +1861,45 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   padding-block: clamp(48px, 6vw, 96px);
   background: var(--bg);
 }
+.blog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+.blog-actions-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+.blog-actions-user strong {
+  font-weight: 700;
+  color: var(--accent-3);
+}
+.blog-actions-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+.blog-actions-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.blog-actions .btn {
+  padding: 8px 16px;
+  font-size: 13px;
+}
 .blog-toolbar {
   display: flex;
   flex-wrap: wrap;

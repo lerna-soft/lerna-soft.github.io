@@ -63,6 +63,16 @@
       <!-- ============ BLOG LIST ============ -->
       <section class="blog-list" id="blog-list">
         <div class="container reveal">
+          <div class="blog-actions" id="blogActions" hidden>
+            <span class="blog-actions-user">
+              <span class="blog-actions-dot" aria-hidden="true"></span>
+              Sesión activa: <strong id="blogActionsEmail"></strong>
+            </span>
+            <div class="blog-actions-buttons">
+              <a class="btn btn-primary blog-actions-new" href="blog/nuevo.html" data-i18n="blog.newArticle">Nuevo artículo</a>
+              <button type="button" class="btn btn-ghost blog-actions-logout" id="blogLogoutBtn" data-i18n="blog.logout">Cerrar sesión</button>
+            </div>
+          </div>
           <div class="blog-toolbar">
             <p class="blog-toolbar-title" data-i18n="blog.filterLabel">Filtrar por tema</p>
             <div class="blog-tags-filter" id="blogTagsFilter"></div>
@@ -116,9 +126,28 @@
     </footer>
 
     <script src="app.js"></script>
+    <script src="blog/blog.js"></script>
     <script>
       (function () {
         "use strict";
+
+        /* ---------- session-aware action bar ---------- */
+        function syncBlogActions() {
+          const actions = document.getElementById("blogActions");
+          const emailLabel = document.getElementById("blogActionsEmail");
+          const session = window.lernaBlog && window.lernaBlog.auth.getSession();
+          if (session && session.user) {
+            emailLabel.textContent = session.user.email;
+            actions.hidden = false;
+          } else {
+            actions.hidden = true;
+          }
+        }
+        document.getElementById("blogLogoutBtn").addEventListener("click", () => {
+          if (window.lernaBlog) window.lernaBlog.auth.logout();
+          syncBlogActions();
+        });
+        syncBlogActions();
 
         const STATE = { posts: [], activeTag: null };
         const FILTER_ALL = "__all__";

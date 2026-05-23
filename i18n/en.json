@@ -346,6 +346,8 @@
     "subtitle": "How we build, what we learned and what we'd break today. Team notes, technical decisions and operations stories.",
     "filterAll": "All",
     "filterLabel": "Filter by topic",
+    "newArticle": "New article",
+    "logout": "Sign out",
     "empty": "No articles published yet. Check back soon.",
     "readMore": "Read article",
     "minRead": "min read",
