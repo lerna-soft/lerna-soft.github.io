@@ -2634,24 +2634,28 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   }
   .td-card:hover { border-color: var(--line); transform: none; }
 
+  /* Compact toggle: 12px padding + 24px icon keeps the closed accordion
+     under ~300px total for 6 items so the section + scroll arrow fit a
+     real Chrome mobile viewport (≈600px usable on iPhone-class screens
+     after URL bar). Tap target is still ~46px so it stays comfortable. */
   .td-card-toggle {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     width: 100%;
-    padding: 18px 4px;
+    padding: 12px 4px;
     cursor: pointer;
   }
   .td-card-toggle .td-num {
     flex: 0 0 auto;
-    min-width: 26px;
-    font-size: 13px;
+    min-width: 24px;
+    font-size: 12px;
     margin: 0;
   }
   .td-card-toggle h3 {
     flex: 1 1 auto;
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.25;
   }
   .td-card-icon {
@@ -2659,8 +2663,8 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     border: 1px solid var(--line);
     color: var(--accent);
@@ -2675,8 +2679,8 @@ body[data-page="about"] .org-chart { margin-top: 0; }
     background: currentColor;
     border-radius: 1px;
   }
-  .td-card-icon::before { width: 12px; height: 2px; }
-  .td-card-icon::after  { width: 2px; height: 12px; }
+  .td-card-icon::before { width: 10px; height: 2px; }
+  .td-card-icon::after  { width: 2px; height: 10px; }
   .td-card[data-open="true"] .td-card-icon {
     transform: rotate(45deg);
     border-color: var(--accent);
@@ -2693,10 +2697,21 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   }
   .td-card-panel p {
     margin: 0;
-    padding: 0 4px 18px 44px;
+    padding: 0 4px 14px 40px;
     font-size: 14px;
     line-height: 1.5;
   }
+
+  /* Tighten the surrounding chrome of the trust-distinct block too —
+     smaller distinct title, less air between the logos marquee and the
+     accordion, smaller top padding on the marquee. Together this saves
+     another ~50-60px so the "Cómo empezar" arrow lands inside the fold. */
+  .td-distinct-title { font-size: 22px; line-height: 1.15; }
+  .td-distinct-head .eyebrow { margin-bottom: 10px; }
+  .td-distinct { gap: 16px; }
+  .trust-distinct > .container { gap: 20px; }
+  .trust-distinct .td-trust { padding-top: 12px; }
+  .td-trust-title { margin-bottom: 14px; font-size: 11px; }
 
   /* Anchor jumps land flush under the sticky topbar. */
   html { scroll-padding-top: 80px; }
