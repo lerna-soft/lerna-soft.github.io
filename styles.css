@@ -2861,13 +2861,61 @@ body[data-page="about"] .org-chart { margin-top: 0; }
   .case-metrics strong::before { width: 8px; height: 8px; margin-right: 6px; transform: translateY(-3px); }
   .case-metrics span { font-size: 9px; }
 
-  /* ----- industries grid -------------------------------------------- */
-  .ind-grid { grid-template-columns: 1fr; gap: 12px; }
-  .ind-card { padding: 18px; border-radius: 12px; }
-  .ind-card::before { font-size: 48px; top: 12px; right: 16px; }
-  .ind-icon { width: 40px; height: 40px; border-radius: 10px; margin-bottom: 14px; }
-  .ind-card h3 { font-size: 16px; margin-bottom: 8px; }
-  .ind-card p { font-size: 13px; line-height: 1.5; }
+  /* ----- industries grid → accordion -------------------------------- */
+  .ind-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .ind-card {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    overflow: visible;
+  }
+  .ind-card:hover { transform: none; border-color: var(--line); box-shadow: none; }
+  .ind-card::before { display: none; }
+  .ind-card .td-card-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 4px;
+    cursor: pointer;
+  }
+  .ind-card .ind-icon {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    margin: 0;
+  }
+  .ind-card .td-card-toggle h3 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+  .ind-card[data-open="true"] .td-card-icon {
+    transform: rotate(45deg);
+    border-color: var(--accent);
+  }
+  .ind-card .td-card-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .25s ease;
+  }
+  .ind-card[data-open="true"] .td-card-panel { max-height: 260px; }
+  .ind-card .td-card-panel p {
+    margin: 0;
+    padding: 0 4px 14px 44px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
 
   /* ----- services section head — the "Capacidades / Lo que hacemos"
      header just repeats info the page-hero already gave. Hide the eyebrow
