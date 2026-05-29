@@ -130,6 +130,32 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .norma-tip { background: #f0faf5; border-radius: 8px; padding: 8px 10px; }
 .norma-ley { color: var(--gris); font-size: 13.5px; }
 
+/* botón "ver en el código" */
+.ver-codigo {
+  margin-top: 10px; width: 100%; background: #eef4ff; color: var(--azul-osc);
+  border: 1px solid #cfe0ff; border-radius: 9px; padding: 9px 12px; font-size: 14.5px; font-weight: 700;
+}
+.ver-codigo:hover { background: #e0ecff; }
+
+/* modal visor del Código (iframe al artículo) */
+#codigoModal { display: none; position: fixed; inset: 0; z-index: 50; }
+#codigoModal.open { display: block; }
+#codigoModal .cm-backdrop { position: absolute; inset: 0; background: rgba(16,30,60,.55); }
+#codigoModal .cm-panel {
+  position: absolute; inset: 4% 50% auto 50%; transform: translateX(-50%);
+  width: min(820px, 94vw); height: 90vh; background: #fff; border-radius: 14px; overflow: hidden;
+  display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+#codigoModal .cm-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--azul); color: #fff; padding: 12px 14px; font-weight: 700; font-size: 15px;
+}
+#codigoModal .cm-close {
+  background: rgba(255,255,255,.2); color: #fff; border: none; border-radius: 8px;
+  width: 34px; height: 34px; font-size: 16px; cursor: pointer; flex: 0 0 auto;
+}
+#codigoModal iframe { flex: 1; width: 100%; border: 0; }
+
 /* códigos de infracción */
 .cod-card { background: #fbfcff; }
 .cod-h { font-size: 17px; margin: 0 0 10px; color: var(--azul-osc); }

@@ -239,6 +239,47 @@ function abrirNormas() { _filtroNormas = ''; renderNormas(); }
 
 function pesos(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
 
+// Devuelve el número de artículo de la Ley 769 citado en la ficha (para enlazar al
+// Código), o null si la norma no es de la Ley 769 (p. ej. jurisprudencia u otra ley).
+function articuloDe(n) {
+  if (n.art) return n.art;
+  if (!/Ley\s*769/i.test(n.norma || '')) return null;
+  const m = (n.norma || '').match(/Art(?:[íi]culo)?\.?\s*(\d+)/i);
+  return m ? m[1] : null;
+}
+
+// Abre el Código Nacional de Tránsito en un modal con iframe apuntando al artículo.
+function verCodigo(art) {
+  let m = document.getElementById('codigoModal');
+  if (!m) {
+    m = document.createElement('div');
+    m.id = 'codigoModal';
+    m.innerHTML = `
+      <div class="cm-backdrop" onclick="cerrarCodigo()"></div>
+      <div class="cm-panel" role="dialog" aria-label="Código Nacional de Tránsito">
+        <div class="cm-bar">
+          <span id="cmTitulo">Código Nacional de Tránsito</span>
+          <button class="cm-close" onclick="cerrarCodigo()" aria-label="Cerrar">✕</button>
+        </div>
+        <iframe id="cmFrame" title="Código Nacional de Tránsito" referrerpolicy="no-referrer"></iframe>
+      </div>`;
+    document.body.appendChild(m);
+  }
+  const frame = document.getElementById('cmFrame');
+  const dest = art ? ('codigo/ley-769.html#art' + art) : 'codigo/ley-769.html';
+  // reasignar src fuerza el scroll al ancla aunque sea el mismo documento
+  frame.src = 'about:blank';
+  setTimeout(() => { frame.src = dest; }, 0);
+  document.getElementById('cmTitulo').textContent = art ? ('Código de Tránsito — Artículo ' + art) : 'Código Nacional de Tránsito';
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function cerrarCodigo() {
+  const m = document.getElementById('codigoModal');
+  if (m) m.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 function renderNormas() {
   const app = document.getElementById('app');
   const q = normalizar(_filtroNormas).trim();
@@ -260,7 +301,9 @@ function renderNormas() {
     return terminos.every(t => heno.includes(t));
   });
 
-  const cards = lista.map(n => `
+  const cards = lista.map(n => {
+    const art = articuloDe(n);
+    return `
     <div class="norma">
       <span class="norma-cat">${escN(n.cat)}</span>
       <b>${escN(n.titulo)}</b>
@@ -268,7 +311,9 @@ function renderNormas() {
       <p class="norma-real"><b>La realidad:</b> ${escN(n.realidad)}</p>
       <p class="norma-tip">✅ ${escN(n.tip)}</p>
       <p class="norma-ley">📚 ${escN(n.norma)}</p>
-    </div>`).join('');
+      ${art ? `<button class="ver-codigo" onclick="verCodigo('${art}')">📖 Ver el artículo ${escN(art)} en el Código</button>` : ''}
+    </div>`;
+  }).join('');
 
   const codigosBloque = codigos.length ? `
   <div class="card cod-card">
@@ -279,6 +324,7 @@ function renderNormas() {
         <div class="cod-top"><span class="cod-id">${escN(c.codigo)}</span>${c.inmov ? '<span class="cod-inmov">🚓 puede inmovilizar</span>' : ''}</div>
         <p class="cod-desc">${escN(c.desc)}</p>
         <p class="cod-val">${escN(ti.label || ('Tipo ' + c.tipo))} · ${ti.smldv ? ti.smldv + ' SMLDV · ' : ''}multa plena aprox. ${ti.v2025 ? pesos(ti.v2025) : 's/d'} (2025)</p>
+        <button class="ver-codigo" onclick="verCodigo('131')">📖 Ver en el Código (art. 131 · Multas)</button>
       </div>`;
     }).join('')}
     ${codigos.length > 40 ? `<p class="cod-mas">…y ${codigos.length - 40} más. Afina la búsqueda.</p>` : ''}
@@ -315,3 +361,5 @@ function escN(s) {
 window.abrirNormas = abrirNormas;
 window.renderNormas = renderNormas;
 window.filtrarNormas = filtrarNormas;
+window.verCodigo = verCodigo;
+window.cerrarCodigo = cerrarCodigo;
