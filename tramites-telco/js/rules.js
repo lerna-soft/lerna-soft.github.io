@@ -246,7 +246,38 @@ function evaluarCaso(caso) {
     });
   }
 
-  return { palancas, secciones, ventana, operador: op, fechaSolicitud: hoy };
+  // ---- Plantilla dedicada por trámite (título y framing del documento) ----
+  const doc = documentoMeta(caso);
+
+  return { palancas, secciones, ventana, operador: op, fechaSolicitud: hoy, doc };
+}
+
+// Devuelve la "identidad" del documento según el trámite: su título, si es un PQR
+// (con cierre de 15 días hábiles) y la frase de cierre del saludo. Esto hace que
+// cada caso tenga su propia plantilla dedicada en vez de un PQR genérico.
+function documentoMeta(caso) {
+  const PQR = { titulo: 'PETICIÓN, QUEJA Y RECLAMO (PQR)', esPQR: true, fraseSaludo: 'presento la siguiente Petición, Queja y Reclamo:' };
+  switch (caso.objetivo) {
+    case 'premium':
+      return { titulo: 'RECLAMO — SUSCRIPCIÓN NO AUTORIZADA Y REVERSIÓN DE COBRO', esPQR: true, fraseSaludo: 'presento el siguiente reclamo:' };
+    case 'acoso':
+      return { titulo: 'SOLICITUD DE CESE DE CONTACTO (LEY 2300 DE 2023)', esPQR: true, fraseSaludo: 'presento la siguiente solicitud:' };
+    case 'reporte':
+      return { titulo: 'DERECHO DE PETICIÓN — HABEAS DATA', esPQR: true, fraseSaludo: 'presento el siguiente derecho de petición:' };
+    case 'saldo':
+      return { titulo: 'RECLAMO — RESTITUCIÓN DE SALDO', esPQR: true, fraseSaludo: 'presento el siguiente reclamo:' };
+    case 'portabilidad':
+      return { titulo: 'SOLICITUD DE PORTABILIDAD NUMÉRICA', esPQR: false, fraseSaludo: 'presento la siguiente solicitud:' };
+    case 'imei':
+      return {
+        titulo: caso.imeiTipo === 'bloqueo'
+          ? 'SOLICITUD DE EXCLUSIÓN DE EQUIPO DE BASE NEGATIVA (IMEI)'
+          : 'SOLICITUD DE BLOQUEO DE EQUIPO POR HURTO/PÉRDIDA (IMEI)',
+        esPQR: false, fraseSaludo: 'presento la siguiente solicitud:',
+      };
+    default:
+      return PQR; // cancelar, falla, cobro
+  }
 }
 
 function fmt(date) {

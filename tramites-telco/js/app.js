@@ -251,7 +251,8 @@ function renderDatos() {
   <div class="card">
     ${progreso()}
     <h2 class="step-title">Tus datos</h2>
-    <p class="step-sub">Van en el documento. No salen de tu dispositivo.</p>
+    <p class="step-sub">Van en el documento. No salen de tu dispositivo. Toma tu factura a la mano y cópialos tú mismo: así los revisas y validas.</p>
+    ${ayudaFactura()}
     ${campo('nombre','Nombre completo del titular','text','Ej.: Juan Pérez')}
     ${campo('cedula','Cédula','text','Ej.: 16.633.136')}
     ${campo('contrato','Número de contrato','text','Aparece en la factura')}
@@ -273,6 +274,27 @@ function guardarDatos() {
 function campo(id, label, type, ph) {
   return `<label class="field" for="${id}">${label}</label>
     <input type="${type}" id="${id}" value="${esc(caso[id])}" placeholder="${esc(ph)}">`;
+}
+
+// Guía para que el usuario lea y VALIDE su propia factura (no usamos lector
+// automático: la persona revisa sus datos y detecta por sí misma lo que no cuadra).
+function ayudaFactura() {
+  return `<details class="ayuda-factura">
+    <summary>📄 ¿Cómo leer tu factura? (dónde está cada dato)</summary>
+    <div class="ayuda-cuerpo">
+      <p>Ten tu factura (en papel o PDF) a la mano y búscalos así:</p>
+      <ul>
+        <li><b>Titular y cédula:</b> en los datos del cliente, normalmente arriba.</li>
+        <li><b>Número de contrato o cuenta:</b> en el encabezado; a veces dice "contrato", "cuenta" o "código de cliente".</li>
+        <li><b>Referente de pago:</b> cerca del código de barras o de la zona "para pagar".</li>
+        <li><b>Fecha de corte:</b> en el resumen del periodo ("periodo facturado" o "fecha de corte"). Es clave para no pagar un mes de más.</li>
+        <li><b>Valor a pagar y su detalle:</b> revisa el desglose <b>línea por línea</b>. Si ves un cobro o servicio que no reconoces o no pediste, ese es tu reclamo.</li>
+        <li><b>Operador y NIT:</b> en el encabezado o pie (datos de la empresa).</li>
+        <li><b>Dirección de instalación:</b> en los datos del servicio.</li>
+      </ul>
+      <p class="tip">💡 <b>Valida tú mismo:</b> compara el total con el plan que contrataste y revisa que no haya suscripciones, "contenidos" o adicionales que nunca aceptaste. Si algo no cuadra, anótalo: lo usaremos en tu documento.</p>
+    </div>
+  </details>`;
 }
 
 /* ---------- resultado ---------- */

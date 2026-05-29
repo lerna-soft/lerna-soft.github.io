@@ -13,8 +13,9 @@ function generarPQR(caso, evalRes) {
     (caso.contrato ? ` — Contrato N° ${caso.contrato}` : '') +
     (caso.yaRadicoRetiro && caso.cunRetiro ? ` — Radicado de retiro ${caso.cunRetiro}` : '');
 
+  const doc = evalRes.doc || { titulo: 'PETICIÓN, QUEJA Y RECLAMO (PQR)', esPQR: true };
   const L = [];
-  L.push('PETICIÓN, QUEJA Y RECLAMO (PQR)');
+  L.push(doc.titulo);
   L.push('');
   L.push(`Asunto: ${seccionesResumen(evalRes.secciones)}.`);
   if (caso.contrato) L.push(`Contrato N° ${caso.contrato}.`);
@@ -24,7 +25,7 @@ function generarPQR(caso, evalRes) {
   L.push('Atención al Usuario');
   L.push(`${caso.ciudad || '[CIUDAD]'}, ${fechaTxt}`);
   L.push('');
-  L.push(saludo(caso));
+  L.push(saludo(caso, doc));
   L.push('');
 
   evalRes.secciones.forEach((s, i) => {
@@ -50,13 +51,14 @@ function generarPQR(caso, evalRes) {
   return { asunto, texto: L.join('\n') };
 }
 
-function saludo(caso) {
+function saludo(caso, doc) {
+  const frase = (doc && doc.fraseSaludo) || 'presento la siguiente Petición, Queja y Reclamo:';
   const serv = ({ internet: 'Internet', tv: 'Televisión', telefonia: 'Telefonía', paquete: 'paquete hogar' })[caso.servicio] || 'servicios de comunicaciones';
   return `Yo, ${(caso.nombre || '[NOMBRE]').toUpperCase()}, mayor de edad, identificado(a) con cédula de ciudadanía N° ${caso.cedula || '[CÉDULA]'}, en mi calidad de titular del contrato N° ${caso.contrato || '[CONTRATO]'}` +
     (caso.referentePago ? ` (referente de pago ${caso.referentePago})` : '') +
     `, correspondiente a ${serv}` +
     (caso.direccion ? ` en la dirección ${caso.direccion}` : '') +
-    `, presento la siguiente Petición, Queja y Reclamo:`;
+    `, ${frase}`;
 }
 
 function seccionesResumen(secciones) {
@@ -90,7 +92,16 @@ function peticiones(caso, evalRes) {
   if (tiene('RESTITUCIÓN DE SALDO')) ps.push('Restituir el saldo no consumido al que tengo derecho conforme a las condiciones de prepago.');
   if (tiene('BLOQUEO DE IMEI POR HURTO/PÉRDIDA')) ps.push('Incluir el IMEI reportado en la base negativa para impedir el uso del equipo.');
   if (tiene('EXCLUSIÓN DE BASE NEGATIVA (DESBLOQUEO DE IMEI)')) ps.push('Excluir el IMEI de la base negativa al acreditar la propiedad del equipo.');
-  ps.push('Dar respuesta de fondo dentro de los quince (15) días hábiles legales.');
+  // Cierre: los PQR tienen el plazo de 15 días hábiles (y disparan el SAP);
+  // las solicitudes con plazo propio (portabilidad, IMEI) usan su propio cierre.
+  const doc = evalRes.doc || { esPQR: true };
+  if (doc.esPQR) {
+    ps.push('Dar respuesta de fondo dentro de los quince (15) días hábiles legales.');
+  } else if (evalRes.secciones.some(s => s.n === 'PORTABILIDAD NUMÉRICA')) {
+    ps.push('Tramitar lo solicitado sin dilación, dentro del plazo regulatorio de máximo tres (3) días hábiles.');
+  } else {
+    ps.push('Atender la presente solicitud conforme a los plazos regulatorios aplicables y entregar el radicado correspondiente.');
+  }
   return ps;
 }
 
@@ -110,11 +121,12 @@ function tituloSeccion(n) {
 
 function generarPQRHtml(caso, evalRes) {
   const op = evalRes.operador;
+  const doc = evalRes.doc || { titulo: 'PETICIÓN, QUEJA Y RECLAMO (PQR)', esPQR: true };
   const fechaTxt = window.Reglas.fmt(evalRes.fechaSolicitud);
   const razon = op.razonSocial ? `${op.nombre.toUpperCase()} — ${op.razonSocial}` : (caso.operadorNombre || op.nombre || '[OPERADOR]');
 
   const ref = [];
-  ref.push(`<span class="et">Referencia:</span> Petición, Queja y Reclamo (PQR) — ${escHtml(seccionesResumen(evalRes.secciones))}.`);
+  ref.push(`<span class="et">Referencia:</span> ${escHtml(doc.titulo)} — ${escHtml(seccionesResumen(evalRes.secciones))}.`);
   const refLinea2 = [];
   if (caso.contrato) refLinea2.push(`<span class="et">Contrato N°:</span> ${escHtml(caso.contrato)}`);
   if (caso.referentePago) refLinea2.push(`<span class="et">Referente de pago:</span> ${escHtml(caso.referentePago)}`);
@@ -135,7 +147,7 @@ function generarPQRHtml(caso, evalRes) {
 
   return `<!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8">
-<title>PQR${caso.contrato ? ' — Contrato ' + escHtml(caso.contrato) : ''}</title>
+<title>${escHtml(doc.titulo)}${caso.contrato ? ' — Contrato ' + escHtml(caso.contrato) : ''}</title>
 <style>
   @page { size: Letter; margin: 2.5cm 2.5cm 2cm 2.8cm; }
   * { box-sizing: border-box; }
@@ -169,7 +181,7 @@ function generarPQRHtml(caso, evalRes) {
 
   <p class="saludo">Cordial saludo:</p>
 
-  <p>${escHtml(saludo(caso))}</p>
+  <p>${escHtml(saludo(caso, doc))}</p>
 
   ${secHtml}
 
