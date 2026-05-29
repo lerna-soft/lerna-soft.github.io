@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.lernasoft.deviltv",
+      "sha256_cert_fingerprints": [
+        "91:E2:9F:FD:E9:D1:98:7C:F8:23:DF:3E:77:78:64:9C:8A:96:C2:32:67:5A:ED:CB:8F:8C:E0:B4:16:1A:62:0E"
+      ]
+    }
+  }
+]
