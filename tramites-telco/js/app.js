@@ -10,7 +10,14 @@ const caso = {
   fechaCorte: '', fechaSolicitud: '', yaRadicoRetiro: false, cunRetiro: '',
   nombre: '', cedula: '', contrato: '', referentePago: '', direccion: '',
   ciudad: '', telefono: '', correo: '', valorFactura: '',
+  // Trámites ampliados (catálogo):
+  premiumDescripcion: '', acosoDetalle: '', reporteEnDisputa: false,
+  portOperadorDestino: '', portLeDilatan: false,
+  imeiTipo: null, imei: '', numeroDenuncia: '', saldoDescripcion: '',
 };
+
+function tramiteActual() { return (window.Tramites && window.Tramites[caso.objetivo]) || null; }
+function pideDetalle(d) { const t = tramiteActual(); return !!(t && t.detalle && t.detalle.indexOf(d) !== -1); }
 
 const TOTAL_PASOS = 5;
 let paso = 0;
@@ -75,15 +82,15 @@ function render() {
 }
 
 function renderInicio() {
+  const items = Object.keys(window.Tramites).map(k => ({
+    val: k, emoji: window.Tramites[k].emoji,
+    label: window.Tramites[k].label, desc: window.Tramites[k].desc,
+  }));
   app().innerHTML = `
   <div class="card">
-    <h2 class="step-title">¿Qué necesitas hacer?</h2>
-    <p class="step-sub">Cuéntanos tu situación y nosotros nos encargamos de decirte tus derechos y armarte el documento.</p>
-    ${optList([
-      { val: 'cancelar', emoji: '🚪', label: 'Cancelar / retirarme', desc: 'Quiero terminar el contrato con mi operador.' },
-      { val: 'falla', emoji: '📡', label: 'Mi servicio falla', desc: 'Internet/TV/teléfono no sirve bien y quiero reclamar.' },
-      { val: 'cobro', emoji: '💸', label: 'Me cobran de más', desc: 'Hay cobros que no reconozco o no me corresponden.' },
-    ], caso.objetivo, 'setObj')}
+    <h2 class="step-title">¿Qué te pasó?</h2>
+    <p class="step-sub">Cuéntanos tu situación y nosotros nos encargamos de decirte tus derechos y armarte el documento. No necesitas saber el término legal.</p>
+    ${optList(items, caso.objetivo, 'setObj')}
     <div class="btns">
       <button class="primary" onclick="empezar()" ${caso.objetivo ? '' : 'disabled'}>Empezar</button>
     </div>
@@ -117,42 +124,99 @@ function setOperador(id) { caso.operadorId = id; render(); }
 function setServicio(s) { caso.servicio = s; render(); }
 
 function renderDetalles() {
+  let bloques = '';
+
+  if (pideDetalle('fallas')) {
+    bloques += `
+    <label class="field">¿El servicio ha tenido fallas? <span class="hint">Cortes, lentitud, o que no funcione.</span></label>
+    ${toggle('tieneFallas')}
+    ${caso.tieneFallas ? `
+      <label class="field" for="fallasDesde">¿Desde cuándo? <span class="hint">Ej.: “desde enero de 2025” o “desde el inicio del servicio”.</span></label>
+      <input type="text" id="fallasDesde" value="${esc(caso.fallasDesde)}" placeholder="desde inicios de 2025">` : ''}`;
+  }
+
+  if (pideDetalle('visita')) {
+    bloques += `
+    <label class="field">¿Reportaron una visita técnica que en realidad no ocurrió? <span class="hint">Dijeron que fueron y “nadie abrió”, pero no fueron.</span></label>
+    ${toggle('visitaFantasma')}`;
+  }
+
+  if (pideDetalle('cobro')) {
+    bloques += `
+    <label class="field">¿Hay cobros que no reconoces o no te corresponden?</label>
+    ${toggle('cobroIndebido')}
+    ${caso.cobroIndebido ? `
+      <label class="field" for="cobroDescripcion">¿Cuál cobro? <span class="hint">Descríbelo en pocas palabras.</span></label>
+      <textarea id="cobroDescripcion" placeholder="Ej.: me cobran un mes adicional / un servicio que no pedí">${esc(caso.cobroDescripcion)}</textarea>` : ''}`;
+  }
+
+  if (pideDetalle('premium')) {
+    bloques += `
+    <label class="field" for="premiumDescripcion">¿Qué te están cobrando o descontando? <span class="hint">Mensajes, trivias, horóscopos, juegos… que nunca pediste.</span></label>
+    <textarea id="premiumDescripcion" placeholder="Ej.: me descuentan saldo por unos SMS de trivias que nunca acepté">${esc(caso.premiumDescripcion)}</textarea>`;
+  }
+
+  if (pideDetalle('portabilidad')) {
+    bloques += `
+    <label class="field" for="portOperadorDestino">¿A qué operador quieres irte? <span class="hint">Opcional.</span></label>
+    <input type="text" id="portOperadorDestino" value="${esc(caso.portOperadorDestino)}" placeholder="Ej.: Claro">
+    <label class="field">¿Ya intentaste portar y te lo demoraron o pusieron trabas?</label>
+    ${toggle('portLeDilatan')}`;
+  }
+
+  if (pideDetalle('saldo')) {
+    bloques += `
+    <label class="field" for="saldoDescripcion">¿Qué pasó con tu saldo? <span class="hint">Ej.: se "venció", lo perdí al cambiar de plan.</span></label>
+    <textarea id="saldoDescripcion" placeholder="Ej.: tenía $20.000 de saldo y al pasar a plan pospago desaparecieron">${esc(caso.saldoDescripcion)}</textarea>`;
+  }
+
+  if (pideDetalle('imei')) {
+    bloques += `
+    <label class="field">¿Cuál es tu situación?</label>
+    ${optList([
+      { val: 'robo', label: 'Me robaron o perdí el equipo', desc: 'Quiero bloquearlo para que no lo usen.' },
+      { val: 'bloqueo', label: 'Bloquearon MI equipo por error', desc: 'Alguien más lo reportó y soy el dueño.' },
+    ], caso.imeiTipo, 'setImeiTipo')}
+    <label class="field" for="imei">IMEI del equipo <span class="hint">Marca *#06# en el teléfono. Son 15 dígitos.</span></label>
+    <input type="text" id="imei" value="${esc(caso.imei)}" placeholder="Ej.: 351234567890123">
+    <label class="field" for="numeroDenuncia">Número de denuncia (Fiscalía) <span class="hint">Si ya la pusiste.</span></label>
+    <input type="text" id="numeroDenuncia" value="${esc(caso.numeroDenuncia)}" placeholder="Opcional">`;
+  }
+
+  if (pideDetalle('reporte')) {
+    bloques += `
+    <label class="field">¿La deuda que te reportan está en disputa (tienes un PQR o reclamo abierto)?</label>
+    ${toggle('reporteEnDisputa')}`;
+  }
+
   app().innerHTML = `
   <div class="card">
     ${progreso()}
     <h2 class="step-title">Cuéntanos qué pasó</h2>
     <p class="step-sub">Marca lo que aplique. Con esto elegimos tus palancas legales.</p>
-
-    <label class="field">¿El servicio ha tenido fallas? <span class="hint">Cortes, lentitud, o que no funcione.</span></label>
-    ${toggle('tieneFallas')}
-    ${caso.tieneFallas ? `
-      <label class="field" for="fallasDesde">¿Desde cuándo? <span class="hint">Ej.: “desde enero de 2025” o “desde el inicio del servicio”.</span></label>
-      <input type="text" id="fallasDesde" value="${esc(caso.fallasDesde)}" placeholder="desde inicios de 2025">` : ''}
-
-    <label class="field">¿Reportaron una visita técnica que en realidad no ocurrió? <span class="hint">Dijeron que fueron y “nadie abrió”, pero no fueron.</span></label>
-    ${toggle('visitaFantasma')}
-
-    <label class="field">¿Hay cobros que no reconoces o no te corresponden?</label>
-    ${toggle('cobroIndebido')}
-    ${caso.cobroIndebido ? `
-      <label class="field" for="cobroDescripcion">¿Cuál cobro? <span class="hint">Descríbelo en pocas palabras.</span></label>
-      <textarea id="cobroDescripcion" placeholder="Ej.: me cobran un mes adicional / un servicio que no pedí">${esc(caso.cobroDescripcion)}</textarea>` : ''}
-
+    ${bloques}
     <div class="btns">
       <button class="ghost" onclick="atras()">Atrás</button>
       <button class="primary" onclick="guardarDetalles()">Continuar</button>
     </div>
   </div>`;
 }
+function setImeiTipo(t) { caso.imeiTipo = t; render(); }
 function guardarDetalles() {
   caso.fallasDesde = val('fallasDesde') || caso.fallasDesde;
   caso.cobroDescripcion = val('cobroDescripcion') || caso.cobroDescripcion;
+  caso.premiumDescripcion = val('premiumDescripcion') || caso.premiumDescripcion;
+  caso.portOperadorDestino = val('portOperadorDestino') || caso.portOperadorDestino;
+  caso.saldoDescripcion = val('saldoDescripcion') || caso.saldoDescripcion;
+  caso.imei = val('imei') || caso.imei;
+  caso.numeroDenuncia = val('numeroDenuncia') || caso.numeroDenuncia;
   if (caso.tieneFallas && !caso.servicioQueFalla) caso.servicioQueFalla = caso.servicio === 'paquete' ? 'internet' : caso.servicio;
   paso = 3; render();
 }
 
 function renderFechas() {
-  const necesitaCorte = caso.objetivo === 'cancelar';
+  const t = tramiteActual();
+  const necesitaCorte = !!(t && t.necesitaCorte);
   app().innerHTML = `
   <div class="card">
     ${progreso()}
@@ -225,10 +289,15 @@ function renderResultado() {
       ? `<div class="aviso exito"><b>Llegas a tiempo ✔</b>Avisaste con ${r.ventana.diasHabilesAntelacion} días hábiles de antelación: no deberían cobrarte el mes siguiente.</div>`
       : `<div class="aviso urgente"><b>Ojo con el plazo</b>Solo hay ${r.ventana.diasHabilesAntelacion} días hábiles antes del corte (el límite era el ${window.Reglas.fmt(r.ventana.fechaLimite)}). Para cancelación voluntaria podrían cobrar el siguiente ciclo — por eso usamos las palancas de fallas/incumplimiento.</div>`;
   }
-  if (caso.yaRadicoRetiro || caso.objetivo) {
+  const t = tramiteActual();
+  const generaPQR = !!(t && t.generaPQR);
+  if (generaPQR) {
     const base = caso.fechaSolicitud ? window.Habiles.parseISODate(caso.fechaSolicitud) : new Date();
     const sap = window.Habiles.fechaSAP(base);
     plazosHtml += `<div class="aviso exito"><b>⭐ Tu fecha clave: ${window.Reglas.fmt(sap)}</b>Si para esa fecha no te han respondido (15 días hábiles), opera el Silencio Administrativo Positivo: ganas automáticamente.</div>`;
+  }
+  if (caso.objetivo === 'portabilidad') {
+    plazosHtml += `<div class="aviso exito"><b>Plazo de portación: máx. 3 días hábiles</b>La portabilidad es gratis y suele tardar 24 horas. No pueden exigirte estar al día en pagos para portarte (Res. CRC 7151/2023).</div>`;
   }
 
   const palancasHtml = r.palancas.map(p => `
@@ -241,6 +310,7 @@ function renderResultado() {
   const op = r.operador;
   const canalWeb = op.canales && op.canales.web ? `<a href="${op.canales.web}" target="_blank" rel="noopener">${op.canales.web}</a>` : 'el formulario de PQR en la web de tu operador';
   const canalApp = op.canales && op.canales.app ? op.canales.app : 'la app de tu operador';
+  const docTitulo = generaPQR ? 'Tu documento (PQR)' : 'Tu solicitud';
 
   app().innerHTML = `
   <div class="card">
@@ -251,7 +321,7 @@ function renderResultado() {
   </div>
 
   <div class="card">
-    <h2 class="step-title">Tu documento (PQR)</h2>
+    <h2 class="step-title">${docTitulo}</h2>
     <p class="step-sub">Listo para radicar. Revísalo y cópialo o descárgalo.</p>
     <div class="doc" id="docBox">${esc(window.__doc)}</div>
     <div class="doc-actions">
@@ -263,17 +333,36 @@ function renderResultado() {
 
   <div class="card">
     <h2 class="step-title">¿Y ahora qué hago?</h2>
-    <ol class="pasos">
-      ${caso.visitaFantasma ? `<li><b>Guarda el video de tus cámaras.</b> Cuando el operador te informe la fecha y hora de la “visita”, extrae ese segmento para probar que no fueron.</li>` : ''}
-      <li><b>Radica el PQR por escrito</b> (no solo por teléfono): en ${canalWeb} o desde ${canalApp}. Pega el texto o súbelo como soporte.</li>
-      <li><b>Exige el número de radicado (CUN).</b> Es tu prueba y desde ahí corre el reloj de 15 días hábiles.</li>
-      <li><b>Espera la respuesta.</b> No pueden exigirte pagar la factura en disputa para atenderte.</li>
-      <li><b>Si no responden a tiempo o responden en contra:</b> usa <a href="https://sicfacilita.sic.gov.co" target="_blank" rel="noopener">SIC Facilita</a> (mediación gratis) y, si hace falta, queja formal ante la SIC.</li>
-    </ol>
+    <ol class="pasos">${pasosFinales(canalWeb, canalApp)}</ol>
     <div class="btns">
       <button class="ghost" onclick="reiniciar()">Empezar otro caso</button>
     </div>
   </div>`;
+}
+
+// Pasos "¿y ahora qué hago?" según el trámite.
+function pasosFinales(canalWeb, canalApp) {
+  if (caso.objetivo === 'imei') {
+    return `
+      <li><b>Reporta el IMEI a tu operador</b> por su línea de atención para el bloqueo (base negativa). Si es por error sobre tu propio equipo, pide la <b>exclusión</b> probando que eres el dueño.</li>
+      <li><b>Pon o adjunta la denuncia</b> ante la Fiscalía con el IMEI del equipo.</li>
+      <li><b>Guarda el radicado</b> del reporte: es tu prueba.</li>
+      <li><b>Si no resuelven:</b> escala a la <a href="https://www.crcom.gov.co" target="_blank" rel="noopener">CRC</a> y, ante mala práctica, a la SIC.</li>`;
+  }
+  if (caso.objetivo === 'portabilidad') {
+    return `
+      <li><b>Inicia la portación</b> con el operador al que te quieres ir (él gestiona el proceso). Es gratis y debe tardar máximo 3 días hábiles.</li>
+      <li><b>No te dejes frenar:</b> no pueden exigirte estar al día en pagos ni dilatarlo (Res. CRC 7151/2023).</li>
+      <li><b>Antes de portar:</b> consume tu saldo prepago y desactiva suscripciones (no se trasladan).</li>
+      <li><b>Si te lo obstruyen:</b> radica la queja de arriba y, si persiste, acude a la SIC.</li>`;
+  }
+  return `
+      ${caso.visitaFantasma ? `<li><b>Guarda el video de tus cámaras.</b> Cuando el operador te informe la fecha y hora de la “visita”, extrae ese segmento para probar que no fueron.</li>` : ''}
+      ${caso.objetivo === 'premium' ? `<li><b>Cancela ya por SMS:</b> responde <b>CANCELAR</b> o <b>SALIR</b> al mensaje, e inscríbete gratis en el Registro Nacional de Excluidos (RNE) para no recibir más publicidad.</li>` : ''}
+      <li><b>Radica el PQR por escrito</b> (no solo por teléfono): en ${canalWeb} o desde ${canalApp}. Pega el texto o súbelo como soporte.</li>
+      <li><b>Exige el número de radicado (CUN).</b> Es tu prueba y desde ahí corre el reloj de 15 días hábiles.</li>
+      <li><b>Espera la respuesta.</b> No pueden exigirte pagar la factura en disputa para atenderte.</li>
+      <li><b>Si no responden a tiempo o responden en contra:</b> usa <a href="https://sicfacilita.sic.gov.co" target="_blank" rel="noopener">SIC Facilita</a> (mediación gratis) y, si hace falta, queja formal ante la SIC.</li>`;
 }
 
 function copiarDoc() {

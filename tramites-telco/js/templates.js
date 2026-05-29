@@ -65,6 +65,13 @@ function seccionesResumen(secciones) {
     'RECLAMACIÓN DE COMPENSACIÓN POR FALLAS': 'Compensación por fallas',
     'VISITA TÉCNICA NO REALIZADA Y REPORTE FALSO': 'Visita técnica no realizada',
     'OBJECIÓN DE COBRO': 'Objeción de cobro',
+    'CANCELACIÓN DE SUSCRIPCIÓN Y REVERSIÓN DE COBRO': 'Cancelación de suscripción y reversión',
+    'CESE DE CONTACTO Y EXCLUSIÓN DE BASES DE DATOS': 'Cese de contacto y exclusión de bases',
+    'HABEAS DATA — NO REPORTE Y/O SUPRESIÓN': 'Habeas data (no reporte / supresión)',
+    'PORTABILIDAD NUMÉRICA': 'Portabilidad numérica',
+    'RESTITUCIÓN DE SALDO': 'Restitución de saldo',
+    'BLOQUEO DE IMEI POR HURTO/PÉRDIDA': 'Bloqueo de equipo (IMEI)',
+    'EXCLUSIÓN DE BASE NEGATIVA (DESBLOQUEO DE IMEI)': 'Desbloqueo de equipo (IMEI)',
   };
   return secciones.map(s => map[s.n] || s.n).join(' · ');
 }
@@ -76,6 +83,13 @@ function peticiones(caso, evalRes) {
   if (tiene('RECLAMACIÓN DE COMPENSACIÓN POR FALLAS')) ps.push('Entregar el histórico de fallas y radicados, y aplicar la compensación correspondiente en las facturas afectadas.');
   if (tiene('VISITA TÉCNICA NO REALIZADA Y REPORTE FALSO')) ps.push('Entregar el listado de casos reportados y el soporte de la visita técnica (fecha, hora e identificación del técnico).');
   if (tiene('OBJECIÓN DE COBRO')) ps.push('Abstenerse de cobrar el periodo en disputa, así como reconexión o intereses, y no condicionar este PQR al pago.');
+  if (tiene('CANCELACIÓN DE SUSCRIPCIÓN Y REVERSIÓN DE COBRO')) ps.push('Cancelar toda suscripción de contenidos, revertir los cobros y devolver el saldo descontado, e inscribir el número en el Registro Nacional de Excluidos.');
+  if (tiene('CESE DE CONTACTO Y EXCLUSIÓN DE BASES DE DATOS')) ps.push('Cesar el contacto fuera de horario o reiterado, no contactar referencias y suprimir mi número de las bases de datos de cobranza.');
+  if (tiene('HABEAS DATA — NO REPORTE Y/O SUPRESIÓN')) ps.push('Abstenerse de reportar (o retirar el reporte de) la obligación en disputa y suprimir mis datos al terminar la relación.');
+  if (tiene('PORTABILIDAD NUMÉRICA')) ps.push('Tramitar la portabilidad sin condicionarla a pagos ni dilatarla, dentro del plazo de máximo tres (3) días hábiles.');
+  if (tiene('RESTITUCIÓN DE SALDO')) ps.push('Restituir el saldo no consumido al que tengo derecho conforme a las condiciones de prepago.');
+  if (tiene('BLOQUEO DE IMEI POR HURTO/PÉRDIDA')) ps.push('Incluir el IMEI reportado en la base negativa para impedir el uso del equipo.');
+  if (tiene('EXCLUSIÓN DE BASE NEGATIVA (DESBLOQUEO DE IMEI)')) ps.push('Excluir el IMEI de la base negativa al acreditar la propiedad del equipo.');
   ps.push('Dar respuesta de fondo dentro de los quince (15) días hábiles legales.');
   return ps;
 }
