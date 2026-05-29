@@ -237,14 +237,26 @@ function normalizar(s) {
 
 function abrirNormas() { _filtroNormas = ''; renderNormas(); }
 
+function pesos(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+
 function renderNormas() {
   const app = document.getElementById('app');
   const q = normalizar(_filtroNormas).trim();
-  // Cada palabra del query debe aparecer en la ficha (búsqueda AND, tolerante a tildes).
+  // Cada palabra del query debe aparecer (búsqueda AND, tolerante a tildes).
   const terminos = q ? q.split(/\s+/) : [];
+
+  // Fichas de derechos en la vía.
   const lista = NORMAS_VIA.filter(n => {
     if (!terminos.length) return true;
     const heno = normalizar(n.titulo + ' ' + n.dicen + ' ' + n.realidad + ' ' + n.cat + ' ' + n.tip + ' ' + n.norma + ' ' + (n.claves || ''));
+    return terminos.every(t => heno.includes(t));
+  });
+
+  // Códigos de infracción (solo se muestran al buscar algo).
+  const C = (window.Codigos && window.Codigos.CODIGOS) || [];
+  const T = (window.Codigos && window.Codigos.TIPOS) || {};
+  const codigos = !terminos.length ? [] : C.filter(c => {
+    const heno = normalizar(c.codigo + ' ' + c.desc + ' ' + (T[c.tipo] ? T[c.tipo].label : ''));
     return terminos.every(t => heno.includes(t));
   });
 
@@ -258,15 +270,34 @@ function renderNormas() {
       <p class="norma-ley">📚 ${escN(n.norma)}</p>
     </div>`).join('');
 
+  const codigosBloque = codigos.length ? `
+  <div class="card cod-card">
+    <h3 class="cod-h">📋 Códigos de infracción (${codigos.length})</h3>
+    ${codigos.slice(0, 40).map(c => {
+      const ti = T[c.tipo] || {};
+      return `<div class="cod">
+        <div class="cod-top"><span class="cod-id">${escN(c.codigo)}</span>${c.inmov ? '<span class="cod-inmov">🚓 puede inmovilizar</span>' : ''}</div>
+        <p class="cod-desc">${escN(c.desc)}</p>
+        <p class="cod-val">${escN(ti.label || ('Tipo ' + c.tipo))} · ${ti.smldv ? ti.smldv + ' SMLDV · ' : ''}multa plena aprox. ${ti.v2025 ? pesos(ti.v2025) : 's/d'} (2025)</p>
+      </div>`;
+    }).join('')}
+    ${codigos.length > 40 ? `<p class="cod-mas">…y ${codigos.length - 40} más. Afina la búsqueda.</p>` : ''}
+    <p class="cod-nota">Valores referenciales 2025 (se calculan en UVB y cambian cada año). Con el curso pedagógico aplican descuentos del 50%/25%.</p>
+  </div>` : '';
+
+  const totalRes = lista.length + codigos.length;
+
   app.innerHTML = `
   <div class="card">
     <button class="ghost volver" onclick="render()">← Volver al inicio</button>
     <h2 class="step-title">🛑 Tus derechos en la vía</h2>
-    <p class="step-sub">Busca tu situación por palabra, por sinónimo (ej.: "grúa", "trago", "se llevan el carro") o por número de norma (ej.: "125", "1843", "C-038"). Si un agente te dice algo que no es cierto, aquí tienes la norma para responder con argumentos.</p>
-    <input type="text" id="buscarNorma" placeholder="Busca: SOAT, grúa, licencia, art 125, embriaguez…" value="${escN(_filtroNormas)}" oninput="filtrarNormas(this.value)" autocomplete="off">
-    ${terminos.length ? `<p class="norma-count">${lista.length} resultado${lista.length === 1 ? '' : 's'} para "${escN(_filtroNormas.trim())}"</p>` : ''}
+    <p class="step-sub">Busca por palabra o sinónimo ("grúa", "trago", "se llevan el carro"), por número de norma ("125", "1843", "C-038") o por <b>código de infracción</b> ("C29", "D02", "B10"). Si un agente te dice algo que no es cierto, aquí tienes con qué responder.</p>
+    <input type="text" id="buscarNorma" placeholder="Busca: SOAT, grúa, C29, art 125, embriaguez…" value="${escN(_filtroNormas)}" oninput="filtrarNormas(this.value)" autocomplete="off">
+    ${terminos.length ? `<p class="norma-count">${totalRes} resultado${totalRes === 1 ? '' : 's'} para "${escN(_filtroNormas.trim())}"</p>` : ''}
   </div>
-  ${cards || '<div class="card"><p>No encontramos nada con esa palabra. Prueba con otra (ej.: "SOAT", "licencia", "grúa", "125") o revisa la ortografía.</p></div>'}
+  ${codigosBloque}
+  ${cards}
+  ${totalRes === 0 ? '<div class="card"><p>No encontramos nada con esa búsqueda. Prueba otra palabra ("SOAT", "grúa", "125") o un código ("C29", "D02").</p></div>' : ''}
   <div class="card">
     <p class="step-sub" style="margin:0">⚠️ Información de apoyo, no asesoría jurídica. Las normas y tarifas cambian; mantén la calma, sé respetuoso y verifica el caso concreto.</p>
   </div>`;
