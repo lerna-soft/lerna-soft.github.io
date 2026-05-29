@@ -216,6 +216,7 @@ function renderResultado() {
   const r = window.Reglas.evaluarCaso(caso);
   const doc = window.Plantillas.generarPQR(caso, r);
   window.__doc = doc.texto;
+  window.__docHtml = window.Plantillas.generarPQRHtml(caso, r);
 
   // plazos
   let plazosHtml = '';
@@ -291,8 +292,12 @@ function descargarDoc() {
 }
 function imprimirDoc() {
   const w = window.open('', '_blank');
-  w.document.write(`<pre style="font-family:Georgia,serif;white-space:pre-wrap;font-size:13px;line-height:1.5;padding:24px">${esc(window.__doc)}</pre>`);
-  w.document.close(); w.focus(); w.print();
+  if (!w) { toast('Permite las ventanas emergentes para generar el PDF'); return; }
+  w.document.write(window.__docHtml);
+  w.document.close();
+  w.focus();
+  // Da un instante para que apliquen estilos/fuentes antes de abrir el diálogo de impresión.
+  setTimeout(() => w.print(), 350);
 }
 function reiniciar() { location.reload(); }
 
