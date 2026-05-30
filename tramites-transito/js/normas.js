@@ -34,6 +34,36 @@ const NORMAS_VIA = [
     tip: 'Pide nombre, placa institucional y el motivo concreto. Anótalo. Un comparendo sin estos datos es atacable.',
   },
   {
+    id: 'llaves',
+    cat: 'Tus derechos',
+    titulo: 'No te pueden quitar las llaves del vehículo',
+    dicen: 'Te quitan las llaves del carro o la moto "para que no te vayas" o como forma de presión.',
+    realidad: 'Quitarte las llaves NO es una medida prevista en la ley. La autoridad no puede apoderarse de tus llaves como garantía ni para retenerte. Lo único que la ley permite es la inmovilización del vehículo (con grúa) cuando se configura una causal tasada del art. 125 de la Ley 769; y aun así el procedimiento es la inmovilización formal, no "quitarte las llaves".',
+    norma: 'Ley 769 de 2002, art. 125 (causales tasadas de inmovilización). Ninguna norma autoriza retener las llaves.',
+    claves: 'llaves me quitan las llaves quitar las llaves apagar el carro retener llaves no me dejan ir presion llave de la moto',
+    tip: 'Di: "Quitarme las llaves no está previsto en la ley. Si aplica una causal de inmovilización del art. 125, hágala formalmente; si no, no puede quedarse con mis llaves". Graba el momento.',
+  },
+  {
+    id: 'requisa',
+    cat: 'Tus derechos',
+    titulo: 'La requisa (registro personal): solo con motivos fundados',
+    dicen: 'Te requisan "porque sí" o de forma rutinaria, sin explicar por qué.',
+    realidad: 'El registro personal NO puede hacerse por simple sospecha: la autoridad necesita MOTIVOS FUNDADOS y solo en los casos tasados de la ley (verificar tu identidad cuando no puedes identificarte, buscar armas o elementos peligrosos, bienes hurtados, sustancias prohibidas, o prevenir un delito). El registro debe respetar tu dignidad e intimidad.',
+    norma: 'Art. 159, Código Nacional de Seguridad y Convivencia Ciudadana (Ley 1801 de 2016).',
+    claves: 'requisa registro personal me requisan me cachean cachear registro a persona motivos fundados articulo 159 ley 1801 me revisan sin motivo',
+    tip: 'Pregunta: "¿Cuál es el motivo fundado del registro?". Si no hay una causa concreta del art. 159, déjalo grabado: no es legal requisar "porque sí".',
+  },
+  {
+    id: 'registro-vehiculo',
+    cat: 'Tus derechos',
+    titulo: '¿Pueden bajarte del carro y registrarlo?',
+    dicen: 'Te ordenan bajarte y registran el vehículo sin decir por qué.',
+    realidad: 'El registro a un vehículo también está tasado: procede para verificar identidad u origen/propiedad, comprobar características del vehículo, cuando hay conocimiento o indicio de que se usa para una conducta contraria a la convivencia o un delito, o en un operativo ordenado. Pueden pedirte bajar para ese registro en esos casos; no es un registro arbitrario "de rutina" sin causa.',
+    norma: 'Art. 160, Código Nacional de Seguridad y Convivencia Ciudadana (Ley 1801 de 2016).',
+    claves: 'bajar del carro me bajan del vehiculo registro al vehiculo requisa del carro registrar el carro abrir el baul indicio operativo articulo 160 ley 1801',
+    tip: 'Pregunta cuál de los casos del art. 160 aplica. Colabora con respeto pero pide que quede claro el motivo, y graba el procedimiento.',
+  },
+  {
     id: 'retener-licencia',
     cat: 'Documentos',
     titulo: 'No te pueden retener la licencia (salvo embriaguez)',
@@ -241,36 +271,51 @@ function pesos(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
 // Devuelve el número de artículo de la Ley 769 citado en la ficha (para enlazar al
 // Código), o null si la norma no es de la Ley 769 (p. ej. jurisprudencia u otra ley).
+// Detecta el artículo citado y a QUÉ código pertenece (Tránsito 769 o Policía 1801),
+// para abrir el visor correcto. Devuelve {art, ley} o null.
 function articuloDe(n) {
-  if (n.art) return n.art;
-  if (!/Ley\s*769/i.test(n.norma || '')) return null;
-  const m = (n.norma || '').match(/Art(?:[íi]culo)?\.?\s*(\d+)/i);
-  return m ? m[1] : null;
+  const norma = n.norma || '';
+  const m = norma.match(/Art(?:[íi]culo)?\.?\s*(\d+)/i);
+  if (n.art) return { art: String(n.art), ley: n.ley || '769' };
+  if (!m) return null;
+  const art = m[1];
+  if (/Ley\s*1801|C[óo]digo\s+Nacional\s+de\s+Seguridad|C[óo]digo\s+de\s+Polic[íi]a|Convivencia\s+Ciudadana/i.test(norma)) {
+    return { art, ley: '1801' };
+  }
+  if (/Ley\s*769|C[óo]digo\s+Nacional\s+de\s+Tr[áa]nsito/i.test(norma)) {
+    return { art, ley: '769' };
+  }
+  return null;
 }
 
-// Abre el Código Nacional de Tránsito en un modal con iframe apuntando al artículo.
-function verCodigo(art) {
+// Abre el Código correspondiente (Tránsito 769 o Policía 1801) en un modal con iframe
+// apuntando al artículo.
+function verCodigo(art, ley) {
+  ley = (ley === '1801') ? '1801' : '769';
+  const file = ley === '1801' ? 'codigo/ley-1801.html' : 'codigo/ley-769.html';
+  const nombreCodigo = ley === '1801' ? 'Código Nacional de Policía' : 'Código Nacional de Tránsito';
+  const nombreCorto = ley === '1801' ? 'Código de Policía' : 'Código de Tránsito';
   let m = document.getElementById('codigoModal');
   if (!m) {
     m = document.createElement('div');
     m.id = 'codigoModal';
     m.innerHTML = `
       <div class="cm-backdrop" onclick="cerrarCodigo()"></div>
-      <div class="cm-panel" role="dialog" aria-label="Código Nacional de Tránsito">
+      <div class="cm-panel" role="dialog" aria-label="Código">
         <div class="cm-bar">
-          <span id="cmTitulo">Código Nacional de Tránsito</span>
+          <span id="cmTitulo"></span>
           <button class="cm-close" onclick="cerrarCodigo()" aria-label="Cerrar">✕</button>
         </div>
-        <iframe id="cmFrame" title="Código Nacional de Tránsito" referrerpolicy="no-referrer"></iframe>
+        <iframe id="cmFrame" title="Código" referrerpolicy="no-referrer"></iframe>
       </div>`;
     document.body.appendChild(m);
   }
   const frame = document.getElementById('cmFrame');
-  const dest = art ? ('codigo/ley-769.html#art' + art) : 'codigo/ley-769.html';
+  const dest = art ? (file + '#art' + art) : file;
   // reasignar src fuerza el scroll al ancla aunque sea el mismo documento
   frame.src = 'about:blank';
   setTimeout(() => { frame.src = dest; }, 0);
-  document.getElementById('cmTitulo').textContent = art ? ('Código de Tránsito — Artículo ' + art) : 'Código Nacional de Tránsito';
+  document.getElementById('cmTitulo').textContent = art ? (nombreCorto + ' — Artículo ' + art) : nombreCodigo;
   m.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -302,7 +347,7 @@ function renderNormas() {
   });
 
   const cards = lista.map(n => {
-    const art = articuloDe(n);
+    const ref = articuloDe(n);
     return `
     <div class="norma">
       <span class="norma-cat">${escN(n.cat)}</span>
@@ -311,7 +356,7 @@ function renderNormas() {
       <p class="norma-real"><b>La realidad:</b> ${escN(n.realidad)}</p>
       <p class="norma-tip">✅ ${escN(n.tip)}</p>
       <p class="norma-ley">📚 ${escN(n.norma)}</p>
-      ${art ? `<button class="ver-codigo" onclick="verCodigo('${art}')">📖 Ver el artículo ${escN(art)} en el Código</button>` : ''}
+      ${ref ? `<button class="ver-codigo" onclick="verCodigo('${ref.art}','${ref.ley}')">📖 Ver el artículo ${escN(ref.art)} en el ${ref.ley === '1801' ? 'Código de Policía' : 'Código de Tránsito'}</button>` : ''}
     </div>`;
   }).join('');
 
@@ -324,7 +369,7 @@ function renderNormas() {
         <div class="cod-top"><span class="cod-id">${escN(c.codigo)}</span>${c.inmov ? '<span class="cod-inmov">🚓 puede inmovilizar</span>' : ''}</div>
         <p class="cod-desc">${escN(c.desc)}</p>
         <p class="cod-val">${escN(ti.label || ('Tipo ' + c.tipo))} · ${ti.smldv ? ti.smldv + ' SMLDV · ' : ''}multa plena aprox. ${ti.v2025 ? pesos(ti.v2025) : 's/d'} (2025)</p>
-        <button class="ver-codigo" onclick="verCodigo('131')">📖 Ver en el Código (art. 131 · Multas)</button>
+        <button class="ver-codigo" onclick="verCodigo('131','769')">📖 Ver en el Código (art. 131 · Multas)</button>
       </div>`;
     }).join('')}
     ${codigos.length > 40 ? `<p class="cod-mas">…y ${codigos.length - 40} más. Afina la búsqueda.</p>` : ''}
