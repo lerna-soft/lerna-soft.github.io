@@ -134,8 +134,13 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .ver-codigo {
   margin-top: 10px; width: 100%; background: #eef4ff; color: var(--azul-osc);
   border: 1px solid #cfe0ff; border-radius: 9px; padding: 9px 12px; font-size: 14.5px; font-weight: 700;
+  cursor: pointer; text-align: center; display: block; text-decoration: none;
 }
 .ver-codigo:hover { background: #e0ecff; }
+.norma-codigo-acciones { display: flex; flex-direction: column; gap: 6px; }
+.norma-codigo-acciones .ver-codigo { margin-top: 0; }
+.ver-codigo.pdf-dl { background: #f3fbf4; color: #166534; border-color: #bbe6c4; font-weight: 600; }
+.ver-codigo.pdf-dl:hover { background: #e6f6e9; }
 
 /* modal visor del Código (iframe al artículo) */
 #codigoModal { display: none; position: fixed; inset: 0; z-index: 50; }
