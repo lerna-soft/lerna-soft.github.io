@@ -64,6 +64,17 @@ const NORMAS_VIA = [
     tip: 'Pregunta cuál de los casos del art. 160 aplica. Colabora con respeto pero pide que quede claro el motivo, y graba el procedimiento.',
   },
   {
+    id: 'interrogar',
+    cat: 'Tus derechos',
+    titulo: 'Debes identificarte, pero no estás obligado a declarar',
+    dicen: 'Te interrogan: "¿de dónde viene?", "¿para dónde va?", "¿qué hacía?" y exigen respuestas.',
+    realidad: 'Tienes el deber de identificarte (mostrar tu documento), pero NO estás obligado a responder un interrogatorio sobre tus actividades ni a declarar contra ti mismo. Puedes guardar silencio sin que eso sea una infracción. La autoridad no puede obligarte a autoincriminarte.',
+    norma: 'Constitución Política de Colombia, art. 33 (nadie está obligado a declarar contra sí mismo). Deber de identificarse: art. 159, Ley 1801 de 2016.',
+    sinCodigo: true,
+    claves: 'interrogar interrogatorio me preguntan a donde voy de donde vengo que hacia declarar guardar silencio no responder autoincriminacion derecho al silencio articulo 33 constitucion identificarme',
+    tip: 'Identifícate con calma (eso sí debes), pero no tienes que explicar a dónde vas ni qué hacías. Di con respeto: "Me identifico, pero me acojo a mi derecho a no declarar (art. 33 de la Constitución)".',
+  },
+  {
     id: 'retener-licencia',
     cat: 'Documentos',
     titulo: 'No te pueden retener la licencia (salvo embriaguez)',
@@ -274,6 +285,7 @@ function pesos(n) { return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 // Detecta el artículo citado y a QUÉ código pertenece (Tránsito 769 o Policía 1801),
 // para abrir el visor correcto. Devuelve {art, ley} o null.
 function articuloDe(n) {
+  if (n.sinCodigo) return null; // fichas cuya norma principal no está en los visores (ej. Constitución)
   const norma = n.norma || '';
   const m = norma.match(/Art(?:[íi]culo)?\.?\s*(\d+)/i);
   if (n.art) return { art: String(n.art), ley: n.ley || '769' };
@@ -356,7 +368,10 @@ function renderNormas() {
       <p class="norma-real"><b>La realidad:</b> ${escN(n.realidad)}</p>
       <p class="norma-tip">✅ ${escN(n.tip)}</p>
       <p class="norma-ley">📚 ${escN(n.norma)}</p>
-      ${ref ? `<button class="ver-codigo" onclick="verCodigo('${ref.art}','${ref.ley}')">📖 Ver el artículo ${escN(ref.art)} en el ${ref.ley === '1801' ? 'Código de Policía' : 'Código de Tránsito'}</button>` : ''}
+      ${ref ? `<div class="norma-codigo-acciones">
+        <button class="ver-codigo" onclick="verCodigo('${ref.art}','${ref.ley}')">📖 Ver el artículo ${escN(ref.art)} en el ${ref.ley === '1801' ? 'Código de Policía' : 'Código de Tránsito'}</button>
+        <a class="ver-codigo pdf-dl" href="codigo/ley-${ref.ley}.pdf" download>⬇️ Descargar el ${ref.ley === '1801' ? 'Código de Policía' : 'Código de Tránsito'} (PDF · busca el art. ${escN(ref.art)})</a>
+      </div>` : ''}
     </div>`;
   }).join('');
 
@@ -369,7 +384,10 @@ function renderNormas() {
         <div class="cod-top"><span class="cod-id">${escN(c.codigo)}</span>${c.inmov ? '<span class="cod-inmov">🚓 puede inmovilizar</span>' : ''}</div>
         <p class="cod-desc">${escN(c.desc)}</p>
         <p class="cod-val">${escN(ti.label || ('Tipo ' + c.tipo))} · ${ti.smldv ? ti.smldv + ' SMLDV · ' : ''}multa plena aprox. ${ti.v2025 ? pesos(ti.v2025) : 's/d'} (2025)</p>
-        <button class="ver-codigo" onclick="verCodigo('131','769')">📖 Ver en el Código (art. 131 · Multas)</button>
+        <div class="norma-codigo-acciones">
+          <button class="ver-codigo" onclick="verCodigo('131','769')">📖 Ver en el Código (art. 131 · Multas)</button>
+          <a class="ver-codigo pdf-dl" href="codigo/ley-769.pdf" download>⬇️ Descargar el Código de Tránsito (PDF)</a>
+        </div>
       </div>`;
     }).join('')}
     ${codigos.length > 40 ? `<p class="cod-mas">…y ${codigos.length - 40} más. Afina la búsqueda.</p>` : ''}
